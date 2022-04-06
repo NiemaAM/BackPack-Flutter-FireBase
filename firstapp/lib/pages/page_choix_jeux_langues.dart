@@ -28,30 +28,33 @@ class _pageLanguesChoixState extends State<pageLanguesChoix> {
       height: double.maxFinite,
       decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/img/page_jeux_choix_2.png"),
+              image: AssetImage("assets/img/page_parametres.png"),
               fit: BoxFit.cover)),
       child: Column(children: [
-        retouracceuil(
-          color: Colors.white,
-        ),
+        retour(),
         SizedBox(
-          height: height / 12,
+          height: height / 2.5,
         ),
         Opacity(
             opacity: 0.8,
             child: Container(
-              width: width - 40,
+              width: width,
               height: height / 19,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                color: Colors.white,
-              ),
               child: AppText(
-                text: "Choisi ce que tu veux apprendre !",
-                size: 35,
+                text: "Cette partie est en cours de construction !",
+                size: 30,
                 color: Colors.black,
               ),
             )),
+        SizedBox(
+          height: 10,
+        ),
+        Center(
+          child: CircularProgressIndicator(
+            strokeWidth: 10,
+            color: Color.fromARGB(255, 111, 195, 255),
+          ),
+        ),
       ]),
     ));
   }

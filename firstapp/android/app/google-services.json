@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "183112755427",
+    "project_id": "back-pack-cbea2",
+    "storage_bucket": "back-pack-cbea2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:183112755427:android:fffc936f946a284525fdd6",
+        "android_client_info": {
+          "package_name": "com.example.firstapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "183112755427-3abpim9mvjcmb4qrrtjiq4g453klflf5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxULBNWJ_mj27QGSDdE_Hj0Z_QJANxa-0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "183112755427-3abpim9mvjcmb4qrrtjiq4g453klflf5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

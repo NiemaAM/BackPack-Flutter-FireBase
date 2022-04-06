@@ -4,7 +4,6 @@ import 'dart:ui';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:firstapp/pages/page_acceuil.dart';
 import 'package:firstapp/widgets/app_text.dart';
-import 'package:firstapp/widgets/menue_retour.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
@@ -17,6 +16,10 @@ class Draw extends StatefulWidget {
 AudioCache player = new AudioCache(fixedPlayer: AudioPlayer());
 
 class _DrawState extends State<Draw> {
+  bool _state1 = false;
+  bool _state2 = false;
+  bool _state3 = false;
+  bool _state4 = false;
   Color selectedColor = Colors.black;
   Color pickerColor = Colors.black;
   double strokeWidth = 3.0;
@@ -115,52 +118,55 @@ class _DrawState extends State<Draw> {
                         );
                       }),
                   IconButton(
-                      icon: Icon(Icons.save, color: Colors.white),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      }),
-                  IconButton(
                       icon: Icon(
                         Icons.brightness_1,
-                        color: Colors.white,
+                        color: (_state1) ? Colors.black : Colors.white,
                       ),
                       onPressed: () {
                         setState(() {
-                          if (selectedMode == SelectedMode.StrokeWidth)
-                            showBottomList = !showBottomList;
+                          _state1 = !_state1;
+                          showBottomList = !showBottomList;
                           selectedMode = SelectedMode.StrokeWidth;
                         });
                       }),
                   IconButton(
                       icon: Icon(
                         Icons.opacity,
-                        color: Colors.white,
+                        color: (_state2) ? Colors.black : Colors.white,
                       ),
                       onPressed: () {
                         setState(() {
-                          if (selectedMode == SelectedMode.Opacity)
-                            showBottomList = !showBottomList;
+                          _state2 = !_state2;
+                          showBottomList = !showBottomList;
                           selectedMode = SelectedMode.Opacity;
                         });
                       }),
                   IconButton(
                       icon: Icon(
                         Icons.color_lens,
-                        color: Colors.white,
+                        color: (_state3) ? Colors.black : Colors.white,
                       ),
                       onPressed: () {
                         setState(() {
-                          if (selectedMode == SelectedMode.Color)
-                            showBottomList = !showBottomList;
+                          _state3 = !_state3;
+                          showBottomList = !showBottomList;
                           selectedMode = SelectedMode.Color;
                         });
                       }),
                   IconButton(
-                      icon: Icon(Icons.brightness_1_outlined,
-                          color: Colors.white),
+                      icon: Icon(
+                        Icons.brightness_1_outlined,
+                        color: (_state4) ? Colors.black : Colors.white,
+                      ),
                       onPressed: () {
                         setState(() {
-                          selectedColor = Colors.white;
+                          if (_state4 == false) {
+                            selectedColor = Colors.white;
+                            _state4 = true;
+                          } else {
+                            selectedColor = Colors.black;
+                            _state4 = false;
+                          }
                         });
                       }),
                   IconButton(
@@ -170,6 +176,11 @@ class _DrawState extends State<Draw> {
                       ),
                       onPressed: () {
                         setState(() {
+                          _state1 = false;
+                          _state2 = false;
+                          _state3 = false;
+                          _state4 = false;
+                          selectedColor = Colors.black;
                           showBottomList = false;
                           points.clear();
                         });

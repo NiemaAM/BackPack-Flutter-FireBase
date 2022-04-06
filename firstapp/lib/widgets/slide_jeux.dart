@@ -29,10 +29,10 @@ class _slideJeuxState extends State<slideJeux> {
     pageQuizChoix(),
     pagePuzzleChoix(),
     pageLanguesChoix(),
-    pageMathChoix(),
+    pageLanguesChoix(),
     Draw(),
-    parametres(),
-    parametres()
+    pageLanguesChoix(),
+    pageLanguesChoix()
   ];
 
   AudioCache player = new AudioCache(fixedPlayer: AudioPlayer());

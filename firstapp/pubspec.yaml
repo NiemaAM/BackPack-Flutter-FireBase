@@ -30,8 +30,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  provider: ^6.0.0
-
   introduction_screen: ^1.0.9
 
 
@@ -43,6 +41,16 @@ dependencies:
   flutter_colorpicker: ^0.3.2
   image_gallery_saver: ^1.7.1
   audioplayers: ^0.20.1
+  firebase_core: ^1.14.0
+  firebase_database: ^9.0.9
+  cloud_firestore: ^3.1.11
+  image_picker: ^0.8.4+11
+  screenshot: ^1.2.3
+  permission_handler: ^9.2.0
+  animated_floatactionbuttons: ^0.1.0
+  remove_emoji: ^0.0.7
+  provider: ^6.0.2
+  path_provider: ^2.0.9
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +66,7 @@ dev_dependencies:
   flare_flutter: ^1.5.0
 
   carousel_slider: ^4.0.0
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -79,6 +88,8 @@ flutter:
   assets:
        - assets/img/
        - assets/musiques_fond/
+       - assets/infos_app/
+       - assets/infos_app/is_oppend.txt
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
