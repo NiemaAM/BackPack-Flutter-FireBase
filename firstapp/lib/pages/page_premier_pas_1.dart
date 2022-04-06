@@ -1,13 +1,14 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:device_info/device_info.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firstapp/pages/page_premier_pas_2.dart';
 import 'package:firstapp/widgets/app_text.dart';
-import 'package:firstapp/widgets/champ_mdp.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
 import 'package:remove_emoji/remove_emoji.dart';
 
 // ignore: camel_case_types
@@ -21,9 +22,36 @@ class premier_pas_1 extends StatefulWidget {
 
 // ignore: camel_case_types
 class _premier_pas_1State extends State<premier_pas_1> {
+  String deviceName = '';
+  String deviceVersion = '';
+  String identifier = '';
+  Future<void> _deviceDetails() async {
+    final DeviceInfoPlugin deviceInfoPlugin = new DeviceInfoPlugin();
+    try {
+      if (Platform.isAndroid) {
+        var build = await deviceInfoPlugin.androidInfo;
+        setState(() {
+          deviceName = build.model;
+          deviceVersion = build.version.toString();
+          identifier = build.androidId;
+        });
+        //UUID for Android
+      } else if (Platform.isIOS) {
+        var data = await deviceInfoPlugin.iosInfo;
+        setState(() {
+          deviceName = data.name;
+          deviceVersion = data.systemVersion;
+          identifier = data.identifierForVendor;
+        }); //UUID for iOS
+      }
+    } on PlatformException {
+      print('Failed to get platform version');
+    }
+  }
+
   final referenceDatabase = FirebaseDatabase.instance;
   String Nom = "mdp";
-  String id = "id";
+
   var remove = RemoveEmoji();
   String idParent = "${Random().nextInt(100)}";
   DatabaseReference _MotDePasse =
@@ -34,6 +62,7 @@ class _premier_pas_1State extends State<premier_pas_1> {
   @override
   Widget build(BuildContext context) {
     final ref = referenceDatabase.reference();
+    _deviceDetails();
     CollectionReference parent =
         FirebaseFirestore.instance.collection('Parent');
     double width = MediaQuery.of(context).size.width;
@@ -139,11 +168,15 @@ class _premier_pas_1State extends State<premier_pas_1> {
                               ),
                             ));
                           } else {
+                            _deviceDetails();
                             ref.update({
-                              "Parent": {
+                              "$identifier": {
                                 "MotDePasse":
                                     remove.removemoji(myController.text),
-                                "id": idParent,
+                                "Enfant": {
+                                  "Nom": "",
+                                  "Avatar": "",
+                                }
                               }
                             });
                             Navigator.of(context).push(MaterialPageRoute(

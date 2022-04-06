@@ -1,17 +1,12 @@
-import 'dart:math';
 import 'dart:async';
 import 'dart:io';
 
+import 'package:device_info/device_info.dart';
 import 'package:firstapp/pages/page_acceuil.dart';
 import 'package:firstapp/pages/page_premier_pas_1.dart';
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:firebase_database/firebase_database.dart';
-import 'package:firstapp/pages/page_premier_pas_2.dart';
-import 'package:firstapp/widgets/app_text.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:remove_emoji/remove_emoji.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:flutter/services.dart';
 
 // ignore: camel_case_types
 class oppened extends StatefulWidget {
@@ -24,9 +19,38 @@ class oppened extends StatefulWidget {
 // ignore: camel_case_types
 class oppenedState extends State<oppened> {
   String isoppend = '';
+
+  String deviceName = '';
+  String deviceVersion = '';
+  String identifier = '';
+  Future<void> _deviceDetails() async {
+    final DeviceInfoPlugin deviceInfoPlugin = new DeviceInfoPlugin();
+    try {
+      if (Platform.isAndroid) {
+        var build = await deviceInfoPlugin.androidInfo;
+        setState(() {
+          deviceName = build.model;
+          deviceVersion = build.version.toString();
+          identifier = build.androidId;
+        });
+        //UUID for Android
+      } else if (Platform.isIOS) {
+        var data = await deviceInfoPlugin.iosInfo;
+        setState(() {
+          deviceName = data.name;
+          deviceVersion = data.systemVersion;
+          identifier = data.identifierForVendor;
+        }); //UUID for iOS
+      }
+    } on PlatformException {
+      print('Failed to get platform version');
+    }
+  }
+
   getData() async {
+    _deviceDetails();
     final ref = FirebaseDatabase.instance.ref();
-    final snapshot = await ref.child('Parent/id').get();
+    final snapshot = await ref.child('$identifier').get();
     if (snapshot.exists) {
       setState(() {
         isoppend = "1";
@@ -41,7 +65,9 @@ class oppenedState extends State<oppened> {
   @override
   Widget build(BuildContext context) {
     // ignore: unrelated_type_equality_checks
+
     getData();
+
     if (isoppend.length > 2) {
       return premier_pas_1();
     } else {

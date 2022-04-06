@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:io';
 
+import 'package:device_info/device_info.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firstapp/pages/page_acceuil.dart';
@@ -12,7 +13,7 @@ import 'package:firstapp/widgets/slide_avatar_choix.dart';
 import 'package:flutter/material.dart';
 import 'package:remove_emoji/remove_emoji.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/services.dart' show PlatformException, rootBundle;
 import 'package:path/path.dart';
 
 // ignore: camel_case_types
@@ -25,6 +26,33 @@ class premier_pas_2 extends StatefulWidget {
 
 // ignore: camel_case_types
 class _premier_pas_2State extends State<premier_pas_2> {
+  String deviceName = '';
+  String deviceVersion = '';
+  String identifier = '';
+  Future<void> _deviceDetails() async {
+    final DeviceInfoPlugin deviceInfoPlugin = new DeviceInfoPlugin();
+    try {
+      if (Platform.isAndroid) {
+        var build = await deviceInfoPlugin.androidInfo;
+        setState(() {
+          deviceName = build.model;
+          deviceVersion = build.version.toString();
+          identifier = build.androidId;
+        });
+        //UUID for Android
+      } else if (Platform.isIOS) {
+        var data = await deviceInfoPlugin.iosInfo;
+        setState(() {
+          deviceName = data.name;
+          deviceVersion = data.systemVersion;
+          identifier = data.identifierForVendor;
+        }); //UUID for iOS
+      }
+    } on PlatformException {
+      print('Failed to get platform version');
+    }
+  }
+
   final referenceDatabase = FirebaseDatabase.instance;
 
   var remove = RemoveEmoji();
@@ -34,6 +62,7 @@ class _premier_pas_2State extends State<premier_pas_2> {
   final myController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    _deviceDetails();
     final ref = referenceDatabase.reference();
 
     double width = MediaQuery.of(context).size.width;
@@ -110,11 +139,11 @@ class _premier_pas_2State extends State<premier_pas_2> {
                             ));
                           } else {
                             ref.update({
-                              "Enfant": {
-                                "Nom": remove.removemoji(myController.text
-                                    .replaceAll(RegExp('[^A-Za-z-_]'), '')),
-                                "Avatar": './assets/img/avatar_1.png',
-                              }
+                              "$identifier/Enfant/Nom": remove.removemoji(
+                                  myController.text
+                                      .replaceAll(RegExp('[^A-Za-z-_]'), '')),
+                              "$identifier/Enfant/Avatar":
+                                  './assets/img/avatar_1.png',
                             });
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => acceil()));

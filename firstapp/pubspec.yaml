@@ -51,6 +51,7 @@ dependencies:
   remove_emoji: ^0.0.7
   provider: ^6.0.2
   path_provider: ^2.0.9
+  device_info: ^0.4.0+4
 
 dev_dependencies:
   flutter_test:
