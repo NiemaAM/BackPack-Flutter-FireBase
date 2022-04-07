@@ -19,6 +19,9 @@ class oppened extends StatefulWidget {
 // ignore: camel_case_types
 class oppenedState extends State<oppened> {
   int isoppend = 3;
+  String nom = 'nom';
+  String mdp = 'mdp';
+  String avatar = './assets/img/avatar_1.png';
 
   String deviceName = '';
   String deviceVersion = '';
@@ -52,11 +55,15 @@ class oppenedState extends State<oppened> {
     _deviceDetails();
     final ref = FirebaseDatabase.instance.ref();
     final snapshot = await ref.child('$identifier/id').get();
+    final snapshot1 = await ref.child('$identifier/MotDePasse').get();
     final snapshot2 = await ref.child('$identifier/Enfant/Nom').get();
-    String nom = snapshot2.value;
-    if (snapshot.value == identifier && nom.isNotEmpty) {
+    final snapshot3 = await ref.child('$identifier/Enfant/Avatar').get();
+    if (snapshot.value == identifier) {
       setState(() {
         isoppend = 1;
+        mdp = snapshot1.value;
+        nom = snapshot2.value;
+        avatar = snapshot3.value;
       });
     } else {
       setState(() {

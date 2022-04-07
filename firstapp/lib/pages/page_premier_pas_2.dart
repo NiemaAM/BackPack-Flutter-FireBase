@@ -53,9 +53,6 @@ class _premier_pas_2State extends State<premier_pas_2> {
   final referenceDatabase = FirebaseDatabase.instance;
 
   var remove = RemoveEmoji();
-  // ignore: non_constant_identifier_names
-  String Nom = "Nom";
-  String id = "id";
 
   final myController = TextEditingController();
   @override

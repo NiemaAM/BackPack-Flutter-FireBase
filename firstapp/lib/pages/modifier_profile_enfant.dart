@@ -1,27 +1,27 @@
 import 'dart:io';
-import 'dart:math';
 
 import 'package:device_info/device_info.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:firstapp/pages/page_premier_pas_2.dart';
 import 'package:firstapp/widgets/app_text.dart';
+import 'package:firstapp/widgets/menue_retour.dart';
+import 'package:firstapp/widgets/slide_avatar_choix.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:remove_emoji/remove_emoji.dart';
+import 'package:flutter/services.dart';
 
 // ignore: camel_case_types
-class premier_pas_1 extends StatefulWidget {
+class modifier_profile_enfant extends StatefulWidget {
   // ignore: use_key_in_widget_constructors
-  const premier_pas_1({this.app});
+  const modifier_profile_enfant({this.app});
   final FirebaseApp app;
-
   @override
-  _premier_pas_1State createState() => _premier_pas_1State();
+  _modifier_profile_enfantState createState() =>
+      _modifier_profile_enfantState();
 }
 
 // ignore: camel_case_types
-class _premier_pas_1State extends State<premier_pas_1> {
+class _modifier_profile_enfantState extends State<modifier_profile_enfant> {
   String deviceName = '';
   String deviceVersion = '';
   String identifier = '';
@@ -51,19 +51,20 @@ class _premier_pas_1State extends State<premier_pas_1> {
   }
 
   final referenceDatabase = FirebaseDatabase.instance;
-  // ignore: non_constant_identifier_names
-  String Nom = "mdp";
 
   var remove = RemoveEmoji();
-  String idParent = "${Random().nextInt(100)}";
+  // ignore: non_constant_identifier_names
+  String Nom = "Nom";
+  String id = "id";
+
   final myController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    _deviceDetails();
     // ignore: deprecated_member_use
     final ref = referenceDatabase.reference();
-    _deviceDetails();
+
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
@@ -71,38 +72,38 @@ class _premier_pas_1State extends State<premier_pas_1> {
           height: double.maxFinite,
           decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/img/page_parents.png"),
+                  image: AssetImage("assets/img/page_kid.png"),
                   fit: BoxFit.cover)),
           child: Container(
-              margin: const EdgeInsets.all(30),
+              margin: const EdgeInsets.all(10),
               alignment: Alignment.center,
               child: Column(
                 children: [
                   Container(
-                    margin: const EdgeInsets.only(top: 30),
-                    width: width,
-                    height: height / 2,
-                    child: AppText(text: "Espace de contrôle parental"),
+                    margin: const EdgeInsets.only(top: 10),
+                    child: const retour(
+                      color: Colors.black,
+                    ),
                   ),
                   SizedBox(
-                      width: width,
-                      height: width / 10,
-                      child: AppText(
-                        text: "Creér un mot de passe",
-                        size: 30,
-                      )),
+                    height: width / 15,
+                  ),
+                  AppText(text: "Espace du profil de l'enfant"),
+                  SizedBox(
+                    height: width / 1.5,
+                    child: const avatarChoix(),
+                  ),
+                  AppText(
+                    text: "Modifier le nom",
+                    size: 30,
+                  ),
                   SizedBox(
                     width: width / 1.5,
                     height: width / 6,
                     child: TextField(
                       controller: myController,
-                      obscureText: true,
-                      keyboardType: TextInputType.text,
-                      textInputAction: TextInputAction.done,
-                      showCursor: true,
                       style: const TextStyle(fontSize: 30),
                       decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.password),
                         border: OutlineInputBorder(),
                       ),
                     ),
@@ -115,12 +116,13 @@ class _premier_pas_1State extends State<premier_pas_1> {
                       height: width / 7,
                       child: ElevatedButton(
                         onPressed: () {
-                          if (remove.removemoji(myController.text) !=
+                          if (remove.removemoji(myController.text
+                                  .replaceAll(RegExp('[^A-Za-z]'), '')) !=
                               myController.text) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: AppText(
                                 text:
-                                    'Le mot de passe ne peut pas contenir des emojis',
+                                    'Le nom ne peut pas contenir des symboles, des espaces, des chiffres ou des emojis',
                                 size: 15,
                                 color: Colors.white,
                               ),
@@ -128,39 +130,24 @@ class _premier_pas_1State extends State<premier_pas_1> {
                           } else if (myController.text.isEmpty) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: AppText(
-                                text:
-                                    'Veillez saisir un mot de passe parentale',
-                                size: 15,
-                                color: Colors.white,
-                              ),
-                            ));
-                          } else if (remove
-                                  .removemoji(myController.text)
-                                  .length <
-                              5) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: AppText(
-                                text:
-                                    'Le mot de passe doit contenir minimum 5 caractéres',
+                                text: 'Veillez saisir un nom',
                                 size: 15,
                                 color: Colors.white,
                               ),
                             ));
                           } else {
-                            _deviceDetails();
                             ref.update({
-                              identifier: {
-                                "MotDePasse":
-                                    remove.removemoji(myController.text),
-                                "id": identifier,
-                              }
+                              "$identifier/Enfant/Nom": remove.removemoji(
+                                  myController.text
+                                      .replaceAll(RegExp('[^A-Za-z-_]'), '')),
+                              "$identifier/Enfant/Avatar":
+                                  './assets/img/avatar_1.png',
                             });
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const premier_pas_2()));
+                            Navigator.of(context).pop();
                           }
                         },
                         child: AppText(
-                          text: "Suivant",
+                          text: "Valider",
                           size: 40,
                           color: Colors.white,
                         ),

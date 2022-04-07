@@ -4,24 +4,25 @@ import 'dart:math';
 import 'package:device_info/device_info.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:firstapp/pages/page_premier_pas_2.dart';
 import 'package:firstapp/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:remove_emoji/remove_emoji.dart';
 
+import '../widgets/menue_retour.dart';
+
 // ignore: camel_case_types
-class premier_pas_1 extends StatefulWidget {
+class modifier_mot_de_passe extends StatefulWidget {
   // ignore: use_key_in_widget_constructors
-  const premier_pas_1({this.app});
+  const modifier_mot_de_passe({this.app});
   final FirebaseApp app;
 
   @override
-  _premier_pas_1State createState() => _premier_pas_1State();
+  _modifier_mot_de_passeState createState() => _modifier_mot_de_passeState();
 }
 
 // ignore: camel_case_types
-class _premier_pas_1State extends State<premier_pas_1> {
+class _modifier_mot_de_passeState extends State<modifier_mot_de_passe> {
   String deviceName = '';
   String deviceVersion = '';
   String identifier = '';
@@ -74,21 +75,28 @@ class _premier_pas_1State extends State<premier_pas_1> {
                   image: AssetImage("assets/img/page_parents.png"),
                   fit: BoxFit.cover)),
           child: Container(
-              margin: const EdgeInsets.all(30),
               alignment: Alignment.center,
               child: Column(
                 children: [
                   Container(
-                    margin: const EdgeInsets.only(top: 30),
+                    margin: const EdgeInsets.only(top: 10),
+                    child: const retour(
+                      color: Colors.black,
+                    ),
+                  ),
+                  SizedBox(
+                    height: width / 25,
+                  ),
+                  SizedBox(
                     width: width,
-                    height: height / 2,
+                    height: height / 2.5,
                     child: AppText(text: "Espace de contrôle parental"),
                   ),
                   SizedBox(
                       width: width,
                       height: width / 10,
                       child: AppText(
-                        text: "Creér un mot de passe",
+                        text: "Modifier le mot de passe",
                         size: 30,
                       )),
                   SizedBox(
@@ -149,18 +157,14 @@ class _premier_pas_1State extends State<premier_pas_1> {
                           } else {
                             _deviceDetails();
                             ref.update({
-                              identifier: {
-                                "MotDePasse":
-                                    remove.removemoji(myController.text),
-                                "id": identifier,
-                              }
+                              "$identifier/MotDePasse":
+                                  remove.removemoji(myController.text),
                             });
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const premier_pas_2()));
+                            Navigator.of(context).pop();
                           }
                         },
                         child: AppText(
-                          text: "Suivant",
+                          text: "Valider",
                           size: 40,
                           color: Colors.white,
                         ),
