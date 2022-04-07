@@ -1,6 +1,5 @@
 import 'package:firstapp/widgets/app_text.dart';
 import 'package:firstapp/widgets/menue_retour.dart';
-import 'package:firstapp/widgets/menue_retour_acceuil.dart';
 import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
@@ -31,13 +30,13 @@ class _pageLanguesChoixState extends State<pageLanguesChoix> {
               image: AssetImage("assets/img/page_parametres.png"),
               fit: BoxFit.cover)),
       child: Column(children: [
-        retour(),
+        const retour(),
         SizedBox(
           height: height / 2.5,
         ),
         Opacity(
             opacity: 0.8,
-            child: Container(
+            child: SizedBox(
               width: width,
               height: height / 19,
               child: AppText(
@@ -46,10 +45,10 @@ class _pageLanguesChoixState extends State<pageLanguesChoix> {
                 color: Colors.black,
               ),
             )),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
-        Center(
+        const Center(
           child: CircularProgressIndicator(
             strokeWidth: 10,
             color: Color.fromARGB(255, 111, 195, 255),

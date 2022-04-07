@@ -6,22 +6,24 @@ class Answer extends StatelessWidget {
   final Color answerColor;
   final Function answerTap;
 
-  Answer({this.answerText, this.answerColor, this.answerTap});
+  // ignore: use_key_in_widget_constructors
+  const Answer({this.answerText, this.answerColor, this.answerTap});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: answerTap,
       child: Container(
-        padding: EdgeInsets.all(15.0),
-        margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
+        padding: const EdgeInsets.all(15.0),
+        margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
         width: double.infinity,
         decoration: BoxDecoration(
           color: answerColor,
           border: Border.all(color: Colors.blue),
           borderRadius: BorderRadius.circular(20.0),
+          // ignore: prefer_const_literals_to_create_immutables
           boxShadow: [
-            BoxShadow(
+            const BoxShadow(
               color: Colors.white,
               spreadRadius: 1,
               blurRadius: 2,

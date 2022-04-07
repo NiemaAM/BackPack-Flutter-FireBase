@@ -4,6 +4,8 @@ import 'package:firstapp/widgets/menue_retour.dart';
 import 'package:flutter/material.dart';
 
 class Quiz extends StatefulWidget {
+  const Quiz({Key key}) : super(key: key);
+
   @override
   _QuizState createState() => _QuizState();
 }
@@ -82,7 +84,7 @@ class _QuizState extends State<Quiz> {
       child: Center(
         child: Column(
           children: [
-            retour(),
+            const retour(),
             SizedBox(
               height: width / 4,
             ),
@@ -147,8 +149,8 @@ class _QuizState extends State<Quiz> {
                 },
               ),
             ),
-            SizedBox(height: 20.0),
-            Container(
+            const SizedBox(height: 20.0),
+            SizedBox(
                 width: width / 3,
                 height: width / 7,
                 child: ElevatedButton(
@@ -182,7 +184,7 @@ class _QuizState extends State<Quiz> {
   }
 }
 
-final _questions = const [
+const _questions = [
   {
     'question': 'Question 1',
     'answers': [

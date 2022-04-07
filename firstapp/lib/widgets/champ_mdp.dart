@@ -4,12 +4,13 @@
 
 import 'package:flutter/material.dart';
 
+// ignore: camel_case_types
 class champMdp extends StatelessWidget {
   const champMdp({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return const TextField(
       obscureText: true,
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.password),

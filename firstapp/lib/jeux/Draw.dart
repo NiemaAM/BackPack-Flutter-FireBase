@@ -1,3 +1,7 @@
+// ignore: duplicate_ignore
+// ignore: file_names
+// ignore_for_file: constant_identifier_names, file_names
+
 import 'dart:io';
 import 'dart:ui';
 
@@ -9,11 +13,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 class Draw extends StatefulWidget {
+  const Draw({Key key}) : super(key: key);
+
   @override
   _DrawState createState() => _DrawState();
 }
 
-AudioCache player = new AudioCache(fixedPlayer: AudioPlayer());
+AudioCache player = AudioCache(fixedPlayer: AudioPlayer());
 
 class _DrawState extends State<Draw> {
   bool _state1 = false;
@@ -38,15 +44,9 @@ class _DrawState extends State<Draw> {
     Colors.amber,
     Colors.black
   ];
-  @override
-  Future<void> dispose() async {
-    super.dispose(); //change here
-    await player.fixedPlayer.stop();
-  }
 
   @override
   Widget build(BuildContext context) {
-    player.loop("musiques_fond/music2_fiver_milo.mpeg");
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: Padding(
@@ -60,7 +60,7 @@ class _DrawState extends State<Draw> {
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 5,
                 blurRadius: 7,
-                offset: Offset(0, 3), // changes position of shadow
+                offset: const Offset(0, 3), // changes position of shadow
               ),
             ],
           ),
@@ -71,7 +71,7 @@ class _DrawState extends State<Draw> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   IconButton(
-                      icon: Icon(Icons.arrow_back, color: Colors.white),
+                      icon: const Icon(Icons.arrow_back, color: Colors.white),
                       onPressed: () {
                         showCupertinoDialog<void>(
                           context: context,
@@ -109,8 +109,7 @@ class _DrawState extends State<Draw> {
                                   Navigator.pop(context);
                                   Navigator.pop(context);
                                   Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => acceil()));
-                                  dispose();
+                                      builder: (context) => const acceil()));
                                 },
                               )
                             ],
@@ -170,7 +169,7 @@ class _DrawState extends State<Draw> {
                         });
                       }),
                   IconButton(
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.block_rounded,
                         color: Colors.white,
                       ),
@@ -194,7 +193,7 @@ class _DrawState extends State<Draw> {
                         children: getColorList(),
                       )
                     : SliderTheme(
-                        data: SliderThemeData(
+                        data: const SliderThemeData(
                           thumbColor: Colors.white,
                         ),
                         child: Slider(
@@ -209,10 +208,11 @@ class _DrawState extends State<Draw> {
                             min: 0.0,
                             onChanged: (val) {
                               setState(() {
-                                if (selectedMode == SelectedMode.StrokeWidth)
+                                if (selectedMode == SelectedMode.StrokeWidth) {
                                   strokeWidth = val;
-                                else
+                                } else {
                                   opacity = val;
+                                }
                               });
                             }),
                       ),
@@ -305,7 +305,7 @@ class _DrawState extends State<Draw> {
           padding: const EdgeInsets.only(bottom: 20.0),
           height: 36,
           width: 36,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               gradient: LinearGradient(
             colors: [Colors.white, Colors.black, Colors.red],
             begin: Alignment.topLeft,

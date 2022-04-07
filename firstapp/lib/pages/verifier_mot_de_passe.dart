@@ -3,28 +3,30 @@ import 'dart:io';
 import 'package:device_info/device_info.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:firstapp/pages/page_acceuil.dart';
+import 'package:firstapp/pages/page_parametres.dart';
 import 'package:firstapp/widgets/app_text.dart';
-import 'package:firstapp/widgets/menue_retour.dart';
-import 'package:firstapp/widgets/slide_avatar_choix.dart';
 import 'package:flutter/material.dart';
-import 'package:remove_emoji/remove_emoji.dart';
 import 'package:flutter/services.dart';
+import 'package:remove_emoji/remove_emoji.dart';
+
+import '../widgets/menue_retour.dart';
 
 // ignore: camel_case_types
-class premier_pas_2 extends StatefulWidget {
+class verifier_mot_de_passe extends StatefulWidget {
   // ignore: use_key_in_widget_constructors
-  const premier_pas_2({this.app});
+  const verifier_mot_de_passe({this.app});
   final FirebaseApp app;
+
   @override
-  _premier_pas_2State createState() => _premier_pas_2State();
+  _verifier_mot_de_passeState createState() => _verifier_mot_de_passeState();
 }
 
 // ignore: camel_case_types
-class _premier_pas_2State extends State<premier_pas_2> {
+class _verifier_mot_de_passeState extends State<verifier_mot_de_passe> {
   String deviceName = '';
   String deviceVersion = '';
   String identifier = '';
+  String mdp = "";
   Future<void> _deviceDetails() async {
     final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
     try {
@@ -50,21 +52,31 @@ class _premier_pas_2State extends State<premier_pas_2> {
     }
   }
 
+  getData() async {
+    _deviceDetails();
+    final ref = FirebaseDatabase.instance.ref();
+    final snapshot = await ref.child('$identifier/MotDePasse').get();
+    if (snapshot.value == myController.text) {
+      setState(() {
+        mdp = "1";
+      });
+    } else {
+      setState(() {
+        mdp = "10000";
+      });
+    }
+  }
+
   final referenceDatabase = FirebaseDatabase.instance;
 
   var remove = RemoveEmoji();
-  // ignore: non_constant_identifier_names
-  String Nom = "Nom";
-  String id = "id";
-
   final myController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     _deviceDetails();
-    // ignore: deprecated_member_use
-    final ref = referenceDatabase.reference();
-
+    getData();
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
@@ -72,10 +84,10 @@ class _premier_pas_2State extends State<premier_pas_2> {
           height: double.maxFinite,
           decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/img/page_kid.png"),
+                  image: AssetImage("assets/img/page_parents.png"),
                   fit: BoxFit.cover)),
           child: Container(
-              margin: const EdgeInsets.all(10),
+              margin: const EdgeInsets.all(30),
               alignment: Alignment.center,
               child: Column(
                 children: [
@@ -86,24 +98,27 @@ class _premier_pas_2State extends State<premier_pas_2> {
                     ),
                   ),
                   SizedBox(
-                    height: width / 15,
+                    height: height / 2.5,
                   ),
-                  AppText(text: "Espace du profil de l'enfant"),
                   SizedBox(
-                    height: width / 1.5,
-                    child: const avatarChoix(),
-                  ),
-                  AppText(
-                    text: "Ton nom",
-                    size: 30,
-                  ),
+                      width: width,
+                      height: width / 10,
+                      child: AppText(
+                        text: "Entrer le mot de passe parental",
+                        size: 30,
+                      )),
                   SizedBox(
                     width: width / 1.5,
                     height: width / 6,
                     child: TextField(
                       controller: myController,
+                      obscureText: true,
+                      keyboardType: TextInputType.text,
+                      textInputAction: TextInputAction.done,
+                      showCursor: true,
                       style: const TextStyle(fontSize: 30),
                       decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.password),
                         border: OutlineInputBorder(),
                       ),
                     ),
@@ -116,35 +131,18 @@ class _premier_pas_2State extends State<premier_pas_2> {
                       height: width / 7,
                       child: ElevatedButton(
                         onPressed: () {
-                          if (remove.removemoji(myController.text
-                                  .replaceAll(RegExp('[^A-Za-z]'), '')) !=
-                              myController.text) {
+                          getData();
+                          if (mdp.length > 2) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: AppText(
-                                text:
-                                    'Le nom ne peut pas contenir des symboles, des espaces, des chiffres ou des emojis',
-                                size: 15,
-                                color: Colors.white,
-                              ),
-                            ));
-                          } else if (myController.text.isEmpty) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: AppText(
-                                text: 'Veillez saisir un nom',
+                                text: 'Mot de passe incorrecte ',
                                 size: 15,
                                 color: Colors.white,
                               ),
                             ));
                           } else {
-                            ref.update({
-                              "$identifier/Enfant/Nom": remove.removemoji(
-                                  myController.text
-                                      .replaceAll(RegExp('[^A-Za-z-_]'), '')),
-                              "$identifier/Enfant/Avatar":
-                                  './assets/img/avatar_1.png',
-                            });
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const acceil()));
+                                builder: (context) => const parametres()));
                           }
                         },
                         child: AppText(

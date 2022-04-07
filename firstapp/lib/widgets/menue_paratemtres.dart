@@ -1,21 +1,24 @@
-import 'package:firstapp/pages/page_parametres.dart';
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 
+import '../pages/verifier_mot_de_passe.dart';
+
+// ignore: camel_case_types
 class menue extends StatelessWidget {
   const menue({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return Container(
       padding: const EdgeInsets.only(top: 10, left: 10),
       child: Row(
         children: [
           RaisedButton(
             onPressed: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => parametres()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const verifier_mot_de_passe()));
             },
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100),

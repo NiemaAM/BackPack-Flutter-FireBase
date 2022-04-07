@@ -6,6 +6,8 @@ import 'package:firstapp/widgets/menue_retour.dart';
 import 'package:flutter/material.dart';
 
 class QuizAddition extends StatefulWidget {
+  const QuizAddition({Key key}) : super(key: key);
+
   @override
   _QuizAdditionState createState() => _QuizAdditionState();
 }
@@ -32,13 +34,11 @@ class _QuizAdditionState extends State<QuizAddition> {
       // adding to the score tracker on top
       _scoreTracker.add(
         answerScore
-            // ignore: prefer_const_constructors
-            ? Icon(
+            ? const Icon(
                 Icons.check_circle,
                 color: Colors.green,
               )
-            // ignore: prefer_const_constructors
-            : Icon(
+            : const Icon(
                 Icons.clear,
                 color: Colors.red,
               ),
@@ -71,7 +71,7 @@ class _QuizAdditionState extends State<QuizAddition> {
     });
   }
 
-  int randomInt() {
+  void randomInt() {
     setState(() {
       var rng = Random();
       reponse.add(random);
@@ -98,7 +98,7 @@ class _QuizAdditionState extends State<QuizAddition> {
       child: Center(
         child: Column(
           children: [
-            retour(),
+            const retour(),
             SizedBox(
               height: width / 9,
             ),
@@ -108,6 +108,7 @@ class _QuizAdditionState extends State<QuizAddition> {
                 height: height / 25,
                 width: width,
               ),
+            // ignore: sdk_version_ui_as_code
             if (endOfQuiz)
               Container(
                 height: height / 25,
@@ -143,7 +144,7 @@ class _QuizAdditionState extends State<QuizAddition> {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 1,
                     blurRadius: 4,
-                    offset: Offset(0, 0), // changes position of shadow
+                    offset: const Offset(0, 0), // changes position of shadow
                   ),
                 ],
               ),
@@ -174,9 +175,10 @@ class _QuizAdditionState extends State<QuizAddition> {
                 },
               ),
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
+            // ignore: sdk_version_ui_as_code
             if (!endOfQuiz)
-              Container(
+              SizedBox(
                   width: width / 3,
                   height: width / 7,
                   child: ElevatedButton(
@@ -211,7 +213,7 @@ class _QuizAdditionState extends State<QuizAddition> {
   }
 }
 
-final _questions = const [
+const _questions = [
   {
     'question': '2+2',
     'answers': [

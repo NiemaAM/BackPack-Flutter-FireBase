@@ -5,11 +5,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-var now = new DateTime.now();
-Random rnd = new Random(now.millisecondsSinceEpoch);
+var now = DateTime.now();
+Random rnd = Random(now.millisecondsSinceEpoch);
 
 class Puzzle extends StatefulWidget {
-  Puzzle({Key key, this.title}) : super(key: key);
+  const Puzzle({Key key, this.title}) : super(key: key);
   final String title;
   @override
   _PuzzleState createState() => _PuzzleState();
@@ -29,7 +29,6 @@ class _PuzzleState extends State<Puzzle> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -42,7 +41,7 @@ class _PuzzleState extends State<Puzzle> {
                   fit: BoxFit.cover)),
           child: Column(
             children: <Widget>[
-              retour(),
+              const retour(),
               SizedBox(
                 height: height / 10,
               ),
@@ -56,7 +55,7 @@ class _PuzzleState extends State<Puzzle> {
               SizedBox(
                 height: height / 20,
               ),
-              Container(
+              SizedBox(
                 height: height / 8,
                 child: scrambleButton(),
               ),
@@ -67,10 +66,9 @@ class _PuzzleState extends State<Puzzle> {
 
   Widget board() {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return Container(
-      padding: EdgeInsets.all(10.0),
-      margin: EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(10.0),
+      margin: const EdgeInsets.all(10.0),
       width: width,
       child: GridView.count(
         crossAxisCount: 4,
@@ -83,6 +81,7 @@ class _PuzzleState extends State<Puzzle> {
     );
   }
 
+  // ignore: avoid_types_as_parameter_names
   Widget gameTile(num) {
     bool isBlank = num == 0;
     return GestureDetector(
@@ -97,7 +96,7 @@ class _PuzzleState extends State<Puzzle> {
         child: Center(
           child: Text(
             "${isBlank ? ' ' : num}",
-            style: TextStyle(
+            style: const TextStyle(
                 fontWeight: FontWeight.bold, fontSize: 32, color: Colors.white),
           ),
         ),
@@ -106,12 +105,11 @@ class _PuzzleState extends State<Puzzle> {
   }
 
   Widget scrambleButton() {
-    double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Container(
       height: height / 80,
       margin: EdgeInsets.only(bottom: height / 150),
-      padding: EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(15.0),
       child: ElevatedButton(
         onPressed: (() {
           scrambled.clear();
@@ -228,8 +226,8 @@ class _PuzzleState extends State<Puzzle> {
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.pop(context);
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => acceil()));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const acceil()));
             },
           )
         ],

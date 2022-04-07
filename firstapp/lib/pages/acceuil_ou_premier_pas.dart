@@ -18,13 +18,13 @@ class oppened extends StatefulWidget {
 
 // ignore: camel_case_types
 class oppenedState extends State<oppened> {
-  String isoppend = '';
+  int isoppend = 3;
 
   String deviceName = '';
   String deviceVersion = '';
   String identifier = '';
   Future<void> _deviceDetails() async {
-    final DeviceInfoPlugin deviceInfoPlugin = new DeviceInfoPlugin();
+    final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
     try {
       if (Platform.isAndroid) {
         var build = await deviceInfoPlugin.androidInfo;
@@ -43,6 +43,7 @@ class oppenedState extends State<oppened> {
         }); //UUID for iOS
       }
     } on PlatformException {
+      // ignore: avoid_print
       print('Failed to get platform version');
     }
   }
@@ -50,28 +51,37 @@ class oppenedState extends State<oppened> {
   getData() async {
     _deviceDetails();
     final ref = FirebaseDatabase.instance.ref();
-    final snapshot = await ref.child('$identifier').get();
-    if (snapshot.exists) {
+    final snapshot = await ref.child('$identifier/id').get();
+    final snapshot2 = await ref.child('$identifier/Enfant/Nom').get();
+    String nom = snapshot2.value;
+    if (snapshot.value == identifier && nom.isNotEmpty) {
       setState(() {
-        isoppend = "1";
+        isoppend = 1;
       });
     } else {
       setState(() {
-        isoppend = "1000";
+        isoppend = 0;
       });
     }
   }
 
   @override
+  // ignore: missing_return
   Widget build(BuildContext context) {
     // ignore: unrelated_type_equality_checks
-
+    _deviceDetails();
     getData();
 
-    if (isoppend.length > 2) {
-      return premier_pas_1();
-    } else {
-      return acceil();
+    if (isoppend == 3) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+    if (isoppend == 1) {
+      return const acceil();
+    }
+    if (isoppend == 0) {
+      return const premier_pas_1();
     }
   }
 }

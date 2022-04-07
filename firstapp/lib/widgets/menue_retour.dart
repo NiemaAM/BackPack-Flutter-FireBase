@@ -1,5 +1,8 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 
+// ignore: camel_case_types
 class retour extends StatelessWidget {
   final Color color;
   const retour({Key key, this.color = Colors.white}) : super(key: key);
@@ -7,7 +10,6 @@ class retour extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return Container(
       padding: const EdgeInsets.only(top: 15, left: 10),
       child: Row(

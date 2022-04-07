@@ -1,10 +1,8 @@
-import 'package:firstapp/pages/page_choix_jeux_langues.dart';
 import 'package:firstapp/widgets/menue_paratemtres.dart';
 import 'package:firstapp/widgets/slide_jeux.dart';
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
 
-import '../widgets/app_text.dart';
+import '../widgets/Audio_BK.dart';
 import '../widgets/menue_infos.dart';
 
 // ignore: camel_case_types
@@ -24,6 +22,7 @@ class _acceilState extends State<acceil> {
 
   @override
   Widget build(BuildContext context) {
+    Audio_BK.loopBK();
     return Scaffold(body: LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         double width = MediaQuery.of(context).size.width;
@@ -36,18 +35,18 @@ class _acceilState extends State<acceil> {
                   image: AssetImage("assets/img/Main_fond.png"),
                   fit: BoxFit.cover)),
           child: Column(children: [
-            menue(),
+            const menue(),
             SizedBox(
               height: height / 5,
             ),
-            Container(
+            SizedBox(
               width: width,
               height: height / 2,
-              child: slideJeux(),
+              child: const slideJeux(),
             ),
             Container(
               margin: const EdgeInsets.only(right: 10, top: 50),
-              child: menueInfos(),
+              child: const menueInfos(),
             )
           ]),
         );
@@ -55,5 +54,3 @@ class _acceilState extends State<acceil> {
     ));
   }
 }
-
-class music extends _acceilState {}

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
+// ignore: camel_case_types
 class avatarChoix extends StatefulWidget {
   const avatarChoix({Key key}) : super(key: key);
 
@@ -7,6 +8,7 @@ class avatarChoix extends StatefulWidget {
   _avatarChoixState createState() => _avatarChoixState();
 }
 
+// ignore: camel_case_types
 class _avatarChoixState extends State<avatarChoix> {
   List img = [
     "avatar_1.png",
@@ -20,7 +22,6 @@ class _avatarChoixState extends State<avatarChoix> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return PageView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: img.length,

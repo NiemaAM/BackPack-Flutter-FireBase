@@ -1,13 +1,11 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:firstapp/jeux/Draw.dart';
 import 'package:firstapp/pages/page_choix_jeux_langues.dart';
-import 'package:firstapp/pages/page_choix_jeux_maths.dart';
 import 'package:firstapp/pages/page_choix_jeux_puzzles.dart';
 import 'package:firstapp/pages/page_choix_jeux_quiz.dart';
-import 'package:firstapp/pages/page_parametres.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+// ignore: camel_case_types
 class slideJeux extends StatefulWidget {
   const slideJeux({Key key}) : super(key: key);
 
@@ -15,6 +13,7 @@ class slideJeux extends StatefulWidget {
   _slideJeuxState createState() => _slideJeuxState();
 }
 
+// ignore: camel_case_types
 class _slideJeuxState extends State<slideJeux> {
   List img = [
     "./assets/img/Quiz_img.png",
@@ -26,32 +25,22 @@ class _slideJeuxState extends State<slideJeux> {
     "./assets/img/Musique_img.png"
   ];
   List links = [
-    pageQuizChoix(),
-    pagePuzzleChoix(),
-    pageLanguesChoix(),
-    pageLanguesChoix(),
-    Draw(),
-    pageLanguesChoix(),
-    pageLanguesChoix()
+    const pageQuizChoix(),
+    const pagePuzzleChoix(),
+    const pageLanguesChoix(),
+    const pageLanguesChoix(),
+    const Draw(),
+    const pageLanguesChoix(),
+    const pageLanguesChoix()
   ];
-
-  AudioCache player = new AudioCache(fixedPlayer: AudioPlayer());
-  @override
-  Future<void> dispose() async {
-    super.dispose(); //change here
-    await player.fixedPlayer.stop();
-  }
 
   @override
   Widget build(BuildContext context) {
-    player.loop("musiques_fond/HeatleyBros_main.mp3");
-    player.fixedPlayer.setVolume(1.0);
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    double height = 400;
     return CarouselSlider.builder(
         itemCount: img.length,
         options: CarouselOptions(
-          height: height / 2,
+          height: height,
           autoPlay: true,
           enlargeCenterPage: true,
         ),
@@ -64,9 +53,8 @@ class _slideJeuxState extends State<slideJeux> {
 
   Widget buildImg(String img, int index) => GestureDetector(
       onTap: () {
-        dispose();
         Navigator.of(context).push(PageRouteBuilder(
-            transitionDuration: Duration(seconds: 1),
+            transitionDuration: const Duration(seconds: 1),
             transitionsBuilder: (BuildContext context,
                 Animation<double> animation,
                 Animation<double> secanimation,

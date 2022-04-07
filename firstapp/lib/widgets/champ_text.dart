@@ -4,12 +4,13 @@
 
 import 'package:flutter/material.dart';
 
+// ignore: camel_case_types
 class champText extends StatelessWidget {
   const champText({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return const TextField(
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.text_format),
         border: OutlineInputBorder(),

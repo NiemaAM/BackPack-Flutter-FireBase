@@ -1,7 +1,6 @@
 import 'package:firstapp/widgets/app_text.dart';
 import 'package:firstapp/widgets/grid_jeux_puzzles.dart';
 import 'package:firstapp/widgets/menue_retour.dart';
-import 'package:firstapp/widgets/menue_retour_acceuil.dart';
 import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
@@ -32,7 +31,7 @@ class _pagePuzzleChoixState extends State<pagePuzzleChoix> {
               image: AssetImage("assets/img/page_jeux_choix_2.png"),
               fit: BoxFit.cover)),
       child: Column(children: [
-        retouracceuil(
+        const retour(
           color: Colors.white,
         ),
         SizedBox(
@@ -52,10 +51,10 @@ class _pagePuzzleChoixState extends State<pagePuzzleChoix> {
                 color: Colors.black,
               ),
             )),
-        Container(
+        SizedBox(
           width: width,
           height: height / 1.3,
-          child: gridpuzzle(),
+          child: const gridpuzzle(),
         )
       ]),
     ));

@@ -15,7 +15,6 @@ class _changernomState extends State<changernom> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
@@ -44,15 +43,15 @@ class _changernomState extends State<changernom> {
                     text: "Ton nom",
                     size: 30,
                   ),
-                  Container(
+                  SizedBox(
                     width: width / 1.5,
                     height: width / 6,
-                    child: champText(),
+                    child: const champText(),
                   ),
                   SizedBox(
                     height: width / 8,
                   ),
-                  Container(
+                  SizedBox(
                       width: width / 3,
                       height: width / 7,
                       child: ElevatedButton(

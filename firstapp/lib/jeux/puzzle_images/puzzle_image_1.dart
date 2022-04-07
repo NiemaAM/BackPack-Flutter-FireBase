@@ -11,13 +11,15 @@ import 'package:flutter/rendering.dart';
 import 'package:image/image.dart' as image;
 
 // make statefull widget for testing
+// ignore: camel_case_types
 class SlidePuzzle_1 extends StatefulWidget {
-  SlidePuzzle_1({Key key}) : super(key: key);
+  const SlidePuzzle_1({Key key}) : super(key: key);
 
   @override
   _SlidePuzzle_1State createState() => _SlidePuzzle_1State();
 }
 
+// ignore: camel_case_types
 class _SlidePuzzle_1State extends State<SlidePuzzle_1> {
   // default put 2
   int valueSlider = 3;
@@ -39,7 +41,7 @@ class _SlidePuzzle_1State extends State<SlidePuzzle_1> {
                     fit: BoxFit.cover)),
             child: Column(
               children: <Widget>[
-                retour(),
+                const retour(),
                 SizedBox(
                   height: height / 10,
                 ),
@@ -52,12 +54,12 @@ class _SlidePuzzle_1State extends State<SlidePuzzle_1> {
                       children: [
                         Container(
                           margin: EdgeInsets.all(width / 80),
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Colors.transparent,
                           ),
                           child: LayoutBuilder(
                             builder: (context, constraints) {
-                              return Container(
+                              return SizedBox(
                                 width: constraints.biggest.width,
                                 // comment of this so our box can extends height
                                 // height: constraints.biggest.width,
@@ -68,7 +70,7 @@ class _SlidePuzzle_1State extends State<SlidePuzzle_1> {
                                   key: globalKey,
                                   size: constraints.biggest,
                                   // set size puzzle
-                                  imageBckGround: Image(
+                                  imageBckGround: const Image(
                                     // u can use your own image
                                     image:
                                         AssetImage("./assets/img/avatar_1.png"),
@@ -80,21 +82,19 @@ class _SlidePuzzle_1State extends State<SlidePuzzle_1> {
                           ),
                           // child: ,
                         ),
-                        Container(
-                          child: Slider(
-                            min: 3,
-                            max: 8,
-                            divisions: 3,
-                            label: "${valueSlider.toString()}",
-                            value: valueSlider.toDouble(),
-                            onChanged: (value) {
-                              setState(
-                                () {
-                                  valueSlider = value.toInt();
-                                },
-                              );
-                            },
-                          ),
+                        Slider(
+                          min: 3,
+                          max: 8,
+                          divisions: 3,
+                          label: valueSlider.toString(),
+                          value: valueSlider.toDouble(),
+                          onChanged: (value) {
+                            setState(
+                              () {
+                                valueSlider = value.toInt();
+                              },
+                            );
+                          },
                         ),
                       ],
                     ),
@@ -117,13 +117,14 @@ String img() {
   Random rnd;
   int min = 0;
   int max = listImagesnotFound.length - 1;
-  rnd = new Random();
+  rnd = Random();
   int r = min + rnd.nextInt(max - min);
-  String image_name = listImagesnotFound[r].toString();
-  return image_name;
+  String imageName = listImagesnotFound[r].toString();
+  return imageName;
 }
 
 // statefull widget
+// ignore: camel_case_types, must_be_immutable
 class SlidePuzzle_1Widget extends StatefulWidget {
   Size size;
   // set inner padding
@@ -143,8 +144,9 @@ class SlidePuzzle_1Widget extends StatefulWidget {
   _SlidePuzzle_1WidgetState createState() => _SlidePuzzle_1WidgetState();
 }
 
+// ignore: camel_case_types
 class _SlidePuzzle_1WidgetState extends State<SlidePuzzle_1Widget> {
-  GlobalKey _globalKey = GlobalKey();
+  final GlobalKey _globalKey = GlobalKey();
   Size size;
 
   // list array slide objects
@@ -172,7 +174,7 @@ class _SlidePuzzle_1WidgetState extends State<SlidePuzzle_1Widget> {
       children: [
         // make 2 column, 1 for puzzle box, 2nd for button testing
         Container(
-          decoration: BoxDecoration(color: Colors.transparent),
+          decoration: const BoxDecoration(color: Colors.transparent),
           width: widget.size.width,
           height: widget.size.width,
           padding: EdgeInsets.all(widget.innerPadding),
@@ -181,11 +183,12 @@ class _SlidePuzzle_1WidgetState extends State<SlidePuzzle_1Widget> {
               // we use stack stack our background & puzzle box
               // 1st show image use
 
+              // ignore: sdk_version_ui_as_code
               if (widget.imageBckGround != null && slideObjects == null) ...[
                 RepaintBoundary(
                   key: _globalKey,
                   child: Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     color: Colors.blue,
                     height: double.maxFinite,
                     child: widget.imageBckGround,
@@ -193,6 +196,7 @@ class _SlidePuzzle_1WidgetState extends State<SlidePuzzle_1Widget> {
                 )
               ],
               // 2nd show puzzle with empty
+              // ignore: sdk_version_ui_as_code
               if (slideObjects != null)
                 ...slideObjects.where((slideObject) => slideObject.empty).map(
                   (slideObject) {
@@ -204,7 +208,7 @@ class _SlidePuzzle_1WidgetState extends State<SlidePuzzle_1Widget> {
                         height: slideObject.size.height,
                         child: Container(
                           alignment: Alignment.center,
-                          margin: EdgeInsets.all(2),
+                          margin: const EdgeInsets.all(2),
                           color: Colors.white24,
                           child: Stack(
                             children: [
@@ -222,13 +226,14 @@ class _SlidePuzzle_1WidgetState extends State<SlidePuzzle_1Widget> {
                   },
                 ).toList(),
               // this for box with not empty flag
+              // ignore: sdk_version_ui_as_code
               if (slideObjects != null)
                 ...slideObjects.where((slideObject) => !slideObject.empty).map(
                   (slideObject) {
                     // change to animated position
                     // disabled checking success on swap process
                     return AnimatedPositioned(
-                      duration: Duration(milliseconds: 200),
+                      duration: const Duration(milliseconds: 200),
                       curve: Curves.ease,
                       left: slideObject.posCurrent.dx,
                       top: slideObject.posCurrent.dy,
@@ -239,7 +244,7 @@ class _SlidePuzzle_1WidgetState extends State<SlidePuzzle_1Widget> {
                           height: slideObject.size.height,
                           child: Container(
                             alignment: Alignment.center,
-                            margin: EdgeInsets.all(2),
+                            margin: const EdgeInsets.all(2),
                             color: Colors.transparent,
                             child: Stack(
                               children: [
@@ -262,40 +267,37 @@ class _SlidePuzzle_1WidgetState extends State<SlidePuzzle_1Widget> {
             ],
           ),
         ),
-        Container(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // u can use any button
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  onPressed: () => generatePuzzle(),
-                  child: AppText(
-                    text: "Diviser",
-                    size: 25,
-                    color: Colors.white,
-                  ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // u can use any button
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed: () => generatePuzzle(),
+                child: AppText(
+                  text: "Diviser",
+                  size: 25,
+                  color: Colors.white,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  // for checking purpose
-                  onPressed: startSlide ? null : () => reversePuzzle(),
-                  child:
-                      AppText(text: "Resoudre", size: 25, color: Colors.white),
-                ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                // for checking purpose
+                onPressed: startSlide ? null : () => reversePuzzle(),
+                child: AppText(text: "Resoudre", size: 25, color: Colors.white),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  onPressed: () => clearPuzzle(),
-                  child: AppText(text: "Image", size: 25, color: Colors.white),
-                ),
-              )
-            ],
-          ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed: () => clearPuzzle(),
+                child: AppText(text: "Image", size: 25, color: Colors.white),
+              ),
+            )
+          ],
         ),
       ],
     );
@@ -323,10 +325,12 @@ class _SlidePuzzle_1WidgetState extends State<SlidePuzzle_1Widget> {
     finishSwap = false;
     setState(() {});
     // 1st load render image to crop, we need load just once
-    if (widget.imageBckGround != null && this.fullImage == null)
-      this.fullImage = await _getImageFromWidget();
+    if (widget.imageBckGround != null && fullImage == null) {
+      fullImage = await _getImageFromWidget();
+    }
 
-    print(this.fullImage.width);
+    // ignore: avoid_print
+    print(fullImage.width);
     // ok nice..full image loaded
 
     // calculate box size for each puzzle
@@ -345,7 +349,7 @@ class _SlidePuzzle_1WidgetState extends State<SlidePuzzle_1Widget> {
 
       // set image crop for nice effect, check also if image is null
       image.Image tempCrop;
-      if (widget.imageBckGround != null && this.fullImage != null)
+      if (widget.imageBckGround != null && fullImage != null) {
         tempCrop = image.copyCrop(
           fullImage,
           offsetTemp.dx.round(),
@@ -353,6 +357,7 @@ class _SlidePuzzle_1WidgetState extends State<SlidePuzzle_1Widget> {
           sizeBox.width.round(),
           sizeBox.height.round(),
         );
+      }
 
       return SlideObject(
         posCurrent: offsetTemp,
@@ -393,11 +398,11 @@ class _SlidePuzzle_1WidgetState extends State<SlidePuzzle_1Widget> {
           // horizontal swap
           int row = emptyIndex ~/ widget.sizePuzzle;
           randKey =
-              row * widget.sizePuzzle + new Random().nextInt(widget.sizePuzzle);
+              row * widget.sizePuzzle + Random().nextInt(widget.sizePuzzle);
         } else {
           int col = emptyIndex % widget.sizePuzzle;
           randKey =
-              widget.sizePuzzle * new Random().nextInt(widget.sizePuzzle) + col;
+              widget.sizePuzzle * Random().nextInt(widget.sizePuzzle) + col;
         }
 
         // call change pos method we create before to swap place
@@ -458,13 +463,14 @@ class _SlidePuzzle_1WidgetState extends State<SlidePuzzle_1Widget> {
         .toList();
 
     // check empty index under or above current touch
-    if (emptyIndex < indexCurrent)
+    if (emptyIndex < indexCurrent) {
       rangeMoves.sort((a, b) => a.indexCurrent < b.indexCurrent ? 1 : 0);
-    else
+    } else {
       rangeMoves.sort((a, b) => a.indexCurrent < b.indexCurrent ? 0 : 1);
+    }
 
     // check if rangeMOves is exist,, then proceed switch position
-    if (rangeMoves.length > 0) {
+    if (rangeMoves.isNotEmpty) {
       int tempIndex = rangeMoves[0].indexCurrent;
 
       Offset tempPos = rangeMoves[0].posCurrent;
@@ -490,6 +496,7 @@ class _SlidePuzzle_1WidgetState extends State<SlidePuzzle_1Widget> {
                 .length ==
             slideObjects.length &&
         finishSwap) {
+      // ignore: avoid_print
       print("Success");
       success = true;
     } else {
@@ -533,8 +540,8 @@ class _SlidePuzzle_1WidgetState extends State<SlidePuzzle_1Widget> {
                       Navigator.pop(context);
                       Navigator.pop(context);
                       Navigator.pop(context);
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => acceil()));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const acceil()));
                     },
                   )
                 ],
@@ -562,7 +569,7 @@ class _SlidePuzzle_1WidgetState extends State<SlidePuzzle_1Widget> {
 
     await Stream.fromIterable(process.reversed)
         .asyncMap((event) async =>
-            await Future.delayed(Duration(milliseconds: 50))
+            await Future.delayed(const Duration(milliseconds: 50))
                 .then((value) => changePos(event)))
         .toList();
 

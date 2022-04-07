@@ -1,12 +1,11 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:firstapp/pages/page_acceuil.dart';
 import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
-class retouracceuil extends StatelessWidget {
+class retour extends StatelessWidget {
   final Color color;
-  const retouracceuil({Key key, this.color = Colors.white}) : super(key: key);
+  const retour({Key key, this.color = Colors.white}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +18,6 @@ class retouracceuil extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).pop();
               Navigator.of(context).pop();
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const acceil()));
             },
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100),

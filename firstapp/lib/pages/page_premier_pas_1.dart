@@ -7,13 +7,13 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firstapp/pages/page_premier_pas_2.dart';
 import 'package:firstapp/widgets/app_text.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:remove_emoji/remove_emoji.dart';
 
 // ignore: camel_case_types
 class premier_pas_1 extends StatefulWidget {
-  premier_pas_1({this.app});
+  // ignore: use_key_in_widget_constructors
+  const premier_pas_1({this.app});
   final FirebaseApp app;
 
   @override
@@ -26,7 +26,7 @@ class _premier_pas_1State extends State<premier_pas_1> {
   String deviceVersion = '';
   String identifier = '';
   Future<void> _deviceDetails() async {
-    final DeviceInfoPlugin deviceInfoPlugin = new DeviceInfoPlugin();
+    final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
     try {
       if (Platform.isAndroid) {
         var build = await deviceInfoPlugin.androidInfo;
@@ -45,26 +45,23 @@ class _premier_pas_1State extends State<premier_pas_1> {
         }); //UUID for iOS
       }
     } on PlatformException {
+      // ignore: avoid_print
       print('Failed to get platform version');
     }
   }
 
   final referenceDatabase = FirebaseDatabase.instance;
+  // ignore: non_constant_identifier_names
   String Nom = "mdp";
 
   var remove = RemoveEmoji();
   String idParent = "${Random().nextInt(100)}";
-  DatabaseReference _MotDePasse =
-      FirebaseDatabase.instance.reference().child("MotDePasse");
-  DatabaseReference _id =
-      FirebaseDatabase.instance.reference().child("idParent");
   final myController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    // ignore: deprecated_member_use
     final ref = referenceDatabase.reference();
     _deviceDetails();
-    CollectionReference parent =
-        FirebaseFirestore.instance.collection('Parent');
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -87,14 +84,14 @@ class _premier_pas_1State extends State<premier_pas_1> {
                     height: height / 2,
                     child: AppText(text: "Espace de contrôle parental"),
                   ),
-                  Container(
+                  SizedBox(
                       width: width,
                       height: width / 10,
                       child: AppText(
                         text: "Creér un mot de passe",
                         size: 30,
                       )),
-                  Container(
+                  SizedBox(
                     width: width / 1.5,
                     height: width / 6,
                     child: TextField(
@@ -103,8 +100,8 @@ class _premier_pas_1State extends State<premier_pas_1> {
                       keyboardType: TextInputType.text,
                       textInputAction: TextInputAction.done,
                       showCursor: true,
-                      style: TextStyle(fontSize: 30),
-                      decoration: InputDecoration(
+                      style: const TextStyle(fontSize: 30),
+                      decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.password),
                         border: OutlineInputBorder(),
                       ),
@@ -131,7 +128,7 @@ class _premier_pas_1State extends State<premier_pas_1> {
                   SizedBox(
                     height: width / 8,
                   ),
-                  Container(
+                  SizedBox(
                       width: width / 3,
                       height: width / 7,
                       child: ElevatedButton(
@@ -170,9 +167,10 @@ class _premier_pas_1State extends State<premier_pas_1> {
                           } else {
                             _deviceDetails();
                             ref.update({
-                              "$identifier": {
+                              identifier: {
                                 "MotDePasse":
                                     remove.removemoji(myController.text),
+                                "id": identifier,
                                 "Enfant": {
                                   "Nom": "",
                                   "Avatar": "",
@@ -180,7 +178,7 @@ class _premier_pas_1State extends State<premier_pas_1> {
                               }
                             });
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => premier_pas_2()));
+                                builder: (context) => const premier_pas_2()));
                           }
                         },
                         child: AppText(

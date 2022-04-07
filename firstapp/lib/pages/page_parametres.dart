@@ -1,12 +1,15 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:firstapp/pages/changer_mdp.dart';
 import 'package:firstapp/pages/changer_nom.dart';
 import 'package:firstapp/widgets/app_text.dart';
-import 'package:firstapp/widgets/menue_retour.dart';
-import 'package:firstapp/widgets/menue_retour_acceuil.dart';
 import 'package:firstapp/widgets/slide_avatar_choix.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/menue_retour_parametres.dart';
+
+// ignore: camel_case_types
 class parametres extends StatefulWidget {
   const parametres({Key key}) : super(key: key);
 
@@ -14,12 +17,14 @@ class parametres extends StatefulWidget {
   _parametresState createState() => _parametresState();
 }
 
+// ignore: camel_case_types
 class _parametresState extends State<parametres> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         width: double.maxFinite,
         height: double.maxFinite,
@@ -28,7 +33,7 @@ class _parametresState extends State<parametres> {
                 image: AssetImage("assets/img/page_parametres.png"),
                 fit: BoxFit.cover)),
         child: Column(children: [
-          retour(),
+          const retour(),
           SizedBox(
             height: height / 15,
           ),
@@ -39,17 +44,17 @@ class _parametresState extends State<parametres> {
             text: "Changer l'avatar",
             size: 30,
           ),
-          Container(
+          SizedBox(
             height: height / 3.4,
-            child: avatarChoix(),
+            child: const avatarChoix(),
           ),
-          Container(
+          SizedBox(
               width: width / 2,
               height: height / 30,
               child: RaisedButton(
                 onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => changernom()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const changernom()));
                 },
                 child: AppText(
                   text: "Changer le nom",
@@ -72,7 +77,7 @@ class _parametresState extends State<parametres> {
           SizedBox(
             height: height / 250,
           ),
-          Container(
+          SizedBox(
             width: width,
             height: height / 30,
             child: RaisedButton(
@@ -115,7 +120,7 @@ class _parametresState extends State<parametres> {
           SizedBox(
             height: height / 100,
           ),
-          Container(
+          SizedBox(
             width: width,
             height: height / 30,
             child: RaisedButton(
@@ -158,7 +163,7 @@ class _parametresState extends State<parametres> {
           SizedBox(
             height: height / 100,
           ),
-          Container(
+          SizedBox(
             width: width,
             height: height / 30,
             child: RaisedButton(
@@ -201,13 +206,13 @@ class _parametresState extends State<parametres> {
           SizedBox(
             height: height / 30,
           ),
-          Container(
+          SizedBox(
               width: width,
               height: height / 30,
               child: RaisedButton(
                 onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => changerMdp()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const changerMdp()));
                 },
                 child: AppText(
                   text: "Changer le mot de passe",
