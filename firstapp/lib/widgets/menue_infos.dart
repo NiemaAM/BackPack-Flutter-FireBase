@@ -10,25 +10,15 @@ class menueInfos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
+    return IconButton(
+      icon: const Icon(
+        Icons.info,
+        color: Colors.white,
+      ),
       onPressed: () {
         Navigator.of(context).push(
             MaterialPageRoute(builder: (context) => const pageLanguesChoix()));
       },
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(100),
-      ),
-      child: const Icon(
-        Icons.arrow_drop_down,
-        color: Colors.white,
-        size: 80,
-      ),
-      color: Colors.transparent,
-      splashColor: Colors.transparent,
-      elevation: 0,
-      hoverElevation: 0,
-      focusElevation: 0,
-      highlightElevation: 0,
     );
   }
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:io';
 
 import 'package:device_info/device_info.dart';
@@ -5,10 +7,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firstapp/widgets/app_text.dart';
 import 'package:firstapp/widgets/menue_retour.dart';
-import 'package:firstapp/widgets/slide_avatar_choix.dart';
 import 'package:flutter/material.dart';
 import 'package:remove_emoji/remove_emoji.dart';
 import 'package:flutter/services.dart';
+
+import '../widgets/grid_avatar_choix.dart';
 
 // ignore: camel_case_types
 class modifier_profile_enfant extends StatefulWidget {
@@ -25,6 +28,7 @@ class _modifier_profile_enfantState extends State<modifier_profile_enfant> {
   String deviceName = '';
   String deviceVersion = '';
   String identifier = '';
+  String avatar = './assets/img/avatar_1.png';
   Future<void> _deviceDetails() async {
     final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
     try {
@@ -50,6 +54,22 @@ class _modifier_profile_enfantState extends State<modifier_profile_enfant> {
     }
   }
 
+  getData() async {
+    _deviceDetails();
+    final ref = FirebaseDatabase.instance.ref();
+    final snapshot = await ref.child('$identifier/id').get();
+    final snapshot3 = await ref.child('$identifier/Enfant/Avatar').get();
+    if (snapshot.value == identifier) {
+      setState(() {
+        avatar = snapshot3.value;
+      });
+    } else {
+      setState(() {
+        avatar = './assets/img/avatar_1.png';
+      });
+    }
+  }
+
   final referenceDatabase = FirebaseDatabase.instance;
 
   var remove = RemoveEmoji();
@@ -61,7 +81,7 @@ class _modifier_profile_enfantState extends State<modifier_profile_enfant> {
   @override
   Widget build(BuildContext context) {
     _deviceDetails();
-    // ignore: deprecated_member_use
+    getData();
     final ref = referenceDatabase.reference();
 
     double width = MediaQuery.of(context).size.width;
@@ -89,9 +109,39 @@ class _modifier_profile_enfantState extends State<modifier_profile_enfant> {
                     height: width / 15,
                   ),
                   AppText(text: "Espace du profil de l'enfant"),
-                  SizedBox(
-                    height: width / 1.5,
-                    child: const avatarChoix(),
+                  GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (ctx) => AlertDialog(
+                          title: AppText(text: "Choisir un avatar"),
+                          content: const gridAvatar(),
+                          actions: <Widget>[
+                            FlatButton(
+                              onPressed: () {
+                                Navigator.of(ctx).pop();
+                              },
+                              child: AppText(
+                                text: "Annuler",
+                                size: 30,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                    // Image tapped
+                    child: Container(
+                        margin: const EdgeInsets.all(10),
+                        width: width / 2,
+                        height: width / 2,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            image: DecorationImage(
+                                // ignore: unnecessary_string_interpolations
+                                image: AssetImage("$avatar"),
+                                fit: BoxFit.cover))),
                   ),
                   AppText(
                     text: "Modifier le nom",
@@ -140,8 +190,6 @@ class _modifier_profile_enfantState extends State<modifier_profile_enfant> {
                               "$identifier/Enfant/Nom": remove.removemoji(
                                   myController.text
                                       .replaceAll(RegExp('[^A-Za-z-_]'), '')),
-                              "$identifier/Enfant/Avatar":
-                                  './assets/img/avatar_1.png',
                             });
                             Navigator.of(context).pop();
                           }

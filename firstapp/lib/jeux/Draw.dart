@@ -6,7 +6,6 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:audioplayers/audioplayers.dart';
-import 'package:firstapp/pages/page_acceuil.dart';
 import 'package:firstapp/widgets/app_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -107,9 +106,6 @@ class _DrawState extends State<Draw> {
                                 onPressed: () {
                                   Navigator.pop(context);
                                   Navigator.pop(context);
-                                  Navigator.pop(context);
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => const acceil()));
                                 },
                               )
                             ],

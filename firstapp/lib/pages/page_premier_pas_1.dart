@@ -153,6 +153,10 @@ class _premier_pas_1State extends State<premier_pas_1> {
                                 "MotDePasse":
                                     remove.removemoji(myController.text),
                                 "id": identifier,
+                                "Enfant": {
+                                  "Nom": "",
+                                  "Avatar": "./assets/img/avatar_1.png",
+                                }
                               }
                             });
                             Navigator.of(context).push(MaterialPageRoute(

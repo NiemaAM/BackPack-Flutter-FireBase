@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:io';
 
 import 'package:device_info/device_info.dart';
@@ -6,10 +8,11 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firstapp/pages/page_acceuil.dart';
 import 'package:firstapp/widgets/app_text.dart';
 import 'package:firstapp/widgets/menue_retour.dart';
-import 'package:firstapp/widgets/slide_avatar_choix.dart';
 import 'package:flutter/material.dart';
 import 'package:remove_emoji/remove_emoji.dart';
 import 'package:flutter/services.dart';
+
+import '../widgets/grid_avatar_choix.dart';
 
 // ignore: camel_case_types
 class premier_pas_2 extends StatefulWidget {
@@ -25,6 +28,7 @@ class _premier_pas_2State extends State<premier_pas_2> {
   String deviceName = '';
   String deviceVersion = '';
   String identifier = '';
+  String avatar = './assets/img/avatar_1.png';
   Future<void> _deviceDetails() async {
     final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
     try {
@@ -50,6 +54,22 @@ class _premier_pas_2State extends State<premier_pas_2> {
     }
   }
 
+  getData() async {
+    _deviceDetails();
+    final ref = FirebaseDatabase.instance.ref();
+    final snapshot = await ref.child('$identifier/id').get();
+    final snapshot3 = await ref.child('$identifier/Enfant/Avatar').get();
+    if (snapshot.value == identifier) {
+      setState(() {
+        avatar = snapshot3.value;
+      });
+    } else {
+      setState(() {
+        avatar = './assets/img/avatar_1.png';
+      });
+    }
+  }
+
   final referenceDatabase = FirebaseDatabase.instance;
 
   var remove = RemoveEmoji();
@@ -57,8 +77,8 @@ class _premier_pas_2State extends State<premier_pas_2> {
   final myController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    getData();
     _deviceDetails();
-    // ignore: deprecated_member_use
     final ref = referenceDatabase.reference();
 
     double width = MediaQuery.of(context).size.width;
@@ -86,9 +106,39 @@ class _premier_pas_2State extends State<premier_pas_2> {
                     height: width / 15,
                   ),
                   AppText(text: "Espace du profil de l'enfant"),
-                  SizedBox(
-                    height: width / 1.5,
-                    child: const avatarChoix(),
+                  GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (ctx) => AlertDialog(
+                          title: AppText(text: "Choisir un avatar"),
+                          content: const gridAvatar(),
+                          actions: <Widget>[
+                            FlatButton(
+                              onPressed: () {
+                                Navigator.of(ctx).pop();
+                              },
+                              child: AppText(
+                                text: "Annuler",
+                                size: 30,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                    // Image tapped
+                    child: Container(
+                        margin: const EdgeInsets.all(10),
+                        width: width / 2,
+                        height: width / 2,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            image: DecorationImage(
+                                // ignore: unnecessary_string_interpolations
+                                image: AssetImage("$avatar"),
+                                fit: BoxFit.cover))),
                   ),
                   AppText(
                     text: "Ton nom",
@@ -137,8 +187,6 @@ class _premier_pas_2State extends State<premier_pas_2> {
                               "$identifier/Enfant/Nom": remove.removemoji(
                                   myController.text
                                       .replaceAll(RegExp('[^A-Za-z-_]'), '')),
-                              "$identifier/Enfant/Avatar":
-                                  './assets/img/avatar_1.png',
                             });
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => const acceil()));
@@ -154,4 +202,22 @@ class _premier_pas_2State extends State<premier_pas_2> {
               ))),
     );
   }
+
+  Widget buildImg() => GestureDetector(onTap: () {
+        showDialog(
+          context: context,
+          builder: (ctx) => AlertDialog(
+            title: const Text("Choisir un avatar"),
+            content: const Text("Selectionner un avatar"),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: () {
+                  Navigator.of(ctx).pop();
+                },
+                child: const Text("valider"),
+              ),
+            ],
+          ),
+        );
+      });
 }

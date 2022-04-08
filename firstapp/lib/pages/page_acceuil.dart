@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:device_info/device_info.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firstapp/pages/verifier_mot_de_passe.dart';
-import 'package:firstapp/widgets/app_text.dart';
+import 'package:firstapp/widgets/app_msg.dart';
 import 'package:firstapp/widgets/slide_jeux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,6 +28,8 @@ class _acceilState extends State<acceil> {
   String mdp = '';
   // ignore: non_constant_identifier_names
   String Avatar = './assets/img/avatar_1.png';
+  // ignore: non_constant_identifier_names
+  bool icon_valume = false;
 
   String deviceName = '';
   String deviceVersion = '';
@@ -78,6 +80,15 @@ class _acceilState extends State<acceil> {
     }
   }
 
+  getsons() async {
+    if (icon_valume == true) {
+      Audio_BK.pauseBK();
+    }
+    if (icon_valume == false) {
+      Audio_BK.loopBK("musiques_fond/HeatleyBros_main.mp3");
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -86,80 +97,114 @@ class _acceilState extends State<acceil> {
   @override
   Widget build(BuildContext context) {
     getData();
-    Audio_BK.loopBK();
-    return Scaffold(body: LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        double width = MediaQuery.of(context).size.width;
-        double height = MediaQuery.of(context).size.height;
-        return Container(
-          width: double.maxFinite,
-          height: double.maxFinite,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/img/Main_fond.png"),
-                  fit: BoxFit.cover)),
-          child: Column(children: [
-            Container(
-              padding: const EdgeInsets.only(top: 10, left: 10),
-              child: Row(
-                children: [
-                  RaisedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const verifier_mot_de_passe()));
-                    },
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100),
+    getsons();
+    return Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        // ignore: missing_required_param
+        floatingActionButton: const FloatingActionButton(
+          mini: false,
+          shape: RoundedRectangleBorder(),
+          child: menueInfos(),
+          backgroundColor: Colors.transparent,
+          splashColor: Colors.transparent,
+          elevation: 0,
+          hoverElevation: 0,
+          focusElevation: 0,
+          highlightElevation: 0,
+        ),
+        body: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            double width = MediaQuery.of(context).size.width;
+            double height = MediaQuery.of(context).size.height;
+            return Container(
+              width: double.maxFinite,
+              height: double.maxFinite,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/img/Main_fond.png"),
+                      fit: BoxFit.cover)),
+              child: Column(children: [
+                SizedBox(
+                  height: height / 60,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(left: 10),
+                      child: RaisedButton(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  const verifier_mot_de_passe()));
+                        },
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: Icon(Icons.menu,
+                            size: width / 8, color: Colors.white),
+                        color: Colors.transparent,
+                        splashColor: Colors.transparent,
+                        elevation: 0,
+                        hoverElevation: 0,
+                        focusElevation: 0,
+                        highlightElevation: 0,
+                      ),
                     ),
-                    child:
-                        Icon(Icons.menu, size: width / 8, color: Colors.white),
-                    color: Colors.transparent,
-                    splashColor: Colors.transparent,
-                    elevation: 0,
-                    hoverElevation: 0,
-                    focusElevation: 0,
-                    highlightElevation: 0,
+                    Expanded(child: Container()),
+                    IconButton(
+                      icon: (icon_valume)
+                          ? const Icon(
+                              Icons.volume_off,
+                              color: Colors.white,
+                            )
+                          : const Icon(
+                              Icons.volume_up,
+                              color: Colors.white,
+                            ),
+                      onPressed: () {
+                        setState(() {
+                          icon_valume = !icon_valume;
+                        });
+                      },
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(right: 20),
+                      width: width / 5,
+                      height: width / 5,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        image: DecorationImage(
+                            // ignore: unnecessary_string_interpolations
+                            image: AssetImage("$Avatar"),
+                            fit: BoxFit.cover),
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: height / 30,
+                ),
+                SizedBox(
+                  height: height / 6,
+                  child: Center(
+                    child: AppMsg(
+                        text:
+                            "Bonjour $nom, à quoi veux tu jouer aujourd'hui ?",
+                        size: 35,
+                        color: Colors.white),
                   ),
-                  Expanded(child: Container()),
-                  Container(
-                    margin: const EdgeInsets.only(right: 20),
-                    width: width / 5,
-                    height: width / 5,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      image: DecorationImage(
-                          // ignore: unnecessary_string_interpolations
-                          image: AssetImage("$Avatar"),
-                          fit: BoxFit.cover),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: height / 20,
-            ),
-            SizedBox(
-              height: height / 6,
-              child: Center(
-                child: AppText(
-                    text: "Bonjour $nom, à quoi veux tu jouer aujourd'hui ?",
-                    size: 35,
-                    color: Colors.white),
-              ),
-            ),
-            SizedBox(
-              width: width,
-              height: height / 2,
-              child: const slideJeux(),
-            ),
-            Container(
-              margin: const EdgeInsets.only(right: 10, top: 50),
-              child: const menueInfos(),
-            )
-          ]),
-        );
-      },
-    ));
+                ),
+                SizedBox(
+                  width: width,
+                  height: height / 2,
+                  child: const slideJeux(),
+                ),
+              ]),
+            );
+          },
+        ));
   }
 }

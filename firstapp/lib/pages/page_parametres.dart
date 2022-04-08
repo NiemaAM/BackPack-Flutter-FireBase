@@ -23,7 +23,7 @@ class parametres extends StatefulWidget {
 
 // ignore: camel_case_types
 class _parametresState extends State<parametres> {
-  String nom = "";
+  String nom = " ";
   String avatar = './assets/img/avatar_1.png';
 
   String deviceName = '';
@@ -82,11 +82,12 @@ class _parametresState extends State<parametres> {
         child: Column(children: [
           const retour(),
           SizedBox(
-            height: height / 10,
+            height: height / 14,
             width: width,
           ),
           AppText(
             text: "Paramètres du profil de l'enfant",
+            color: const Color.fromARGB(255, 20, 111, 186),
           ),
           SizedBox(
               width: width,
@@ -131,6 +132,7 @@ class _parametresState extends State<parametres> {
           ),
           AppText(
             text: 'Paramètres de contrôle parental',
+            color: const Color.fromARGB(255, 20, 111, 186),
           ),
           SizedBox(
             height: height / 250,
@@ -279,7 +281,7 @@ class _parametresState extends State<parametres> {
                 child: AppText(
                   text: "Changer le mot de passe",
                   size: 30,
-                  color: Colors.black87,
+                  color: Colors.redAccent,
                 ),
                 color: Colors.transparent,
                 splashColor: Colors.transparent,
