@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'Audio.dart';
+
 // ignore: camel_case_types
 class retour extends StatelessWidget {
   final Color color;
@@ -16,6 +18,7 @@ class retour extends StatelessWidget {
         children: [
           RaisedButton(
             onPressed: () {
+              Audio.pause();
               Navigator.of(context).pop();
             },
             shape: RoundedRectangleBorder(

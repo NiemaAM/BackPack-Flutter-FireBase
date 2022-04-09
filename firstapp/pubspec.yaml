@@ -93,9 +93,11 @@ flutter:
       
   assets:
        - assets/img/
+       - assets/img/animaux/
+       - assets/img/fruits/
+       - assets/img/legumes/
        - assets/musiques_fond/
-       - assets/infos_app/
-       - assets/infos_app/is_oppend.txt
+       - assets/Livres_audio/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

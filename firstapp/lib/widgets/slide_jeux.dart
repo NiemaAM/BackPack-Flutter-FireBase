@@ -4,6 +4,9 @@ import 'package:firstapp/pages/page_choix_jeux_puzzles.dart';
 import 'package:firstapp/pages/page_choix_jeux_quiz.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import '../jeux/audio/cantines.dart';
+import '../jeux/audio/livres.dart';
+import '../pages/page_Langues.dart';
 
 // ignore: camel_case_types
 class slideJeux extends StatefulWidget {
@@ -27,11 +30,11 @@ class _slideJeuxState extends State<slideJeux> {
   List links = [
     const pageQuizChoix(),
     const pagePuzzleChoix(),
-    const pageLanguesChoix(),
+    const langues(),
     const pageLanguesChoix(),
     const Draw(),
-    const pageLanguesChoix(),
-    const pageLanguesChoix()
+    const livres(),
+    const cantines()
   ];
 
   @override
