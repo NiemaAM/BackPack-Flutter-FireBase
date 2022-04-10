@@ -8,15 +8,15 @@ import '../../../widgets/floating_retour.dart';
 import '../itemModel.dart';
 
 // ignore: camel_case_types
-class Legumes_Anglais extends StatefulWidget {
-  const Legumes_Anglais({Key key}) : super(key: key);
+class Animaux_Francais extends StatefulWidget {
+  const Animaux_Francais({Key key}) : super(key: key);
 
   @override
-  _Legumes_AnglaisState createState() => _Legumes_AnglaisState();
+  _Animaux_FrancaisState createState() => _Animaux_FrancaisState();
 }
 
 // ignore: camel_case_types
-class _Legumes_AnglaisState extends State<Legumes_Anglais> {
+class _Animaux_FrancaisState extends State<Animaux_Francais> {
   var player = AudioCache();
   List<ItemModel> items;
   List<ItemModel> items2;
@@ -28,83 +28,147 @@ class _Legumes_AnglaisState extends State<Legumes_Anglais> {
     score = 0;
     items = [
       ItemModel(
-          value: 'beet', name: 'beet', img: 'assets/img/legumes/beet.png'),
+          value: 'un Castor',
+          name: 'un Castor',
+          img: 'assets/img/animaux/beaver.png'),
       ItemModel(
-          value: 'broccoli',
-          name: 'Broccoli',
-          img: 'assets/img/legumes/broccoli.png'),
+          value: 'un Oiseau',
+          name: 'un Oiseau',
+          img: 'assets/img/animaux/bird.png'),
       ItemModel(
-          value: 'cabbage',
-          name: 'Cabbage',
-          img: 'assets/img/legumes/cabbage.png'),
+          value: 'un Chameau',
+          name: 'un Chameau',
+          img: 'assets/img/animaux/camel.png'),
       ItemModel(
-          value: 'carrot',
-          name: 'Carrot',
-          img: 'assets/img/legumes/carrot.png'),
+          value: 'un Chat', name: 'un Chat', img: 'assets/img/animaux/cat.png'),
       ItemModel(
-          value: 'cauliflower',
-          name: 'Cauliflower',
-          img: 'assets/img/legumes/cauliflower.png'),
+          value: 'un Caméléon',
+          name: 'un Caméléon',
+          img: 'assets/img/animaux/chameleon.png'),
       ItemModel(
-          value: 'cherry tomato',
-          name: 'Cherry tomato',
-          img: 'assets/img/legumes/cherry-tomato.png'),
+          value: 'un Poussin',
+          name: 'un Poussin',
+          img: 'assets/img/animaux/chick.png'),
       ItemModel(
-          value: 'tomato',
-          name: 'Tomato',
-          img: 'assets/img/legumes/tomato.png'),
+          value: 'une Poule',
+          name: 'une Poule',
+          img: 'assets/img/animaux/chicken.png'),
       ItemModel(
-          value: 'chili', name: 'Chili', img: 'assets/img/legumes/chili.png'),
+          value: 'un Poisson',
+          name: 'un Poisson',
+          img: 'assets/img/animaux/clown-fish.png'),
       ItemModel(
-          value: 'corn', name: 'Corn', img: 'assets/img/legumes/corn.png'),
+          value: 'une Vache',
+          name: 'une Vache',
+          img: 'assets/img/animaux/cow.png'),
       ItemModel(
-          value: 'cucumber',
-          name: 'Cucumber',
-          img: 'assets/img/legumes/cucumber.png'),
+          value: 'un Crabe',
+          name: 'un Crabe',
+          img: 'assets/img/animaux/crab.png'),
       ItemModel(
-          value: 'eggplant',
-          name: 'Eggplant',
-          img: 'assets/img/legumes/eggplant.png'),
+          value: 'un Cerf',
+          name: 'un Cerf',
+          img: 'assets/img/animaux/deer.png'),
       ItemModel(
-          value: 'green pea',
-          name: 'Green pea',
-          img: 'assets/img/legumes/green-pea.png'),
+          value: 'un Chien',
+          name: 'un Chien',
+          img: 'assets/img/animaux/dog.png'),
       ItemModel(
-          value: 'leek', name: 'Leek', img: 'assets/img/legumes/leek.png'),
+          value: 'un Dauphin',
+          name: 'un Dauphin',
+          img: 'assets/img/animaux/dolphin.png'),
       ItemModel(
-          value: 'lettuce',
-          name: 'Lettuce',
-          img: 'assets/img/legumes/lettuce.png'),
+          value: 'un Canard',
+          name: 'un Canard',
+          img: 'assets/img/animaux/duck.png'),
       ItemModel(
-          value: 'onion', name: 'Onion', img: 'assets/img/legumes/onion.png'),
+          value: 'un Éléphant',
+          name: 'un Éléphant',
+          img: 'assets/img/animaux/elephant.png'),
       ItemModel(
-          value: 'pepper',
-          name: 'Pepper',
-          img: 'assets/img/legumes/pepper.png'),
+          value: 'un Renard',
+          name: 'un Renard',
+          img: 'assets/img/animaux/fox.png'),
       ItemModel(
-          value: 'potato',
-          name: 'Potato',
-          img: 'assets/img/legumes/potato.png'),
+          value: 'une Girafe',
+          name: 'une Girafe',
+          img: 'assets/img/animaux/giraffe.png'),
       ItemModel(
-          value: 'pumpkin',
-          name: 'Pumpkin',
-          img: 'assets/img/legumes/pumpkin.png'),
+          value: 'un Cochon d\'Inde',
+          name: 'un Cochon d\'Inde',
+          img: 'assets/img/animaux/guinea-pig.png'),
       ItemModel(
-          value: 'red beans',
-          name: 'red beans',
-          img: 'assets/img/legumes/red-beans.png'),
+          value: 'un Hamster',
+          name: 'un Hamster',
+          img: 'assets/img/animaux/hamster.png'),
       ItemModel(
-          value: 'spinach',
-          name: 'spinach',
-          img: 'assets/img/legumes/spinach.png'),
+          value: 'un Cheval',
+          name: 'un Cheval',
+          img: 'assets/img/animaux/horse.png'),
       ItemModel(
-          value: 'sweet potato',
-          name: 'sweet potato',
-          img: 'assets/img/legumes/sweet-potato.png'),
+          value: 'un Koala',
+          name: 'un Koala',
+          img: 'assets/img/animaux/koala.png'),
       ItemModel(
-          value: 'zucchini',
-          name: 'zucchini',
-          img: 'assets/img/legumes/zucchini.png'),
+          value: 'un Lion',
+          name: 'un Lion',
+          img: 'assets/img/animaux/lion.png'),
+      ItemModel(
+          value: 'une Souris',
+          name: 'une Souris',
+          img: 'assets/img/animaux/mouse.png'),
+      ItemModel(
+          value: 'un Hibou',
+          name: 'un Hibou',
+          img: 'assets/img/animaux/owl.png'),
+      ItemModel(
+          value: 'un Panda',
+          name: 'un Panda',
+          img: 'assets/img/animaux/panda-bear.png'),
+      ItemModel(
+          value: 'un Perroquet',
+          name: 'un Perroquet',
+          img: 'assets/img/animaux/parrot.png'),
+      ItemModel(
+          value: 'un Manchot',
+          name: 'un Manchot',
+          img: 'assets/img/animaux/penguin.png'),
+      ItemModel(
+          value: 'un coq',
+          name: 'un coq',
+          img: 'assets/img/animaux/rooster.png'),
+      ItemModel(
+          value: 'un Requin',
+          name: 'un Requin',
+          img: 'assets/img/animaux/shark.png'),
+      ItemModel(
+          value: 'un Mouton',
+          name: 'un Mouton',
+          img: 'assets/img/animaux/sheep.png'),
+      ItemModel(
+          value: 'un Serpent',
+          name: 'un Serpent',
+          img: 'assets/img/animaux/snake.png'),
+      ItemModel(
+          value: 'un Écureuil',
+          name: 'un Écureuil',
+          img: 'assets/img/animaux/squirrel.png'),
+      ItemModel(
+          value: 'une Tortue',
+          name: 'une Tortue',
+          img: 'assets/img/animaux/turtle.png'),
+      ItemModel(
+          value: 'une Baleine',
+          name: 'une Baleine',
+          img: 'assets/img/animaux/whale.png'),
+      ItemModel(
+          value: 'un Loup',
+          name: 'un Loup',
+          img: 'assets/img/animaux/wolf.png'),
+      ItemModel(
+          value: 'un Zèbre',
+          name: 'un Zèbre',
+          img: 'assets/img/animaux/zebra.png'),
     ];
     items2 = List<ItemModel>.from(items);
 
@@ -113,7 +177,7 @@ class _Legumes_AnglaisState extends State<Legumes_Anglais> {
   }
 
   checkScore() {
-    if (score == 22) {
+    if (score == 36) {
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
@@ -150,7 +214,7 @@ class _Legumes_AnglaisState extends State<Legumes_Anglais> {
                     Navigator.of(ctx).pop();
                     Navigator.of(ctx).pop();
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const Legumes_Anglais()));
+                        builder: (context) => const Animaux_Francais()));
                   },
                   child: AppText(
                     text: "Rejouer",
@@ -209,7 +273,7 @@ class _Legumes_AnglaisState extends State<Legumes_Anglais> {
                             .copyWith(color: Colors.blue),
                       ),
                       TextSpan(
-                        text: '/22',
+                        text: '/36',
                         style: Theme.of(context).textTheme.headline3,
                       ),
                     ],
@@ -284,7 +348,7 @@ class _Legumes_AnglaisState extends State<Legumes_Anglais> {
                                 ),
                                 alignment: Alignment.center,
                                 height: MediaQuery.of(context).size.width / 6.5,
-                                width: MediaQuery.of(context).size.width / 3,
+                                width: MediaQuery.of(context).size.width / 2.5,
                                 margin: const EdgeInsets.all(8),
                                 child: AppText(
                                   text: item.name,

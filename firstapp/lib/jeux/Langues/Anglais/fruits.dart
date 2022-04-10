@@ -186,15 +186,15 @@ class _Fruits_AnglaisState extends State<Fruits_Anglais> {
                   TextSpan(
                     children: [
                       TextSpan(
-                        text: 'Score: ',
-                        style: Theme.of(context).textTheme.subtitle1,
-                      ),
-                      TextSpan(
                         text: '$score',
                         style: Theme.of(context)
                             .textTheme
                             .headline2
                             .copyWith(color: Colors.blue),
+                      ),
+                      TextSpan(
+                        text: '/22',
+                        style: Theme.of(context).textTheme.headline3,
                       ),
                     ],
                   ),

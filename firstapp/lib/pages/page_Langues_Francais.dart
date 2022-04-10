@@ -1,10 +1,10 @@
 // ignore_for_file: deprecated_member_use, file_names
-import 'package:firstapp/jeux/Langues/Anglais/fruits.dart';
+import 'package:firstapp/jeux/Langues/Francais/fruits.dart';
 import 'package:firstapp/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 
-import '../jeux/Langues/Anglais/animaux.dart';
-import '../jeux/Langues/Anglais/legumes.dart';
+import '../jeux/Langues/Francais/animaux.dart';
+import '../jeux/Langues/Francais/legumes.dart';
 import '../widgets/menue_retour.dart';
 
 // ignore: camel_case_types
@@ -50,7 +50,7 @@ class _FrancaisState extends State<Francais> {
                   GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const Fruits_Anglais()));
+                          builder: (context) => const Fruits_Francais()));
                     },
                     child: Column(
                       children: [
@@ -74,7 +74,7 @@ class _FrancaisState extends State<Francais> {
                   GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const Legumes_Anglais()));
+                          builder: (context) => const Legumes_Francais()));
                     },
                     child: Column(
                       children: [
@@ -98,7 +98,7 @@ class _FrancaisState extends State<Francais> {
                   GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const Animaux_Anglais()));
+                          builder: (context) => const Animaux_Francais()));
                     },
                     child: Column(
                       children: [

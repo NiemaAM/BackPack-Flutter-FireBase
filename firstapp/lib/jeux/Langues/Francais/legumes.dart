@@ -8,15 +8,15 @@ import '../../../widgets/floating_retour.dart';
 import '../itemModel.dart';
 
 // ignore: camel_case_types
-class Legumes_Anglais extends StatefulWidget {
-  const Legumes_Anglais({Key key}) : super(key: key);
+class Legumes_Francais extends StatefulWidget {
+  const Legumes_Francais({Key key}) : super(key: key);
 
   @override
-  _Legumes_AnglaisState createState() => _Legumes_AnglaisState();
+  _Legumes_FrancaisState createState() => _Legumes_FrancaisState();
 }
 
 // ignore: camel_case_types
-class _Legumes_AnglaisState extends State<Legumes_Anglais> {
+class _Legumes_FrancaisState extends State<Legumes_Francais> {
   var player = AudioCache();
   List<ItemModel> items;
   List<ItemModel> items2;
@@ -28,82 +28,92 @@ class _Legumes_AnglaisState extends State<Legumes_Anglais> {
     score = 0;
     items = [
       ItemModel(
-          value: 'beet', name: 'beet', img: 'assets/img/legumes/beet.png'),
+          value: 'une Betterave',
+          name: 'une Betterave',
+          img: 'assets/img/legumes/beet.png'),
       ItemModel(
-          value: 'broccoli',
-          name: 'Broccoli',
+          value: 'un Brocoli',
+          name: 'un Brocoli',
           img: 'assets/img/legumes/broccoli.png'),
       ItemModel(
-          value: 'cabbage',
-          name: 'Cabbage',
+          value: 'un Chou',
+          name: 'un Chou',
           img: 'assets/img/legumes/cabbage.png'),
       ItemModel(
-          value: 'carrot',
-          name: 'Carrot',
+          value: 'une Carotte',
+          name: 'une Carotte',
           img: 'assets/img/legumes/carrot.png'),
       ItemModel(
-          value: 'cauliflower',
-          name: 'Cauliflower',
+          value: 'un Chou-fleur',
+          name: 'un Chou-fleur',
           img: 'assets/img/legumes/cauliflower.png'),
       ItemModel(
-          value: 'cherry tomato',
-          name: 'Cherry tomato',
+          value: 'une Tomate cerise',
+          name: 'une Tomate cerise',
           img: 'assets/img/legumes/cherry-tomato.png'),
       ItemModel(
-          value: 'tomato',
-          name: 'Tomato',
+          value: 'une Tomate',
+          name: 'une Tomate',
           img: 'assets/img/legumes/tomato.png'),
       ItemModel(
-          value: 'chili', name: 'Chili', img: 'assets/img/legumes/chili.png'),
+          value: 'un Piment',
+          name: 'un Piment',
+          img: 'assets/img/legumes/chili.png'),
       ItemModel(
-          value: 'corn', name: 'Corn', img: 'assets/img/legumes/corn.png'),
+          value: 'un Maïs',
+          name: 'un Maïs',
+          img: 'assets/img/legumes/corn.png'),
       ItemModel(
-          value: 'cucumber',
-          name: 'Cucumber',
+          value: 'un Concombre',
+          name: 'un Concombre',
           img: 'assets/img/legumes/cucumber.png'),
       ItemModel(
-          value: 'eggplant',
-          name: 'Eggplant',
+          value: 'une Aubergine',
+          name: 'une Aubergine',
           img: 'assets/img/legumes/eggplant.png'),
       ItemModel(
-          value: 'green pea',
-          name: 'Green pea',
+          value: 'un Petit pois',
+          name: 'un Petit pois',
           img: 'assets/img/legumes/green-pea.png'),
       ItemModel(
-          value: 'leek', name: 'Leek', img: 'assets/img/legumes/leek.png'),
+          value: 'un Poireau',
+          name: 'un Poireau',
+          img: 'assets/img/legumes/leek.png'),
       ItemModel(
-          value: 'lettuce',
-          name: 'Lettuce',
+          value: 'une Laitue',
+          name: 'une Laitue',
           img: 'assets/img/legumes/lettuce.png'),
       ItemModel(
-          value: 'onion', name: 'Onion', img: 'assets/img/legumes/onion.png'),
+          value: 'un Oignon',
+          name: 'un Oignon',
+          img: 'assets/img/legumes/onion.png'),
       ItemModel(
-          value: 'pepper',
-          name: 'Pepper',
+          value: 'un Poivron',
+          name: 'un Poivron',
           img: 'assets/img/legumes/pepper.png'),
       ItemModel(
-          value: 'potato',
-          name: 'Potato',
+          value: 'une Pomme de terre',
+          name: 'une Pomme de terre',
           img: 'assets/img/legumes/potato.png'),
       ItemModel(
-          value: 'pumpkin',
-          name: 'Pumpkin',
+          value: 'une Citrouille',
+          name: 'une Citrouille',
           img: 'assets/img/legumes/pumpkin.png'),
       ItemModel(
-          value: 'red beans',
-          name: 'red beans',
+          value: 'un Haricot rouge',
+          name: 'un Haricot rouge',
           img: 'assets/img/legumes/red-beans.png'),
       ItemModel(
-          value: 'spinach',
-          name: 'spinach',
+          value: 'un Épinard',
+          name: 'un Épinard',
           img: 'assets/img/legumes/spinach.png'),
       ItemModel(
-          value: 'sweet potato',
-          name: 'sweet potato',
+          value: 'une Patate douce',
+          name: 'une Patate douce',
           img: 'assets/img/legumes/sweet-potato.png'),
       ItemModel(
-          value: 'zucchini',
-          name: 'zucchini',
+          value: 'une Courgette',
+          name: 'une Courgette',
           img: 'assets/img/legumes/zucchini.png'),
     ];
     items2 = List<ItemModel>.from(items);
@@ -150,7 +160,7 @@ class _Legumes_AnglaisState extends State<Legumes_Anglais> {
                     Navigator.of(ctx).pop();
                     Navigator.of(ctx).pop();
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const Legumes_Anglais()));
+                        builder: (context) => const Legumes_Francais()));
                   },
                   child: AppText(
                     text: "Rejouer",
@@ -284,7 +294,7 @@ class _Legumes_AnglaisState extends State<Legumes_Anglais> {
                                 ),
                                 alignment: Alignment.center,
                                 height: MediaQuery.of(context).size.width / 6.5,
-                                width: MediaQuery.of(context).size.width / 3,
+                                width: MediaQuery.of(context).size.width / 2,
                                 margin: const EdgeInsets.all(8),
                                 child: AppText(
                                   text: item.name,
