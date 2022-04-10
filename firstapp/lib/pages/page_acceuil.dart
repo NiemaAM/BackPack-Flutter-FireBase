@@ -123,86 +123,87 @@ class _acceilState extends State<acceil> {
                   image: DecorationImage(
                       image: AssetImage("assets/img/Main_fond.png"),
                       fit: BoxFit.cover)),
-              child: Column(children: [
-                SizedBox(
-                  height: height / 60,
-                ),
-                Row(
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(left: 10),
-                      child: RaisedButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  const verifier_mot_de_passe()));
-                        },
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: Icon(Icons.menu,
-                            size: width / 8, color: Colors.white),
-                        color: Colors.transparent,
-                        splashColor: Colors.transparent,
-                        elevation: 0,
-                        hoverElevation: 0,
-                        focusElevation: 0,
-                        highlightElevation: 0,
-                      ),
-                    ),
-                    Expanded(child: Container()),
-                    IconButton(
-                      icon: (icon_valume)
-                          ? const Icon(
-                              Icons.volume_off,
-                              color: Colors.white,
-                            )
-                          : const Icon(
-                              Icons.volume_up,
-                              color: Colors.white,
-                            ),
-                      onPressed: () {
-                        setState(() {
-                          icon_valume = !icon_valume;
-                        });
-                      },
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(right: 20),
-                      width: width / 5,
-                      height: width / 5,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        image: DecorationImage(
-                            // ignore: unnecessary_string_interpolations
-                            image: AssetImage("$Avatar"),
-                            fit: BoxFit.cover),
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: height / 30,
-                ),
-                SizedBox(
-                  height: height / 6,
-                  child: Center(
-                    child: AppMsg(
-                        text:
-                            "Bonjour $nom, à quoi veux tu jouer aujourd'hui ?",
-                        size: 35,
-                        color: Colors.white),
+              child: SingleChildScrollView(
+                child: Column(children: [
+                  SizedBox(
+                    height: height / 60,
                   ),
-                ),
-                SizedBox(
-                  width: width,
-                  height: height / 2,
-                  child: const slideJeux(),
-                ),
-              ]),
+                  Row(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(left: 10),
+                        child: RaisedButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    const verifier_mot_de_passe()));
+                          },
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                          child: Icon(Icons.menu,
+                              size: width / 8, color: Colors.white),
+                          color: Colors.transparent,
+                          splashColor: Colors.transparent,
+                          elevation: 0,
+                          hoverElevation: 0,
+                          focusElevation: 0,
+                          highlightElevation: 0,
+                        ),
+                      ),
+                      Expanded(child: Container()),
+                      IconButton(
+                        icon: (icon_valume)
+                            ? const Icon(
+                                Icons.volume_off,
+                                color: Colors.white,
+                              )
+                            : const Icon(
+                                Icons.volume_up,
+                                color: Colors.white,
+                              ),
+                        onPressed: () {
+                          setState(() {
+                            icon_valume = !icon_valume;
+                          });
+                        },
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(right: 20),
+                        width: width / 5,
+                        height: width / 5,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          image: DecorationImage(
+                              // ignore: unnecessary_string_interpolations
+                              image: AssetImage("$Avatar"),
+                              fit: BoxFit.cover),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: height / 20,
+                  ),
+                  SizedBox(
+                    height: 80,
+                    child: Center(
+                      child: AppMsg(
+                          text:
+                              "Bonjour $nom, à quoi veux tu jouer aujourd'hui ?",
+                          size: 35,
+                          color: Colors.white),
+                    ),
+                  ),
+                  SizedBox(
+                    height: height / 20,
+                  ),
+                  const slideJeux(),
+                ]),
+              ),
             );
           },
         ));

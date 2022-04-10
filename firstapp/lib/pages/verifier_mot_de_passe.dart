@@ -79,15 +79,8 @@ class _verifier_mot_de_passeState extends State<verifier_mot_de_passe> {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Container(
-          width: double.maxFinite,
-          height: double.maxFinite,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/img/page_parents.png"),
-                  fit: BoxFit.cover)),
+      body: SingleChildScrollView(
           child: Container(
-              margin: const EdgeInsets.all(30),
               alignment: Alignment.center,
               child: Column(
                 children: [
@@ -98,15 +91,20 @@ class _verifier_mot_de_passeState extends State<verifier_mot_de_passe> {
                     ),
                   ),
                   SizedBox(
-                    height: height / 2.5,
+                    height: height / 15,
+                  ),
+                  AppText(text: "Espace de contrôle parental"),
+                  Image.asset("assets/img/img_parents.png"),
+                  SizedBox(
+                    height: height / 30,
+                  ),
+                  AppText(
+                    text: "Entrer le mot de passe parental",
+                    size: 30,
                   ),
                   SizedBox(
-                      width: width,
-                      height: width / 10,
-                      child: AppText(
-                        text: "Entrer le mot de passe parental",
-                        size: 30,
-                      )),
+                    height: height / 100,
+                  ),
                   SizedBox(
                     width: width / 1.5,
                     height: width / 6,
@@ -124,7 +122,7 @@ class _verifier_mot_de_passeState extends State<verifier_mot_de_passe> {
                     ),
                   ),
                   SizedBox(
-                    height: width / 8,
+                    height: height / 40,
                   ),
                   SizedBox(
                       width: width / 3,

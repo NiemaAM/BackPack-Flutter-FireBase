@@ -67,110 +67,102 @@ class _modifier_mot_de_passeState extends State<modifier_mot_de_passe> {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Container(
-          width: double.maxFinite,
-          height: double.maxFinite,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/img/page_parents.png"),
-                  fit: BoxFit.cover)),
-          child: Container(
-              alignment: Alignment.center,
-              child: Column(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(top: 10),
-                    child: const retour(
-                      color: Colors.black,
+      body: SingleChildScrollView(
+        child: Container(
+            alignment: Alignment.center,
+            child: Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(top: 10),
+                  child: const retour(
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(
+                  height: height / 15,
+                ),
+                AppText(text: "Espace de contrôle parental"),
+                Image.asset("assets/img/img_parents.png"),
+                SizedBox(
+                  height: height / 30,
+                ),
+                AppText(
+                  text: "Modifier le mot de passe",
+                  size: 30,
+                ),
+                SizedBox(
+                  height: height / 100,
+                ),
+                SizedBox(
+                  width: width / 1.5,
+                  height: width / 6,
+                  child: TextField(
+                    controller: myController,
+                    obscureText: true,
+                    keyboardType: TextInputType.text,
+                    textInputAction: TextInputAction.done,
+                    showCursor: true,
+                    style: const TextStyle(fontSize: 30),
+                    decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.password),
+                      border: OutlineInputBorder(),
                     ),
                   ),
-                  SizedBox(
-                    height: width / 25,
-                  ),
-                  SizedBox(
-                    width: width,
-                    height: height / 2.5,
-                    child: AppText(text: "Espace de contrôle parental"),
-                  ),
-                  SizedBox(
-                      width: width,
-                      height: width / 10,
+                ),
+                SizedBox(
+                  height: height / 40,
+                ),
+                SizedBox(
+                    width: width / 3,
+                    height: width / 7,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (remove.removemoji(myController.text) !=
+                            myController.text) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: AppText(
+                              text:
+                                  'Le mot de passe ne peut pas contenir des emojis',
+                              size: 15,
+                              color: Colors.white,
+                            ),
+                          ));
+                        } else if (myController.text.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: AppText(
+                              text: 'Veillez saisir un mot de passe parentale',
+                              size: 15,
+                              color: Colors.white,
+                            ),
+                          ));
+                        } else if (remove.removemoji(myController.text).length <
+                            5) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: AppText(
+                              text:
+                                  'Le mot de passe doit contenir minimum 5 caractéres',
+                              size: 15,
+                              color: Colors.white,
+                            ),
+                          ));
+                        } else {
+                          _deviceDetails();
+                          ref.update({
+                            "$identifier/MotDePasse":
+                                remove.removemoji(myController.text),
+                          });
+                          Navigator.of(context).pop();
+                        }
+                      },
                       child: AppText(
-                        text: "Modifier le mot de passe",
-                        size: 30,
-                      )),
-                  SizedBox(
-                    width: width / 1.5,
-                    height: width / 6,
-                    child: TextField(
-                      controller: myController,
-                      obscureText: true,
-                      keyboardType: TextInputType.text,
-                      textInputAction: TextInputAction.done,
-                      showCursor: true,
-                      style: const TextStyle(fontSize: 30),
-                      decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.password),
-                        border: OutlineInputBorder(),
+                        text: "Valider",
+                        size: 40,
+                        color: Colors.white,
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: width / 8,
-                  ),
-                  SizedBox(
-                      width: width / 3,
-                      height: width / 7,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (remove.removemoji(myController.text) !=
-                              myController.text) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: AppText(
-                                text:
-                                    'Le mot de passe ne peut pas contenir des emojis',
-                                size: 15,
-                                color: Colors.white,
-                              ),
-                            ));
-                          } else if (myController.text.isEmpty) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: AppText(
-                                text:
-                                    'Veillez saisir un mot de passe parentale',
-                                size: 15,
-                                color: Colors.white,
-                              ),
-                            ));
-                          } else if (remove
-                                  .removemoji(myController.text)
-                                  .length <
-                              5) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: AppText(
-                                text:
-                                    'Le mot de passe doit contenir minimum 5 caractéres',
-                                size: 15,
-                                color: Colors.white,
-                              ),
-                            ));
-                          } else {
-                            _deviceDetails();
-                            ref.update({
-                              "$identifier/MotDePasse":
-                                  remove.removemoji(myController.text),
-                            });
-                            Navigator.of(context).pop();
-                          }
-                        },
-                        child: AppText(
-                          text: "Valider",
-                          size: 40,
-                          color: Colors.white,
-                        ),
-                      )),
-                ],
-              ))),
+                    )),
+              ],
+            )),
+      ),
     );
   }
 }

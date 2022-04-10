@@ -72,225 +72,240 @@ class _parametresState extends State<parametres> {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Container(
-        width: double.maxFinite,
-        height: double.maxFinite,
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/img/page_parametres.png"),
-                fit: BoxFit.cover)),
-        child: Column(children: [
-          const retour(),
-          SizedBox(
-            height: height / 14,
-            width: width,
-          ),
-          AppText(
-            text: "Paramètres du profil de l'enfant",
-            color: const Color.fromARGB(255, 20, 111, 186),
-          ),
-          SizedBox(
-              width: width,
-              height: height / 20,
-              child: RaisedButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const modifier_profile_enfant()));
-                },
-                child: AppText(
-                  text: "Modifier le profile",
-                  size: 30,
-                  color: Colors.black87,
+      body: SafeArea(
+        child: Container(
+          width: double.maxFinite,
+          height: double.maxFinite,
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/img/page_parametres.png"),
+                  fit: BoxFit.cover)),
+          child: SingleChildScrollView(
+            child: Column(children: [
+              // ignore: sdk_version_ui_as_code
+              if (height < 700)
+                const retour(
+                  color: Colors.black,
                 ),
-                color: Colors.transparent,
-                splashColor: Colors.transparent,
-                elevation: 0,
-                hoverElevation: 0,
-                focusElevation: 0,
-                highlightElevation: 0,
-              )),
-          Container(
-              margin: const EdgeInsets.all(10),
-              width: width / 2,
-              height: width / 2,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  image: DecorationImage(
-                      image: AssetImage(avatar), fit: BoxFit.cover))),
-          SizedBox(
-            height: height / 20,
-            width: width,
-            child: AppText(
-              // ignore: unnecessary_string_interpolations
-              text: "$nom",
-              color: Colors.blue,
-            ),
-          ),
-          SizedBox(
-            height: height / 50,
-            width: width,
-          ),
-          AppText(
-            text: 'Paramètres de contrôle parental',
-            color: const Color.fromARGB(255, 20, 111, 186),
-          ),
-          SizedBox(
-            height: height / 250,
-            width: width,
-          ),
-          SizedBox(
-            width: width,
-            height: height / 20,
-            child: RaisedButton(
-              onPressed: () {
-                showCupertinoDialog<void>(
-                  context: context,
-                  builder: (BuildContext context) => CupertinoAlertDialog(
-                    title: AppText(text: 'Temps de jeu par jour', size: 20),
-                    actions: <CupertinoDialogAction>[
-                      CupertinoDialogAction(
-                        child: const Text('Annuler'),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                      CupertinoDialogAction(
-                        child: const Text('Valider'),
-                        isDestructiveAction: true,
-                        onPressed: () {
-                          // Do something destructive.
-                        },
-                      )
-                    ],
-                  ),
-                );
-              },
-              child: AppText(
-                text: "Temps maximum de jeu par jour",
-                size: 30,
-                color: Colors.black87,
-              ),
-              color: Colors.transparent,
-              splashColor: Colors.transparent,
-              elevation: 0,
-              hoverElevation: 0,
-              focusElevation: 0,
-              highlightElevation: 0,
-            ),
-          ),
-          SizedBox(
-            height: height / 100,
-            width: width,
-          ),
-          SizedBox(
-            width: width,
-            height: height / 20,
-            child: RaisedButton(
-              onPressed: () {
-                showCupertinoDialog<void>(
-                  context: context,
-                  builder: (BuildContext context) => CupertinoAlertDialog(
-                    title: AppText(text: 'Temps entre chaque pause', size: 20),
-                    actions: <CupertinoDialogAction>[
-                      CupertinoDialogAction(
-                        child: const Text('Annuler'),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                      CupertinoDialogAction(
-                        child: const Text('Valider'),
-                        isDestructiveAction: true,
-                        onPressed: () {
-                          // Do something destructive.
-                        },
-                      )
-                    ],
-                  ),
-                );
-              },
-              child: AppText(
-                text: "Temps entre chaque pause",
-                size: 30,
-                color: Colors.black87,
-              ),
-              color: Colors.transparent,
-              splashColor: Colors.transparent,
-              elevation: 0,
-              hoverElevation: 0,
-              focusElevation: 0,
-              highlightElevation: 0,
-            ),
-          ),
-          SizedBox(
-            height: height / 100,
-            width: width,
-          ),
-          SizedBox(
-            width: width,
-            height: height / 20,
-            child: RaisedButton(
-              onPressed: () {
-                showCupertinoDialog<void>(
-                  context: context,
-                  builder: (BuildContext context) => CupertinoAlertDialog(
-                    title: AppText(text: 'Jeux bloqués', size: 20),
-                    actions: <CupertinoDialogAction>[
-                      CupertinoDialogAction(
-                        child: const Text('Annuler'),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                      CupertinoDialogAction(
-                        child: const Text('Valider'),
-                        isDestructiveAction: true,
-                        onPressed: () {
-                          // Do something destructive.
-                        },
-                      )
-                    ],
-                  ),
-                );
-              },
-              child: AppText(
-                text: "Jeux bloqués",
-                size: 30,
-                color: Colors.black87,
-              ),
-              color: Colors.transparent,
-              splashColor: Colors.transparent,
-              elevation: 0,
-              hoverElevation: 0,
-              focusElevation: 0,
-              highlightElevation: 0,
-            ),
-          ),
-          SizedBox(
-            height: height / 30,
-            width: width,
-          ),
-          SizedBox(
-              width: width,
-              height: height / 20,
-              child: RaisedButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const modifier_mot_de_passe()));
-                },
-                child: AppText(
-                  text: "Changer le mot de passe",
-                  size: 30,
-                  color: Colors.redAccent,
+              // ignore: sdk_version_ui_as_code
+              if (height > 700)
+                const retour(
+                  color: Colors.white,
                 ),
-                color: Colors.transparent,
-                splashColor: Colors.transparent,
-                elevation: 0,
-                hoverElevation: 0,
-                focusElevation: 0,
-                highlightElevation: 0,
-              )),
-        ]),
+              SizedBox(
+                height: height / 14,
+                width: width,
+              ),
+              AppText(
+                text: "Paramètres du profil de l'enfant",
+                color: const Color.fromARGB(255, 20, 111, 186),
+              ),
+              SizedBox(
+                  width: width,
+                  height: 40,
+                  child: RaisedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              const modifier_profile_enfant()));
+                    },
+                    child: AppText(
+                      text: "Modifier le profile",
+                      size: 30,
+                      color: Colors.black87,
+                    ),
+                    color: Colors.transparent,
+                    splashColor: Colors.transparent,
+                    elevation: 0,
+                    hoverElevation: 0,
+                    focusElevation: 0,
+                    highlightElevation: 0,
+                  )),
+              Container(
+                  margin: const EdgeInsets.all(10),
+                  width: width / 2,
+                  height: width / 2,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      image: DecorationImage(
+                          image: AssetImage(avatar), fit: BoxFit.cover))),
+              SizedBox(
+                height: 40,
+                width: width,
+                child: AppText(
+                  // ignore: unnecessary_string_interpolations
+                  text: "$nom",
+                  color: Colors.blue,
+                ),
+              ),
+              SizedBox(
+                height: height / 50,
+                width: width,
+              ),
+              AppText(
+                text: 'Paramètres de contrôle parental',
+                color: const Color.fromARGB(255, 20, 111, 186),
+              ),
+              SizedBox(
+                height: height / 250,
+                width: width,
+              ),
+              SizedBox(
+                width: width,
+                height: 40,
+                child: RaisedButton(
+                  onPressed: () {
+                    showCupertinoDialog<void>(
+                      context: context,
+                      builder: (BuildContext context) => CupertinoAlertDialog(
+                        title: AppText(text: 'Temps de jeu par jour', size: 20),
+                        actions: <CupertinoDialogAction>[
+                          CupertinoDialogAction(
+                            child: const Text('Annuler'),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                          CupertinoDialogAction(
+                            child: const Text('Valider'),
+                            isDestructiveAction: true,
+                            onPressed: () {
+                              // Do something destructive.
+                            },
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                  child: AppText(
+                    text: "Temps maximum de jeu par jour",
+                    size: 30,
+                    color: Colors.black87,
+                  ),
+                  color: Colors.transparent,
+                  splashColor: Colors.transparent,
+                  elevation: 0,
+                  hoverElevation: 0,
+                  focusElevation: 0,
+                  highlightElevation: 0,
+                ),
+              ),
+              SizedBox(
+                height: height / 100,
+                width: width,
+              ),
+              SizedBox(
+                width: width,
+                height: 40,
+                child: RaisedButton(
+                  onPressed: () {
+                    showCupertinoDialog<void>(
+                      context: context,
+                      builder: (BuildContext context) => CupertinoAlertDialog(
+                        title:
+                            AppText(text: 'Temps entre chaque pause', size: 20),
+                        actions: <CupertinoDialogAction>[
+                          CupertinoDialogAction(
+                            child: const Text('Annuler'),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                          CupertinoDialogAction(
+                            child: const Text('Valider'),
+                            isDestructiveAction: true,
+                            onPressed: () {
+                              // Do something destructive.
+                            },
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                  child: AppText(
+                    text: "Temps entre chaque pause",
+                    size: 30,
+                    color: Colors.black87,
+                  ),
+                  color: Colors.transparent,
+                  splashColor: Colors.transparent,
+                  elevation: 0,
+                  hoverElevation: 0,
+                  focusElevation: 0,
+                  highlightElevation: 0,
+                ),
+              ),
+              SizedBox(
+                height: height / 100,
+                width: width,
+              ),
+              SizedBox(
+                width: width,
+                height: 40,
+                child: RaisedButton(
+                  onPressed: () {
+                    showCupertinoDialog<void>(
+                      context: context,
+                      builder: (BuildContext context) => CupertinoAlertDialog(
+                        title: AppText(text: 'Jeux bloqués', size: 20),
+                        actions: <CupertinoDialogAction>[
+                          CupertinoDialogAction(
+                            child: const Text('Annuler'),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                          CupertinoDialogAction(
+                            child: const Text('Valider'),
+                            isDestructiveAction: true,
+                            onPressed: () {
+                              // Do something destructive.
+                            },
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                  child: AppText(
+                    text: "Jeux bloqués",
+                    size: 30,
+                    color: Colors.black87,
+                  ),
+                  color: Colors.transparent,
+                  splashColor: Colors.transparent,
+                  elevation: 0,
+                  hoverElevation: 0,
+                  focusElevation: 0,
+                  highlightElevation: 0,
+                ),
+              ),
+              SizedBox(
+                height: height / 30,
+                width: width,
+              ),
+              SizedBox(
+                  width: width,
+                  height: 40,
+                  child: RaisedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const modifier_mot_de_passe()));
+                    },
+                    child: AppText(
+                      text: "Changer le mot de passe",
+                      size: 30,
+                      color: Colors.redAccent,
+                    ),
+                    color: Colors.transparent,
+                    splashColor: Colors.transparent,
+                    elevation: 0,
+                    hoverElevation: 0,
+                    focusElevation: 0,
+                    highlightElevation: 0,
+                  )),
+            ]),
+          ),
+        ),
       ),
     );
   }

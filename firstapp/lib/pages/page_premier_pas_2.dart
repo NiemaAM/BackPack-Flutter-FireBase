@@ -82,6 +82,7 @@ class _premier_pas_2State extends State<premier_pas_2> {
     final ref = referenceDatabase.reference();
 
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
@@ -91,115 +92,128 @@ class _premier_pas_2State extends State<premier_pas_2> {
               image: DecorationImage(
                   image: AssetImage("assets/img/page_kid.png"),
                   fit: BoxFit.cover)),
-          child: Container(
-              margin: const EdgeInsets.all(10),
-              alignment: Alignment.center,
-              child: Column(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(top: 10),
-                    child: const retour(
-                      color: Colors.black,
-                    ),
-                  ),
-                  SizedBox(
-                    height: width / 15,
-                  ),
-                  AppText(text: "Espace du profil de l'enfant"),
-                  GestureDetector(
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (ctx) => AlertDialog(
-                          title: AppText(text: "Choisir un avatar"),
-                          content: const gridAvatar(),
-                          actions: <Widget>[
-                            FlatButton(
-                              onPressed: () {
-                                Navigator.of(ctx).pop();
-                              },
-                              child: AppText(
-                                text: "Annuler",
-                                size: 30,
-                                color: Colors.red,
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                    // Image tapped
-                    child: Container(
-                        margin: const EdgeInsets.all(10),
-                        width: width / 2,
-                        height: width / 2,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            image: DecorationImage(
-                                // ignore: unnecessary_string_interpolations
-                                image: AssetImage("$avatar"),
-                                fit: BoxFit.cover))),
-                  ),
-                  AppText(
-                    text: "Ton nom",
-                    size: 30,
-                  ),
-                  SizedBox(
-                    width: width / 1.5,
-                    height: width / 6,
-                    child: TextField(
-                      controller: myController,
-                      style: const TextStyle(fontSize: 30),
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
+          child: SingleChildScrollView(
+            child: Container(
+                margin: const EdgeInsets.all(10),
+                alignment: Alignment.center,
+                child: Column(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(top: 10),
+                      child: const retour(
+                        color: Colors.black,
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: width / 8,
-                  ),
-                  SizedBox(
-                      width: width / 3,
-                      height: width / 7,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (remove.removemoji(myController.text
-                                  .replaceAll(RegExp('[^A-Za-z]'), '')) !=
-                              myController.text) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: AppText(
-                                text:
-                                    'Le nom ne peut pas contenir des symboles, des espaces, des chiffres ou des emojis',
-                                size: 15,
-                                color: Colors.white,
+                    SizedBox(
+                      height: height / 15,
+                    ),
+                    AppText(text: "Espace du profil de l'enfant"),
+                    SizedBox(
+                      height: height / 40,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (ctx) => AlertDialog(
+                            title: AppText(text: "Choisir un avatar"),
+                            content: const gridAvatar(),
+                            actions: <Widget>[
+                              FlatButton(
+                                onPressed: () {
+                                  Navigator.of(ctx).pop();
+                                },
+                                child: AppText(
+                                  text: "Annuler",
+                                  size: 30,
+                                  color: Colors.red,
+                                ),
                               ),
-                            ));
-                          } else if (myController.text.isEmpty) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: AppText(
-                                text: 'Veillez saisir un nom',
-                                size: 15,
-                                color: Colors.white,
-                              ),
-                            ));
-                          } else {
-                            ref.update({
-                              "$identifier/Enfant/Nom": remove.removemoji(
-                                  myController.text
-                                      .replaceAll(RegExp('[^A-Za-z-_]'), '')),
-                            });
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const acceil()));
-                          }
-                        },
-                        child: AppText(
-                          text: "Suivant",
-                          size: 40,
-                          color: Colors.white,
+                            ],
+                          ),
+                        );
+                      },
+                      // Image tapped
+                      child: Container(
+                          margin: const EdgeInsets.all(10),
+                          width: width / 2,
+                          height: width / 2,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              image: DecorationImage(
+                                  // ignore: unnecessary_string_interpolations
+                                  image: AssetImage("$avatar"),
+                                  fit: BoxFit.cover))),
+                    ),
+                    SizedBox(
+                      height: height / 40,
+                    ),
+                    AppText(
+                      text: "Ton nom",
+                      size: 30,
+                    ),
+                    SizedBox(
+                      height: height / 100,
+                    ),
+                    SizedBox(
+                      width: width / 1.5,
+                      height: width / 6,
+                      child: TextField(
+                        controller: myController,
+                        style: const TextStyle(fontSize: 30),
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
                         ),
-                      )),
-                ],
-              ))),
+                      ),
+                    ),
+                    SizedBox(
+                      height: height / 40,
+                    ),
+                    SizedBox(
+                        width: width / 3,
+                        height: width / 7,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (remove.removemoji(myController.text
+                                    .replaceAll(RegExp('[^A-Za-z]'), '')) !=
+                                myController.text) {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: AppText(
+                                  text:
+                                      'Le nom ne peut pas contenir des symboles, des espaces, des chiffres ou des emojis',
+                                  size: 15,
+                                  color: Colors.white,
+                                ),
+                              ));
+                            } else if (myController.text.isEmpty) {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: AppText(
+                                  text: 'Veillez saisir un nom',
+                                  size: 15,
+                                  color: Colors.white,
+                                ),
+                              ));
+                            } else {
+                              ref.update({
+                                "$identifier/Enfant/Nom": remove.removemoji(
+                                    myController.text
+                                        .replaceAll(RegExp('[^A-Za-z-_]'), '')),
+                              });
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => const acceil()));
+                            }
+                          },
+                          child: AppText(
+                            text: "Suivant",
+                            size: 40,
+                            color: Colors.white,
+                          ),
+                        )),
+                  ],
+                )),
+          )),
     );
   }
 

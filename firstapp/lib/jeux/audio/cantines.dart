@@ -47,122 +47,146 @@ class _cantinesState extends State<cantines> {
       body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
         double width = MediaQuery.of(context).size.width;
-        return Container(
-          width: double.maxFinite,
-          height: double.maxFinite,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/img/page_parametres.png"),
-                  fit: BoxFit.cover)),
-          child: Column(
-            children: <Widget>[
-              const retour(),
-              SizedBox(
-                height: width / 3,
+        double height = MediaQuery.of(context).size.height;
+        return SafeArea(
+          child: Container(
+            width: double.maxFinite,
+            height: double.maxFinite,
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/img/page_parametres.png"),
+                    fit: BoxFit.cover)),
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  // ignore: sdk_version_ui_as_code
+                  if (height < 700)
+                    const retour(
+                      color: Colors.black,
+                    ),
+                  // ignore: sdk_version_ui_as_code
+                  if (height > 700)
+                    const retour(
+                      color: Colors.white,
+                    ),
+                  SizedBox(
+                    height: height / 5,
+                  ),
+                  Container(
+                      margin: const EdgeInsets.all(10),
+                      width: width / 1.5,
+                      height: width / 1.5,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          image: const DecorationImage(
+                              image: AssetImage("./assets/img/avatar_1.png"),
+                              fit: BoxFit.cover))),
+                  Center(
+                    child: AppText(
+                      // ignore: unnecessary_string_interpolations
+                      text: "$text",
+                      color: Colors.blue,
+                    ),
+                  ),
+                  /* Slider.adaptive(
+                    max: 100,
+                    min: 1,
+                    onChanged: (double value) {},
+                    value: 1,
+                  ), */
+                  Row(children: [
+                    SizedBox(
+                      width: width / 5.5,
+                    ),
+                    IconButton(
+                      icon: (avant)
+                          ? const Icon(
+                              Icons.arrow_back,
+                              color: Colors.black,
+                              size: 50,
+                            )
+                          : const Icon(
+                              Icons.arrow_back,
+                              color: Colors.grey,
+                              size: 50,
+                            ),
+                      onPressed: () {
+                        setState(() {
+                          apres = true;
+                          if (num == 0) {
+                          } else if ((num - 1) == 0) {
+                            avant = false;
+                            num = 0;
+                            music = cantines[0];
+                            text = titre[0];
+                          } else {
+                            num = num - 1;
+                            music = cantines[num];
+                            text = titre[num];
+                          }
+                        });
+                      },
+                    ),
+                    SizedBox(
+                      width: width / 10,
+                    ),
+                    IconButton(
+                      icon: (isplaying)
+                          ? const Icon(
+                              Icons.pause,
+                              color: Colors.black,
+                              size: 50,
+                            )
+                          : const Icon(
+                              Icons.play_arrow,
+                              color: Colors.black,
+                              size: 50,
+                            ),
+                      onPressed: () {
+                        setState(() {
+                          isplaying = !isplaying;
+                        });
+                      },
+                    ),
+                    SizedBox(
+                      width: width / 10,
+                    ),
+                    IconButton(
+                      icon: (apres)
+                          ? const Icon(
+                              Icons.arrow_forward,
+                              color: Colors.black,
+                              size: 50,
+                            )
+                          : const Icon(
+                              Icons.arrow_forward,
+                              color: Colors.grey,
+                              size: 50,
+                            ),
+                      onPressed: () {
+                        setState(() {
+                          avant = true;
+                          if (num == (cantines.length - 1)) {
+                          } else if ((num + 2) == cantines.length) {
+                            apres = false;
+                            num = cantines.length - 1;
+                            music = cantines[num];
+                            text = titre[num];
+                          } else {
+                            num = num + 1;
+                            music = cantines[num];
+                            text = titre[num];
+                          }
+                        });
+                      },
+                    ),
+                  ]),
+                  SizedBox(
+                    height: height / 5,
+                  ),
+                ],
               ),
-              Container(
-                  margin: const EdgeInsets.all(10),
-                  width: width / 1.5,
-                  height: width / 1.5,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      image: const DecorationImage(
-                          image: AssetImage("./assets/img/avatar_1.png"),
-                          fit: BoxFit.cover))),
-              Center(
-                child: AppText(
-                  // ignore: unnecessary_string_interpolations
-                  text: "$text",
-                  color: Colors.blue,
-                ),
-              ),
-              Row(children: [
-                const SizedBox(
-                  width: 40,
-                ),
-                IconButton(
-                  icon: (avant)
-                      ? const Icon(
-                          Icons.arrow_back,
-                          color: Colors.black,
-                          size: 50,
-                        )
-                      : const Icon(
-                          Icons.arrow_back,
-                          color: Colors.grey,
-                          size: 50,
-                        ),
-                  onPressed: () {
-                    setState(() {
-                      apres = true;
-                      if (num == 0) {
-                      } else if ((num - 1) == 0) {
-                        avant = false;
-                        num = 0;
-                        music = cantines[0];
-                        text = titre[0];
-                      } else {
-                        num = num - 1;
-                        music = cantines[num];
-                        text = titre[num];
-                      }
-                    });
-                  },
-                ),
-                Expanded(child: Container()),
-                IconButton(
-                  icon: (isplaying)
-                      ? const Icon(
-                          Icons.pause,
-                          color: Colors.black,
-                          size: 50,
-                        )
-                      : const Icon(
-                          Icons.play_arrow,
-                          color: Colors.black,
-                          size: 50,
-                        ),
-                  onPressed: () {
-                    setState(() {
-                      isplaying = !isplaying;
-                    });
-                  },
-                ),
-                Expanded(child: Container()),
-                IconButton(
-                  icon: (apres)
-                      ? const Icon(
-                          Icons.arrow_forward,
-                          color: Colors.black,
-                          size: 50,
-                        )
-                      : const Icon(
-                          Icons.arrow_forward,
-                          color: Colors.grey,
-                          size: 50,
-                        ),
-                  onPressed: () {
-                    setState(() {
-                      avant = true;
-                      if (num == (cantines.length - 1)) {
-                      } else if ((num + 2) == cantines.length) {
-                        apres = false;
-                        num = cantines.length - 1;
-                        music = cantines[num];
-                        text = titre[num];
-                      } else {
-                        num = num + 1;
-                        music = cantines[num];
-                        text = titre[num];
-                      }
-                    });
-                  },
-                ),
-                const SizedBox(
-                  width: 40,
-                ),
-              ])
-            ],
+            ),
           ),
         );
       }),
