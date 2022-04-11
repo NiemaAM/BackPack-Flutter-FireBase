@@ -3,7 +3,7 @@ import 'package:firstapp/pages/page_Langues_Anglais.dart';
 import 'package:firstapp/pages/page_Langues_Francais.dart';
 import 'package:firstapp/widgets/app_text.dart';
 import 'package:flutter/material.dart';
-
+import 'package:audioplayers/audioplayers.dart';
 import '../widgets/menue_retour.dart';
 
 // ignore: camel_case_types
@@ -16,6 +16,7 @@ class langues extends StatefulWidget {
 
 // ignore: camel_case_types
 class _languesState extends State<langues> {
+  var player = AudioCache();
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -49,6 +50,7 @@ class _languesState extends State<langues> {
                   ),
                   GestureDetector(
                     onTap: () {
+                      player.play('sfx/poop.mp3');
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const Francais()));
                     },
@@ -72,6 +74,7 @@ class _languesState extends State<langues> {
                   ),
                   GestureDetector(
                     onTap: () {
+                      player.play('sfx/poop.mp3');
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const Anglais()));
                     },

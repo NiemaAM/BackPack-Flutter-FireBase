@@ -7,7 +7,8 @@ class Answer extends StatelessWidget {
   final Function answerTap;
 
   // ignore: use_key_in_widget_constructors
-  const Answer({this.answerText, this.answerColor, this.answerTap});
+  const Answer(
+      {this.answerText, this.answerColor = Colors.blue, this.answerTap});
 
   @override
   Widget build(BuildContext context) {
@@ -15,25 +16,25 @@ class Answer extends StatelessWidget {
       onTap: answerTap,
       child: Container(
         padding: const EdgeInsets.all(15.0),
-        margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
+        margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 40.0),
         width: double.infinity,
         decoration: BoxDecoration(
           color: answerColor,
-          border: Border.all(color: Colors.blue),
-          borderRadius: BorderRadius.circular(20.0),
+          borderRadius: BorderRadius.circular(40.0),
           // ignore: prefer_const_literals_to_create_immutables
           boxShadow: [
             const BoxShadow(
-              color: Colors.white,
-              spreadRadius: 1,
-              blurRadius: 2,
+              color: Colors.blue,
+              spreadRadius: 0,
+              blurRadius: 0,
               offset: Offset(0, 0), // changes position of shadow
             ),
           ],
         ),
         child: AppText(
           text: answerText,
-          size: 25,
+          size: 30,
+          color: Colors.white,
         ),
       ),
     );

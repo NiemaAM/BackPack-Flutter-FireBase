@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 // ignore: camel_case_types
 class retour extends StatelessWidget {
@@ -9,6 +10,7 @@ class retour extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var player = AudioCache();
     return IconButton(
       icon: const Icon(
         Icons.arrow_back,
@@ -16,6 +18,7 @@ class retour extends StatelessWidget {
         size: 50,
       ),
       onPressed: () {
+        player.play('sfx/pop.mp3');
         Navigator.of(context).pop();
       },
     );

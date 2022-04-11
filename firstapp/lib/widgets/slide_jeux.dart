@@ -7,6 +7,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import '../jeux/audio/cantines.dart';
 import '../jeux/audio/livres.dart';
 import '../pages/page_Langues.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 // ignore: camel_case_types
 class slideJeux extends StatefulWidget {
@@ -18,6 +19,7 @@ class slideJeux extends StatefulWidget {
 
 // ignore: camel_case_types
 class _slideJeuxState extends State<slideJeux> {
+  var player = AudioCache();
   List img = [
     "./assets/img/Quiz_img.png",
     "./assets/img/Puzzles_img.png",
@@ -39,11 +41,11 @@ class _slideJeuxState extends State<slideJeux> {
 
   @override
   Widget build(BuildContext context) {
-    double height = 400;
+    double width = MediaQuery.of(context).size.width;
     return CarouselSlider.builder(
         itemCount: img.length,
         options: CarouselOptions(
-          height: height,
+          height: width,
           autoPlay: true,
           enlargeCenterPage: true,
         ),
@@ -56,6 +58,7 @@ class _slideJeuxState extends State<slideJeux> {
 
   Widget buildImg(String img, int index) => GestureDetector(
       onTap: () {
+        player.play('sfx/poop.mp3');
         Navigator.of(context).push(PageRouteBuilder(
             transitionDuration: const Duration(seconds: 1),
             transitionsBuilder: (BuildContext context,

@@ -2,7 +2,7 @@
 import 'package:firstapp/jeux/Langues/Anglais/fruits.dart';
 import 'package:firstapp/widgets/app_text.dart';
 import 'package:flutter/material.dart';
-
+import 'package:audioplayers/audioplayers.dart';
 import '../jeux/Langues/Anglais/animaux.dart';
 import '../jeux/Langues/Anglais/legumes.dart';
 import '../widgets/menue_retour.dart';
@@ -17,6 +17,7 @@ class Anglais extends StatefulWidget {
 
 // ignore: camel_case_types
 class _AnglaisState extends State<Anglais> {
+  var player = AudioCache();
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -49,6 +50,7 @@ class _AnglaisState extends State<Anglais> {
                   ),
                   GestureDetector(
                     onTap: () {
+                      player.play('sfx/poop.mp3');
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const Fruits_Anglais()));
                     },
@@ -73,6 +75,7 @@ class _AnglaisState extends State<Anglais> {
                   ),
                   GestureDetector(
                     onTap: () {
+                      player.play('sfx/poop.mp3');
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const Legumes_Anglais()));
                     },
@@ -97,6 +100,7 @@ class _AnglaisState extends State<Anglais> {
                   ),
                   GestureDetector(
                     onTap: () {
+                      player.play('sfx/poop.mp3');
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const Animaux_Anglais()));
                     },

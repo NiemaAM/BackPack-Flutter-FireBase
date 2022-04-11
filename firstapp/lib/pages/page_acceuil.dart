@@ -9,8 +9,9 @@ import 'package:firstapp/widgets/app_msg.dart';
 import 'package:firstapp/widgets/slide_jeux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:audioplayers/audioplayers.dart';
 import '../widgets/Audio_BK.dart';
+import '../widgets/app_text.dart';
 import '../widgets/menue_infos.dart';
 
 // ignore: camel_case_types
@@ -23,8 +24,10 @@ class acceil extends StatefulWidget {
 
 // ignore: camel_case_types
 class _acceilState extends State<acceil> {
+  var player = AudioCache();
   int isoppend = 3;
   String nom = '';
+  String score = '';
   String mdp = '';
   // ignore: non_constant_identifier_names
   String Avatar = './assets/img/avatar_1.png';
@@ -66,12 +69,14 @@ class _acceilState extends State<acceil> {
     final snapshot1 = await ref.child('$identifier/MotDePasse').get();
     final snapshot2 = await ref.child('$identifier/Enfant/Nom').get();
     final snapshot3 = await ref.child('$identifier/Enfant/Avatar').get();
+    final snapshot4 = await ref.child('$identifier/Enfant/Score').get();
     if (snapshot.value == identifier) {
       setState(() {
         isoppend = 1;
         mdp = snapshot1.value;
         nom = snapshot2.value;
         Avatar = snapshot3.value;
+        score = snapshot4.value;
       });
     } else {
       setState(() {
@@ -134,6 +139,7 @@ class _acceilState extends State<acceil> {
                         margin: const EdgeInsets.only(left: 10),
                         child: RaisedButton(
                           onPressed: () {
+                            player.play('sfx/poop.mp3');
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) =>
                                     const verifier_mot_de_passe()));
@@ -185,8 +191,25 @@ class _acceilState extends State<acceil> {
                       )
                     ],
                   ),
+                  Row(
+                    children: [
+                      Expanded(child: Container()),
+                      Image.asset(
+                        "assets/img/star.png",
+                        height: 20,
+                      ),
+                      AppText(
+                        text: " $score",
+                        size: 35,
+                        color: Colors.white,
+                      ),
+                      const SizedBox(
+                        width: 24,
+                      ),
+                    ],
+                  ),
                   SizedBox(
-                    height: height / 20,
+                    height: height / 28,
                   ),
                   SizedBox(
                     height: 80,

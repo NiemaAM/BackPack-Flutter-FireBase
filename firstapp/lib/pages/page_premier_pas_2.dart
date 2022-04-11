@@ -200,6 +200,7 @@ class _premier_pas_2State extends State<premier_pas_2> {
                                 "$identifier/Enfant/Nom": remove.removemoji(
                                     myController.text
                                         .replaceAll(RegExp('[^A-Za-z-_]'), '')),
+                                "$identifier/Enfant/Score": '0',
                               });
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => const acceil()));

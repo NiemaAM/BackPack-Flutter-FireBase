@@ -2,6 +2,7 @@
 
 import 'package:firstapp/pages/page_acceuil.dart';
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 // ignore: camel_case_types
 class retouracceuil extends StatelessWidget {
@@ -10,6 +11,7 @@ class retouracceuil extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var player = AudioCache();
     double width = MediaQuery.of(context).size.width;
     return Container(
       padding: const EdgeInsets.only(top: 15, left: 10),
@@ -17,6 +19,7 @@ class retouracceuil extends StatelessWidget {
         children: [
           RaisedButton(
             onPressed: () {
+              player.play('sfx/pop.mp3');
               Navigator.of(context).pop();
               Navigator.of(context).pop();
               Navigator.of(context).push(

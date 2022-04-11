@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           future: _fbApp,
           builder: (context, snapshot) {
             if (snapshot.hasError) {
-              return const Text("ERRORRRR !");
+              return const Text("cet appareil ne supporte pas cet application");
             } else if (snapshot.hasData) {
               return const oppened();
             } else {

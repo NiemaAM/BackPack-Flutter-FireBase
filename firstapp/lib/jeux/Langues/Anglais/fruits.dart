@@ -238,12 +238,12 @@ class _Fruits_AnglaisState extends State<Fruits_Anglais> {
                             score += 1;
                             item.accepting = false;
 
-                            player.play('musiques_fond/true.wav');
+                            player.play('sfx/ding.mp3');
                             checkScore();
                           } else {
                             setState(() {
                               item.accepting = false;
-                              player.play('musiques_fond/false.wav');
+                              player.play('sfx/didum.mp3');
                             });
                           }
                         },

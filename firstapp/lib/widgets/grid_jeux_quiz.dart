@@ -1,7 +1,8 @@
-import 'package:firstapp/jeux/Quiz/quiz.dart';
-import 'package:firstapp/jeux/Quiz/quiz_addition.dart';
 import 'package:firstapp/widgets/app_text.dart';
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
+import '../jeux/Quiz/quiz_annimaux.dart';
+import '../jeux/Quiz/quiz_maths.dart';
 
 // ignore: camel_case_types
 class gridquiz extends StatefulWidget {
@@ -13,6 +14,7 @@ class gridquiz extends StatefulWidget {
 
 // ignore: camel_case_types
 class _gridquizState extends State<gridquiz> {
+  var player = AudioCache();
   List imgs = [
     "./assets/img/Quiz.png",
     "./assets/img/Quiz.png",
@@ -32,53 +34,74 @@ class _gridquizState extends State<gridquiz> {
       crossAxisSpacing: width / 30,
       children: <Widget>[
         GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const QuizAddition()));
-            },
-            // Image tapped
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              width: width / 30,
-              height: width / 30,
-              color: Colors.blue,
-              child: AppText(
-                text: "Quiz Addition",
-                color: Colors.white,
+          onTap: () {
+            player.play('sfx/poop.mp3');
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const Quiz_Annimaux()));
+          },
+          // Image tapped
+          child: Column(
+            children: [
+              Image.asset(
+                'assets/img/livestock.png',
+                height: 100,
+                width: 100,
               ),
-            )),
+              Center(
+                child: AppText(
+                  text: 'Animaux',
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
+        ),
         GestureDetector(
-            onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => const Quiz()));
-            },
-            // Image tapped
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              width: width / 30,
-              height: width / 30,
-              color: Colors.blue,
-              child: AppText(
-                text: "Quiz 2",
-                color: Colors.white,
+          onTap: () {
+            player.play('sfx/poop.mp3');
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const Quiz_Maths()));
+          },
+          // Image tapped
+          child: Column(
+            children: [
+              Image.asset(
+                'assets/img/blackboard.png',
+                height: 100,
+                width: 100,
               ),
-            )),
+              Center(
+                child: AppText(
+                  text: 'Maths',
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
+        ),
         GestureDetector(
-            onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => const Quiz()));
-            },
-            // Image tapped
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              width: width / 30,
-              height: width / 30,
-              color: Colors.blue,
-              child: AppText(
-                text: "Quiz 3",
-                color: Colors.white,
+          onTap: () {
+            player.play('sfx/poop.mp3');
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const Quiz_Maths()));
+          },
+          // Image tapped
+          child: Column(
+            children: [
+              Image.asset(
+                'assets/img/fruits_.png',
+                height: 100,
+                width: 100,
               ),
-            )),
+              Center(
+                child: AppText(
+                  text: 'Fruits',
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }

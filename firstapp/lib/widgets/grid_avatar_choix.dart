@@ -59,68 +59,76 @@ class _gridAvatarState extends State<gridAvatar> {
     _deviceDetails();
     // ignore: deprecated_member_use
     final ref = referenceDatabase.reference();
-    return SizedBox(
-      height: 150,
-      width: width,
-      child: Column(
-        children: <Widget>[
-          Row(
-            children: [
-              GestureDetector(
-                  onTap: () {
-                    ref.update({
-                      "$identifier/Enfant/Avatar": imgs[0],
-                    });
-                    Navigator.of(context).pop();
-                  },
-                  child: Image.asset(imgs[0], height: 75)),
-              GestureDetector(
-                  onTap: () {
-                    ref.update({
-                      "$identifier/Enfant/Avatar": imgs[1],
-                    });
-                    Navigator.of(context).pop();
-                  },
-                  child: Image.asset(imgs[1], height: 75)),
-              GestureDetector(
-                  onTap: () {
-                    ref.update({
-                      "$identifier/Enfant/Avatar": imgs[2],
-                    });
-                    Navigator.of(context).pop();
-                  },
-                  child: Image.asset(imgs[2], height: 75)),
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: SizedBox(
+          height: 150,
+          width: width,
+          child: Column(
+            children: <Widget>[
+              Row(
+                children: [
+                  GestureDetector(
+                      onTap: () {
+                        ref.update({
+                          "$identifier/Enfant/Avatar": imgs[0],
+                        });
+                        Navigator.of(context).pop();
+                      },
+                      child: Image.asset(imgs[0], height: 75)),
+                  Expanded(child: Container()),
+                  GestureDetector(
+                      onTap: () {
+                        ref.update({
+                          "$identifier/Enfant/Avatar": imgs[1],
+                        });
+                        Navigator.of(context).pop();
+                      },
+                      child: Image.asset(imgs[1], height: 75)),
+                  Expanded(child: Container()),
+                  GestureDetector(
+                      onTap: () {
+                        ref.update({
+                          "$identifier/Enfant/Avatar": imgs[2],
+                        });
+                        Navigator.of(context).pop();
+                      },
+                      child: Image.asset(imgs[2], height: 75)),
+                ],
+              ),
+              Row(
+                children: [
+                  GestureDetector(
+                      onTap: () {
+                        ref.update({
+                          "$identifier/Enfant/Avatar": imgs[3],
+                        });
+                        Navigator.of(context).pop();
+                      },
+                      child: Image.asset(imgs[3], height: 75)),
+                  Expanded(child: Container()),
+                  GestureDetector(
+                      onTap: () {
+                        ref.update({
+                          "$identifier/Enfant/Avatar": imgs[4],
+                        });
+                        Navigator.of(context).pop();
+                      },
+                      child: Image.asset(imgs[4], height: 75)),
+                  Expanded(child: Container()),
+                  GestureDetector(
+                      onTap: () {
+                        ref.update({
+                          "$identifier/Enfant/Avatar": imgs[5],
+                        });
+                        Navigator.of(context).pop();
+                      },
+                      child: Image.asset(imgs[5], height: 75)),
+                ],
+              ),
             ],
           ),
-          Row(
-            children: [
-              GestureDetector(
-                  onTap: () {
-                    ref.update({
-                      "$identifier/Enfant/Avatar": imgs[3],
-                    });
-                    Navigator.of(context).pop();
-                  },
-                  child: Image.asset(imgs[3], height: 75)),
-              GestureDetector(
-                  onTap: () {
-                    ref.update({
-                      "$identifier/Enfant/Avatar": imgs[4],
-                    });
-                    Navigator.of(context).pop();
-                  },
-                  child: Image.asset(imgs[4], height: 75)),
-              GestureDetector(
-                  onTap: () {
-                    ref.update({
-                      "$identifier/Enfant/Avatar": imgs[5],
-                    });
-                    Navigator.of(context).pop();
-                  },
-                  child: Image.asset(imgs[5], height: 75)),
-            ],
-          ),
-        ],
+        ),
       ),
     );
   }
