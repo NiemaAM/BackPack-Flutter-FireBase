@@ -1,5 +1,4 @@
 import 'package:firstapp/jeux/Draw.dart';
-import 'package:firstapp/pages/page_choix_jeux_langues.dart';
 import 'package:firstapp/pages/page_choix_jeux_puzzles.dart';
 import 'package:firstapp/pages/page_choix_jeux_quiz.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +7,8 @@ import '../jeux/audio/cantines.dart';
 import '../jeux/audio/livres.dart';
 import '../pages/page_Langues.dart';
 import 'package:audioplayers/audioplayers.dart';
+
+import '../pages/page_Maths.dart';
 
 // ignore: camel_case_types
 class slideJeux extends StatefulWidget {
@@ -33,7 +34,7 @@ class _slideJeuxState extends State<slideJeux> {
     const pageQuizChoix(),
     const pagePuzzleChoix(),
     const langues(),
-    const pageLanguesChoix(),
+    const Maths(),
     const Draw(),
     const livres(),
     const cantines()

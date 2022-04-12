@@ -34,6 +34,7 @@ class _Quiz_AnnimauxState extends State<Quiz_Annimaux> {
 
   int isoppend = 3;
   String score = '0';
+  // ignore: non_constant_identifier_names
   int score_int = 0;
   final referenceDatabase = FirebaseDatabase.instance;
   String deviceName = '';
@@ -190,6 +191,16 @@ class _Quiz_AnnimauxState extends State<Quiz_Annimaux> {
     });
   }
 
+  bool first = true;
+  checkFirst() {
+    if (first == true) {
+      setState(() {
+        random = Random().nextInt(_questions.length);
+        first = false;
+      });
+    }
+  }
+
   void _nextQuestion() {
     setState(() {
       _questionIndex++;
@@ -214,6 +225,7 @@ class _Quiz_AnnimauxState extends State<Quiz_Annimaux> {
   @override
   Widget build(BuildContext context) {
     getData();
+    checkFirst();
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(

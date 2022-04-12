@@ -1,10 +1,8 @@
 // ignore_for_file: deprecated_member_use, file_names
-import 'package:firstapp/jeux/Langues/Anglais/fruits.dart';
 import 'package:firstapp/widgets/app_text.dart';
+import 'package:firstapp/widgets/grid_jeux_ang.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import '../jeux/Langues/Anglais/animaux.dart';
-import '../jeux/Langues/Anglais/legumes.dart';
 import '../widgets/menue_retour.dart';
 
 // ignore: camel_case_types
@@ -21,6 +19,7 @@ class _AnglaisState extends State<Anglais> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -43,84 +42,18 @@ class _AnglaisState extends State<Anglais> {
                 const retour(
                   color: Colors.white,
                 ),
-              Column(
-                children: [
-                  SizedBox(
-                    height: height / 10,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      player.play('sfx/poop.mp3');
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const Fruits_Anglais()));
-                    },
-                    child: Column(
-                      children: [
-                        Image.asset(
-                          'assets/img/fruits.png',
-                          height: 100,
-                          width: 100,
-                        ),
-                        Center(
-                          child: AppText(
-                            text: 'Fruits',
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: height / 20,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      player.play('sfx/poop.mp3');
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const Legumes_Anglais()));
-                    },
-                    child: Column(
-                      children: [
-                        Image.asset(
-                          'assets/img/vegetables.png',
-                          height: 100,
-                          width: 100,
-                        ),
-                        Center(
-                          child: AppText(
-                            text: 'Vegetables',
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: height / 20,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      player.play('sfx/poop.mp3');
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const Animaux_Anglais()));
-                    },
-                    child: Column(
-                      children: [
-                        Image.asset(
-                          'assets/img/livestock.png',
-                          height: 100,
-                          width: 100,
-                        ),
-                        Center(
-                          child: AppText(
-                            text: 'Animals',
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+              SizedBox(
+                height: height / 10,
+              ),
+              AppText(
+                text: "Choisi ce que tu veux apprendre !",
+                size: 35,
+                color: Colors.blue,
+              ),
+              SizedBox(
+                width: width,
+                height: height / 1.3,
+                child: const gridang(),
               )
             ]),
           ),

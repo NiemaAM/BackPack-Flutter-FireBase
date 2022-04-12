@@ -2,19 +2,19 @@
 import 'package:firstapp/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import '../widgets/grid_jeux_fr.dart';
+import '../widgets/grid_jeux_maths.dart';
 import '../widgets/menue_retour.dart';
 
 // ignore: camel_case_types
-class Francais extends StatefulWidget {
-  const Francais({Key key}) : super(key: key);
+class Maths extends StatefulWidget {
+  const Maths({Key key}) : super(key: key);
 
   @override
-  _FrancaisState createState() => _FrancaisState();
+  _MathsState createState() => _MathsState();
 }
 
 // ignore: camel_case_types
-class _FrancaisState extends State<Francais> {
+class _MathsState extends State<Maths> {
   var player = AudioCache();
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class _FrancaisState extends State<Francais> {
               SizedBox(
                 width: width,
                 height: height / 1.3,
-                child: const gridfr(),
+                child: const gridMaths(),
               )
             ]),
           ),
