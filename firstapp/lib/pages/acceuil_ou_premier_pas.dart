@@ -5,6 +5,7 @@ import 'package:device_info/device_info.dart';
 import 'package:firstapp/pages/page_acceuil.dart';
 import 'package:firstapp/pages/page_premier_pas_1.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firstapp/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -22,6 +23,7 @@ class oppenedState extends State<oppened> {
   String nom = 'nom';
   String mdp = 'mdp';
   String avatar = './assets/img/avatar_1.png';
+  String val = "";
 
   String deviceName = '';
   String deviceVersion = '';
@@ -58,7 +60,11 @@ class oppenedState extends State<oppened> {
     final snapshot1 = await ref.child('$identifier/MotDePasse').get();
     final snapshot2 = await ref.child('$identifier/Enfant/Nom').get();
     final snapshot3 = await ref.child('$identifier/Enfant/Avatar').get();
-    if (snapshot.value == identifier) {
+    setState(() {
+      val = snapshot.value;
+    });
+    await Future.delayed(const Duration(seconds: 2), () {});
+    if (val == identifier) {
       setState(() {
         isoppend = 1;
         mdp = snapshot1.value;
@@ -78,10 +84,36 @@ class oppenedState extends State<oppened> {
     // ignore: unrelated_type_equality_checks
     _deviceDetails();
     getData();
-
     if (isoppend == 3) {
-      return const Center(
-        child: CircularProgressIndicator(),
+      return SafeArea(
+        child: Container(
+          color: Colors.white,
+          width: double.maxFinite,
+          height: double.maxFinite,
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(child: Container()),
+              Container(
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  image: const DecorationImage(
+                      // ignore: unnecessary_string_interpolations
+                      image: AssetImage("assets/img/logo_app.png"),
+                      fit: BoxFit.cover),
+                ),
+              ),
+              Expanded(child: Container()),
+              const CircularProgressIndicator(),
+              const SizedBox(
+                height: 100,
+              )
+            ],
+          ),
+        ),
       );
     }
     if (isoppend == 1) {

@@ -33,12 +33,40 @@ class MyApp extends StatelessWidget {
           future: _fbApp,
           builder: (context, snapshot) {
             if (snapshot.hasError) {
-              return const Text("cet appareil ne supporte pas cet application");
+              return const Center(
+                  child: Text("Erreur de connexion au serveur"));
             } else if (snapshot.hasData) {
               return const oppened();
             } else {
-              return const Center(
-                child: CircularProgressIndicator(),
+              return SafeArea(
+                child: Container(
+                  color: Colors.white,
+                  width: double.maxFinite,
+                  height: double.maxFinite,
+                  alignment: Alignment.center,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(child: Container()),
+                      Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          image: const DecorationImage(
+                              // ignore: unnecessary_string_interpolations
+                              image: AssetImage("assets/img/logo_app.png"),
+                              fit: BoxFit.cover),
+                        ),
+                      ),
+                      Expanded(child: Container()),
+                      const CircularProgressIndicator(),
+                      const SizedBox(
+                        height: 100,
+                      )
+                    ],
+                  ),
+                ),
               );
             }
           },
