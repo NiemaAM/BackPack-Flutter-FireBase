@@ -11,6 +11,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
+import '../widgets/pop_up_draw.dart';
+
 class Draw extends StatefulWidget {
   const Draw({Key key}) : super(key: key);
 
@@ -72,45 +74,16 @@ class _DrawState extends State<Draw> {
                   IconButton(
                       icon: const Icon(Icons.arrow_back, color: Colors.white),
                       onPressed: () {
-                        showCupertinoDialog<void>(
-                          context: context,
-                          builder: (BuildContext context) =>
-                              CupertinoAlertDialog(
-                            title: AppText(
-                              text: "Attention",
-                              size: 25,
-                              color: Colors.blue,
-                            ),
-                            content: AppText(
-                              text: "Es-tu sure de vouloir quitter ?",
-                              size: 20,
-                            ),
-                            actions: <CupertinoDialogAction>[
-                              CupertinoDialogAction(
-                                child: AppText(
-                                  text: 'Non',
-                                  size: 15,
-                                  color: Colors.red,
-                                ),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                              CupertinoDialogAction(
-                                child: AppText(
-                                  text: 'oui',
-                                  size: 15,
-                                  color: Colors.green,
-                                ),
-                                isDestructiveAction: true,
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                  Navigator.pop(context);
-                                },
-                              )
-                            ],
-                          ),
-                        );
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return const CustomDialogBox(
+                                text: "Retour",
+                                text2: "Annuler",
+                                descriptions: " ",
+                                title: "Es-tu sure de vouloir quitter ?",
+                              );
+                            });
                       }),
                   IconButton(
                       icon: Icon(

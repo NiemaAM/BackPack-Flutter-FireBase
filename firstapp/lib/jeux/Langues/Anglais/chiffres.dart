@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../../widgets/app_text.dart';
 import '../../../widgets/floating_retour.dart';
+import '../../../widgets/pop_up_jeux.dart';
 import '../itemModel.dart';
 
 // ignore: camel_case_types
@@ -48,54 +49,14 @@ class _Chiffres_AnglaisState extends State<Chiffres_Anglais> {
   checkScore() {
     if (score == 11) {
       showDialog(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          content: SizedBox(
-            child: Container(
-              width: 100,
-              height: 100,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("assets/img/confettis.png"),
-                      fit: BoxFit.cover)),
-              child: Center(
-                  child: AppText(
-                      text: "Bien jouer!", size: 40, color: Colors.black)),
-            ),
-          ),
-          actions: <Widget>[
-            Row(
-              children: [
-                FlatButton(
-                  onPressed: () {
-                    Navigator.of(ctx).pop();
-                    Navigator.of(ctx).pop();
-                  },
-                  child: AppText(
-                    text: "Retour",
-                    size: 30,
-                    color: Colors.red,
-                  ),
-                ),
-                Expanded(child: Container()),
-                FlatButton(
-                  onPressed: () {
-                    Navigator.of(ctx).pop();
-                    Navigator.of(ctx).pop();
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const Chiffres_Anglais()));
-                  },
-                  child: AppText(
-                    text: "Rejouer",
-                    size: 30,
-                    color: Colors.blue,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      );
+          context: context,
+          builder: (BuildContext context) {
+            return const CustomDialogBox(
+              text: "Retour",
+              descriptions: "Ton score est maintenant :",
+              title: "Bien jouer !",
+            );
+          });
     }
   }
 

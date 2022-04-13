@@ -4,12 +4,14 @@ import 'dart:io';
 
 import 'package:device_info/device_info.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firstapp/pages/page_TempsJeu.dart';
+import 'package:firstapp/pages/page_TempsPause.dart';
 import 'package:firstapp/widgets/app_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../widgets/menue_retour_parametres.dart';
+import '../widgets/pop_up_quiz.dart';
 import 'modifier_mot_de_passe.dart';
 import 'modifier_profile_enfant.dart';
 
@@ -24,7 +26,11 @@ class parametres extends StatefulWidget {
 // ignore: camel_case_types
 class _parametresState extends State<parametres> {
   String nom = " ";
-  String avatar = './assets/img/avatar_1.png';
+  String avatar = './assets/img/blank.png';
+
+  int valeur = 0;
+  bool min = true;
+  bool max = true;
 
   String deviceName = '';
   String deviceVersion = '';
@@ -63,6 +69,11 @@ class _parametresState extends State<parametres> {
       nom = snapshot.value;
       avatar = snapshot2.value;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -155,30 +166,11 @@ class _parametresState extends State<parametres> {
                 height: 40,
                 child: RaisedButton(
                   onPressed: () {
-                    showCupertinoDialog<void>(
-                      context: context,
-                      builder: (BuildContext context) => CupertinoAlertDialog(
-                        title: AppText(text: 'Temps de jeu par jour', size: 20),
-                        actions: <CupertinoDialogAction>[
-                          CupertinoDialogAction(
-                            child: const Text('Annuler'),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                          CupertinoDialogAction(
-                            child: const Text('Valider'),
-                            isDestructiveAction: true,
-                            onPressed: () {
-                              // Do something destructive.
-                            },
-                          )
-                        ],
-                      ),
-                    );
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const TempsPause()));
                   },
                   child: AppText(
-                    text: "Temps maximum de jeu par jour",
+                    text: "Temps de pause",
                     size: 30,
                     color: Colors.black87,
                   ),
@@ -199,31 +191,11 @@ class _parametresState extends State<parametres> {
                 height: 40,
                 child: RaisedButton(
                   onPressed: () {
-                    showCupertinoDialog<void>(
-                      context: context,
-                      builder: (BuildContext context) => CupertinoAlertDialog(
-                        title:
-                            AppText(text: 'Temps entre chaque pause', size: 20),
-                        actions: <CupertinoDialogAction>[
-                          CupertinoDialogAction(
-                            child: const Text('Annuler'),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                          CupertinoDialogAction(
-                            child: const Text('Valider'),
-                            isDestructiveAction: true,
-                            onPressed: () {
-                              // Do something destructive.
-                            },
-                          )
-                        ],
-                      ),
-                    );
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const TempsJeu()));
                   },
                   child: AppText(
-                    text: "Temps entre chaque pause",
+                    text: "Temps de jeu",
                     size: 30,
                     color: Colors.black87,
                   ),
@@ -238,46 +210,6 @@ class _parametresState extends State<parametres> {
               SizedBox(
                 height: height / 100,
                 width: width,
-              ),
-              SizedBox(
-                width: width,
-                height: 40,
-                child: RaisedButton(
-                  onPressed: () {
-                    showCupertinoDialog<void>(
-                      context: context,
-                      builder: (BuildContext context) => CupertinoAlertDialog(
-                        title: AppText(text: 'Jeux bloqués', size: 20),
-                        actions: <CupertinoDialogAction>[
-                          CupertinoDialogAction(
-                            child: const Text('Annuler'),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                          CupertinoDialogAction(
-                            child: const Text('Valider'),
-                            isDestructiveAction: true,
-                            onPressed: () {
-                              // Do something destructive.
-                            },
-                          )
-                        ],
-                      ),
-                    );
-                  },
-                  child: AppText(
-                    text: "Jeux bloqués",
-                    size: 30,
-                    color: Colors.black87,
-                  ),
-                  color: Colors.transparent,
-                  splashColor: Colors.transparent,
-                  elevation: 0,
-                  hoverElevation: 0,
-                  focusElevation: 0,
-                  highlightElevation: 0,
-                ),
               ),
               SizedBox(
                 height: height / 30,

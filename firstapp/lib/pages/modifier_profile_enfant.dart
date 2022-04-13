@@ -28,7 +28,7 @@ class _modifier_profile_enfantState extends State<modifier_profile_enfant> {
   String deviceName = '';
   String deviceVersion = '';
   String identifier = '';
-  String avatar = './assets/img/avatar_1.png';
+  String avatar = './assets/img/blank.png';
   Future<void> _deviceDetails() async {
     final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
     try {

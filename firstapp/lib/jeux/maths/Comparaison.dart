@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, file_names
 
 import 'dart:math';
 
@@ -7,7 +7,6 @@ import 'package:firstapp/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/menue_retour.dart';
-import 'item.dart';
 
 // ignore: camel_case_types
 class Comparaison extends StatefulWidget {
@@ -58,6 +57,16 @@ class _ComparaisonState extends State<Comparaison> {
         trueimg = 'assets/img/greater-than-symbol.png';
       });
     }
+  }
+
+  wait() async {
+    await Future.delayed(const Duration(seconds: 1), () {});
+    setState(() {
+      image = "assets/img/vide.png";
+      num1 = Random().nextInt(99);
+      num2 = Random().nextInt(99);
+      createimg();
+    });
   }
 
   @override
@@ -114,10 +123,9 @@ class _ComparaisonState extends State<Comparaison> {
                   onAccept: (data) {
                     if (data == trueimg) {
                       setState(() {
-                        num1 = Random().nextInt(99);
-                        num2 = Random().nextInt(99);
-                        createimg();
+                        image = trueimg;
                         player.play('sfx/ding.mp3');
+                        wait();
                       });
                     } else {
                       player.play('sfx/didum.mp3');

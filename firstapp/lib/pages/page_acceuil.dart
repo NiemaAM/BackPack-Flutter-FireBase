@@ -1,5 +1,6 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, non_constant_identifier_names, unused_local_variable
 
+import 'dart:async';
 import 'dart:io';
 
 import 'package:device_info/device_info.dart';
@@ -24,14 +25,15 @@ class acceil extends StatefulWidget {
 
 // ignore: camel_case_types
 class _acceilState extends State<acceil> {
+  final referenceDatabase = FirebaseDatabase.instance;
   var player = AudioCache();
-  int isoppend = 3;
   String nom = '';
   String score = '';
   String mdp = '';
-  // ignore: non_constant_identifier_names
-  String Avatar = './assets/img/avatar_1.png';
-  // ignore: non_constant_identifier_names
+  String LastCo = '';
+  String TempsJeu = '25';
+  String TempsPause = '5';
+  String Avatar = './assets/img/blank.png';
   bool icon_valume = false;
 
   String deviceName = '';
@@ -70,19 +72,20 @@ class _acceilState extends State<acceil> {
     final snapshot2 = await ref.child('$identifier/Enfant/Nom').get();
     final snapshot3 = await ref.child('$identifier/Enfant/Avatar').get();
     final snapshot4 = await ref.child('$identifier/Enfant/Score').get();
+    final snapshot5 = await ref.child('$identifier/Enfant/LastCo').get();
+    final snapshot6 = await ref.child('$identifier/Enfant/TempsJeu').get();
+    final snapshot7 = await ref.child('$identifier/Enfant/TempsPause').get();
     if (snapshot.value == identifier) {
       setState(() {
-        isoppend = 1;
         mdp = snapshot1.value;
         nom = snapshot2.value;
         Avatar = snapshot3.value;
         score = snapshot4.value;
+        LastCo = snapshot5.value;
+        TempsJeu = snapshot6.value;
+        TempsPause = snapshot7.value;
       });
-    } else {
-      setState(() {
-        isoppend = 0;
-      });
-    }
+    } else {}
   }
 
   getsons() async {
@@ -94,6 +97,28 @@ class _acceilState extends State<acceil> {
     }
   }
 
+  bool arret = false;
+  setTempsJeu() async {
+    await Future.delayed(const Duration(seconds: 10), () {
+      if (arret == false) {
+        final timer = Timer(
+          Duration(minutes: int.parse(TempsJeu)),
+          () {
+            arret = true;
+          },
+        );
+      }
+      if (arret == true) {
+        final timer = Timer(
+          Duration(minutes: int.parse(TempsPause)),
+          () {
+            arret = false;
+          },
+        );
+      }
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -103,6 +128,7 @@ class _acceilState extends State<acceil> {
   Widget build(BuildContext context) {
     getData();
     getsons();
+    setTempsJeu();
     return Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         // ignore: missing_required_param
@@ -192,7 +218,15 @@ class _acceilState extends State<acceil> {
                     ],
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Expanded(child: Container()),
+                      Expanded(child: Container()),
+                      Expanded(child: Container()),
+                      Expanded(child: Container()),
+                      Expanded(child: Container()),
+                      Expanded(child: Container()),
+                      Expanded(child: Container()),
                       Expanded(child: Container()),
                       Image.asset(
                         "assets/img/star.png",
@@ -203,9 +237,7 @@ class _acceilState extends State<acceil> {
                         size: 35,
                         color: Colors.white,
                       ),
-                      const SizedBox(
-                        width: 24,
-                      ),
+                      Expanded(child: Container()),
                     ],
                   ),
                   SizedBox(
@@ -215,8 +247,9 @@ class _acceilState extends State<acceil> {
                     height: 80,
                     child: Center(
                       child: AppMsg(
-                          text:
-                              "Bonjour $nom, à quoi veux tu jouer aujourd'hui ?",
+                          text: (arret)
+                              ? "Le temps de jeu est epuisé !\n Reviens plus tard."
+                              : "Bonjour $nom, à quoi veux tu jouer aujourd'hui ?",
                           size: 35,
                           color: Colors.white),
                     ),
@@ -224,7 +257,7 @@ class _acceilState extends State<acceil> {
                   SizedBox(
                     height: height / 20,
                   ),
-                  const slideJeux(),
+                  (arret) ? const SizedBox() : const slideJeux(),
                 ]),
               ),
             );

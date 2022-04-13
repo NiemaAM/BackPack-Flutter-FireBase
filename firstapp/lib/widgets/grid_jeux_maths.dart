@@ -1,10 +1,6 @@
 import 'package:firstapp/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import '../jeux/Langues/Francais/animaux.dart';
-import '../jeux/Langues/Francais/chiffres.dart';
-import '../jeux/Langues/Francais/fruits.dart';
-import '../jeux/Langues/Francais/legumes.dart';
 import '../jeux/maths/Comparaison.dart';
 
 // ignore: camel_case_types

@@ -1,14 +1,14 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:firstapp/pages/page_acceuil.dart';
 import 'package:firstapp/widgets/app_text.dart';
 import 'package:firstapp/widgets/menue_retour.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import 'package:image/image.dart' as image;
+
+import '../../widgets/pop_up_quiz.dart';
 
 // make statefull widget for testing
 // ignore: camel_case_types
@@ -504,48 +504,15 @@ class _SlidePuzzle_2WidgetState extends State<SlidePuzzle_2Widget> {
     }
 
     if (success == true && reversed == false) {
-      showCupertinoDialog<void>(
+      showDialog(
           context: context,
-          builder: (BuildContext context) => CupertinoAlertDialog(
-                title: AppText(
-                  text: "BIEN JOUER",
-                  size: 25,
-                  color: Colors.blue,
-                ),
-                content: AppText(
-                  text: "Tu as resolue le puzzle !",
-                  size: 20,
-                ),
-                actions: <CupertinoDialogAction>[
-                  CupertinoDialogAction(
-                    child: AppText(
-                      text: 'Rejouer',
-                      size: 15,
-                      color: Colors.red,
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                      generatePuzzle();
-                    },
-                  ),
-                  CupertinoDialogAction(
-                    child: AppText(
-                      text: 'Retour',
-                      size: 15,
-                      color: Colors.green,
-                    ),
-                    isDestructiveAction: true,
-                    onPressed: () {
-                      Navigator.pop(context);
-                      Navigator.pop(context);
-                      Navigator.pop(context);
-                      Navigator.pop(context);
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const acceil()));
-                    },
-                  )
-                ],
-              ));
+          builder: (BuildContext context) {
+            return const CustomDialogBox(
+              text: "Retour",
+              descriptions: "Ton score est maintenant :",
+              title: "Bien jouer !",
+            );
+          });
     }
 
     startSlide = true;

@@ -5,7 +5,6 @@ import 'package:device_info/device_info.dart';
 import 'package:firstapp/pages/page_acceuil.dart';
 import 'package:firstapp/pages/page_premier_pas_1.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:firstapp/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -24,6 +23,7 @@ class oppenedState extends State<oppened> {
   String mdp = 'mdp';
   String avatar = './assets/img/avatar_1.png';
   String val = "";
+  String val2 = "";
 
   String deviceName = '';
   String deviceVersion = '';
@@ -62,9 +62,10 @@ class oppenedState extends State<oppened> {
     final snapshot3 = await ref.child('$identifier/Enfant/Avatar').get();
     setState(() {
       val = snapshot.value;
+      val2 = snapshot2.value;
     });
     await Future.delayed(const Duration(seconds: 2), () {});
-    if (val == identifier) {
+    if (val == identifier && val2.isNotEmpty) {
       setState(() {
         isoppend = 1;
         mdp = snapshot1.value;
@@ -76,6 +77,17 @@ class oppenedState extends State<oppened> {
         isoppend = 0;
       });
     }
+  }
+
+  double _opacity = 0;
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        _opacity = 1;
+      });
+    });
   }
 
   @override
@@ -95,16 +107,20 @@ class oppenedState extends State<oppened> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(child: Container()),
-              Container(
-                width: 100,
-                height: 100,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  image: const DecorationImage(
-                      // ignore: unnecessary_string_interpolations
-                      image: AssetImage("assets/img/logo_app.png"),
-                      fit: BoxFit.cover),
+              AnimatedOpacity(
+                child: Container(
+                  width: 100,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    image: const DecorationImage(
+                        // ignore: unnecessary_string_interpolations
+                        image: AssetImage("assets/img/logo_app.png"),
+                        fit: BoxFit.cover),
+                  ),
                 ),
+                duration: const Duration(seconds: 1),
+                opacity: _opacity,
               ),
               Expanded(child: Container()),
               const CircularProgressIndicator(),

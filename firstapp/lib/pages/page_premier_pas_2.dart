@@ -29,6 +29,7 @@ class _premier_pas_2State extends State<premier_pas_2> {
   String deviceVersion = '';
   String identifier = '';
   String avatar = './assets/img/avatar_1.png';
+  DateTime now = DateTime.now();
   Future<void> _deviceDetails() async {
     final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
     try {
@@ -201,6 +202,8 @@ class _premier_pas_2State extends State<premier_pas_2> {
                                     myController.text
                                         .replaceAll(RegExp('[^A-Za-z-_]'), '')),
                                 "$identifier/Enfant/Score": '0',
+                                "$identifier/Enfant/TempsJeu": '25',
+                                "$identifier/Enfant/TempsPause": '5',
                               });
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => const acceil()));

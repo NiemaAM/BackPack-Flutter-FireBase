@@ -12,6 +12,8 @@ import 'package:firstapp/widgets/menue_retour.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../widgets/pop_up_quiz.dart';
+
 // ignore: camel_case_types
 class Quiz_Annimaux extends StatefulWidget {
   const Quiz_Annimaux({Key key}) : super(key: key);
@@ -83,6 +85,14 @@ class _Quiz_AnnimauxState extends State<Quiz_Annimaux> {
     }
   }
 
+  wait() async {
+    await Future.delayed(const Duration(seconds: 1), () {});
+    if (endOfQuiz == false) {
+      _nextQuestion();
+      randomInt();
+    }
+  }
+
   checkScore() {
     final ref = referenceDatabase.reference();
     if (endOfQuiz == true) {
@@ -95,54 +105,14 @@ class _Quiz_AnnimauxState extends State<Quiz_Annimaux> {
         "$identifier/Enfant/Score": '$score_int',
       });
       showDialog(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          content: SizedBox(
-            child: Container(
-              width: 100,
-              height: 100,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("assets/img/confettis.png"),
-                      fit: BoxFit.cover)),
-              child: Center(
-                  child: AppText(
-                      text: "Bien jouer!", size: 40, color: Colors.black)),
-            ),
-          ),
-          actions: <Widget>[
-            Row(
-              children: [
-                FlatButton(
-                  onPressed: () {
-                    Navigator.of(ctx).pop();
-                    Navigator.of(ctx).pop();
-                  },
-                  child: AppText(
-                    text: "Retour",
-                    size: 30,
-                    color: Colors.red,
-                  ),
-                ),
-                Expanded(child: Container()),
-                FlatButton(
-                  onPressed: () {
-                    Navigator.of(ctx).pop();
-                    Navigator.of(ctx).pop();
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const Quiz_Annimaux()));
-                  },
-                  child: AppText(
-                    text: "Rejouer",
-                    size: 30,
-                    color: Colors.blue,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      );
+          context: context,
+          builder: (BuildContext context) {
+            return const CustomDialogBox(
+              text: "Retour",
+              descriptions: "Ton score est maintenant :",
+              title: "Bien jouer !",
+            );
+          });
     }
   }
 
@@ -315,40 +285,10 @@ class _Quiz_AnnimauxState extends State<Quiz_Annimaux> {
                       //answer is being selected
                       _questionAnswered(answer['score']);
                       checkScore();
+                      wait();
                     },
                   ),
                 ),
-                const SizedBox(height: 20.0),
-                // ignore: sdk_version_ui_as_code
-                if (endOfQuiz == false)
-                  SizedBox(
-                      width: width - 150,
-                      height: width / 7,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: const Size(double.infinity, 40.0),
-                        ),
-                        onPressed: () {
-                          if (!answerWasSelected) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: AppText(
-                                text:
-                                    'Selectionne une reponse avant de passer à la prochaine question',
-                                size: 15,
-                                color: Colors.white,
-                              ),
-                            ));
-                            return;
-                          }
-                          _nextQuestion();
-                          randomInt();
-                        },
-                        child: AppText(
-                          text: 'Question suivante',
-                          size: 35,
-                          color: Colors.white,
-                        ),
-                      )),
               ],
             ),
           ),
