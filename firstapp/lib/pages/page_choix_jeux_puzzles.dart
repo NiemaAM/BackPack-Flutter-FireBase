@@ -29,7 +29,7 @@ class _pagePuzzleChoixState extends State<pagePuzzleChoix> {
         height: double.maxFinite,
         decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/img/page_jeux_choix_2.png"),
+                image: AssetImage("assets/img/page_parametres.png"),
                 fit: BoxFit.cover)),
         child: SingleChildScrollView(
           child: Column(children: [
@@ -46,20 +46,10 @@ class _pagePuzzleChoixState extends State<pagePuzzleChoix> {
             SizedBox(
               height: height / 12,
             ),
-            Opacity(
-                opacity: 0.8,
-                child: Container(
-                  width: width - 40,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: Colors.white,
-                  ),
-                  child: AppText(
-                    text: "Choisi le puzzle que tu veux !",
-                    color: Colors.black,
-                  ),
-                )),
+            AppText(
+              text: "Choisi le puzzle que tu veux !",
+              color: Colors.blue,
+            ),
             SizedBox(
               width: width,
               height: height / 1.3,

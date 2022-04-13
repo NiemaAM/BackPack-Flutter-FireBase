@@ -7,7 +7,6 @@ import 'dart:ui';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:firstapp/widgets/app_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 

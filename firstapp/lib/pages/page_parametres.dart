@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../widgets/menue_retour_parametres.dart';
-import '../widgets/pop_up_quiz.dart';
 import 'modifier_mot_de_passe.dart';
 import 'modifier_profile_enfant.dart';
 

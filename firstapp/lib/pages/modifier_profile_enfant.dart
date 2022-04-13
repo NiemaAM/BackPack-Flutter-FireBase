@@ -63,10 +63,6 @@ class _modifier_profile_enfantState extends State<modifier_profile_enfant> {
       setState(() {
         avatar = snapshot3.value;
       });
-    } else {
-      setState(() {
-        avatar = './assets/img/avatar_1.png';
-      });
     }
   }
 
