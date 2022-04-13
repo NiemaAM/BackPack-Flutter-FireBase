@@ -26,6 +26,9 @@ class _modifier_mot_de_passeState extends State<modifier_mot_de_passe> {
   String deviceName = '';
   String deviceVersion = '';
   String identifier = '';
+  static const double _shadowHeight = 4;
+  double _position = 6;
+  bool cacher = true;
   Future<void> _deviceDetails() async {
     final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
     try {
@@ -63,6 +66,7 @@ class _modifier_mot_de_passeState extends State<modifier_mot_de_passe> {
     // ignore: deprecated_member_use
     final ref = referenceDatabase.reference();
     _deviceDetails();
+    const double _height = 64 - _shadowHeight;
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -93,73 +97,130 @@ class _modifier_mot_de_passeState extends State<modifier_mot_de_passe> {
                 SizedBox(
                   height: height / 100,
                 ),
-                SizedBox(
-                  width: width / 1.5,
-                  height: width / 6,
+                Padding(
+                  padding: const EdgeInsets.only(left: 60, right: 60),
                   child: TextField(
-                    controller: myController,
-                    obscureText: true,
-                    keyboardType: TextInputType.text,
-                    textInputAction: TextInputAction.done,
-                    showCursor: true,
-                    style: const TextStyle(fontSize: 30),
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.password),
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
+                      controller: myController,
+                      obscureText: cacher,
+                      keyboardType: TextInputType.text,
+                      textInputAction: TextInputAction.done,
+                      showCursor: true,
+                      style: const TextStyle(fontSize: 30),
+                      decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 14, horizontal: 14),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              cacher ? Icons.visibility : Icons.visibility_off,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                cacher = !cacher;
+                              });
+                            },
+                          ))),
                 ),
                 SizedBox(
                   height: height / 40,
                 ),
-                SizedBox(
-                    width: width / 3,
-                    height: width / 7,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (remove.removemoji(myController.text) !=
-                            myController.text) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: AppText(
-                              text:
-                                  'Le mot de passe ne peut pas contenir des emojis',
-                              size: 15,
-                              color: Colors.white,
+                GestureDetector(
+                  onTapUp: (_) {
+                    setState(() {
+                      _position = 6;
+                    });
+                    if (remove.removemoji(myController.text) !=
+                        myController.text) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: AppText(
+                          text:
+                              'Le mot de passe ne peut pas contenir des emojis',
+                          size: 15,
+                          color: Colors.white,
+                        ),
+                      ));
+                    } else if (myController.text.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: AppText(
+                          text: 'Veillez saisir un mot de passe parentale',
+                          size: 15,
+                          color: Colors.white,
+                        ),
+                      ));
+                    } else if (remove.removemoji(myController.text).length <
+                        5) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: AppText(
+                          text:
+                              'Le mot de passe doit contenir minimum 5 caractéres',
+                          size: 15,
+                          color: Colors.white,
+                        ),
+                      ));
+                    } else {
+                      _deviceDetails();
+                      ref.update({
+                        "$identifier/MotDePasse":
+                            remove.removemoji(myController.text),
+                      });
+                      Navigator.of(context).pop();
+                    }
+                  },
+                  onTapDown: (_) {
+                    setState(() {
+                      _position = 0;
+                    });
+                  },
+                  onTapCancel: () {
+                    setState(() {
+                      _position = 6;
+                    });
+                  },
+                  child: SizedBox(
+                    height: _height + _shadowHeight + 10,
+                    width: 200,
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          bottom: 0,
+                          child: Container(
+                            height: _height,
+                            width: 200,
+                            decoration: const BoxDecoration(
+                              color: Color.fromARGB(255, 21, 97, 158),
+                              // ignore: unnecessary_const
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(50),
+                              ),
                             ),
-                          ));
-                        } else if (myController.text.isEmpty) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: AppText(
-                              text: 'Veillez saisir un mot de passe parentale',
-                              size: 15,
-                              color: Colors.white,
+                          ),
+                        ),
+                        AnimatedPositioned(
+                          curve: Curves.easeIn,
+                          bottom: _position,
+                          duration: const Duration(milliseconds: 70),
+                          child: Container(
+                            height: _height,
+                            width: 200,
+                            decoration: const BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(50),
+                              ),
                             ),
-                          ));
-                        } else if (remove.removemoji(myController.text).length <
-                            5) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: AppText(
-                              text:
-                                  'Le mot de passe doit contenir minimum 5 caractéres',
-                              size: 15,
-                              color: Colors.white,
+                            child: Center(
+                              child: AppText(
+                                text: "Valider",
+                                size: 30,
+                                color: Colors.white,
+                              ),
                             ),
-                          ));
-                        } else {
-                          _deviceDetails();
-                          ref.update({
-                            "$identifier/MotDePasse":
-                                remove.removemoji(myController.text),
-                          });
-                          Navigator.of(context).pop();
-                        }
-                      },
-                      child: AppText(
-                        text: "Valider",
-                        size: 40,
-                        color: Colors.white,
-                      ),
-                    )),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
               ],
             )),
       ),

@@ -99,7 +99,7 @@ class _acceilState extends State<acceil> {
 
   bool arret = false;
   setTempsJeu() async {
-    await Future.delayed(const Duration(seconds: 10), () {
+    await Future.delayed(const Duration(minutes: 1), () {
       if (arret == false) {
         final timer = Timer(
           Duration(minutes: int.parse(TempsJeu)),

@@ -27,6 +27,8 @@ class _TempsPauseState extends State<TempsPause> {
   String deviceName = '';
   String deviceVersion = '';
   String identifier = '';
+  static const double _shadowHeight = 4;
+  double _position = 6;
   Future<void> _deviceDetails() async {
     final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
     try {
@@ -79,6 +81,7 @@ class _TempsPauseState extends State<TempsPause> {
     final ref = referenceDatabase.reference();
     _deviceDetails();
     checkValeur();
+    const double _height = 64 - _shadowHeight;
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -179,22 +182,71 @@ class _TempsPauseState extends State<TempsPause> {
               const SizedBox(
                 height: 50,
               ),
-              SizedBox(
-                  width: 150,
-                  height: width / 7,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      ref.update({
-                        "$identifier/Enfant/TempsPause": "$valeur",
-                      });
-                      Navigator.of(context).pop();
-                    },
-                    child: AppText(
-                      text: "Valider",
-                      size: 40,
-                      color: Colors.white,
-                    ),
-                  )),
+              GestureDetector(
+                onTapUp: (_) {
+                  setState(() {
+                    _position = 6;
+                  });
+                  ref.update({
+                    "$identifier/Enfant/TempsPause": "$valeur",
+                  });
+                  Navigator.of(context).pop();
+                },
+                onTapDown: (_) {
+                  setState(() {
+                    _position = 0;
+                  });
+                },
+                onTapCancel: () {
+                  setState(() {
+                    _position = 6;
+                  });
+                },
+                child: SizedBox(
+                  height: _height + _shadowHeight + 10,
+                  width: 200,
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        bottom: 0,
+                        child: Container(
+                          height: _height,
+                          width: 200,
+                          decoration: const BoxDecoration(
+                            color: Color.fromARGB(255, 21, 97, 158),
+                            // ignore: unnecessary_const
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(50),
+                            ),
+                          ),
+                        ),
+                      ),
+                      AnimatedPositioned(
+                        curve: Curves.easeIn,
+                        bottom: _position,
+                        duration: const Duration(milliseconds: 70),
+                        child: Container(
+                          height: _height,
+                          width: 200,
+                          decoration: const BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(50),
+                            ),
+                          ),
+                          child: Center(
+                            child: AppText(
+                              text: "Valider",
+                              size: 30,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )
             ],
           )),
         ),

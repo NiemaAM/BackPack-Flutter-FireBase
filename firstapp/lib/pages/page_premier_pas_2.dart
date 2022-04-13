@@ -29,7 +29,8 @@ class _premier_pas_2State extends State<premier_pas_2> {
   String deviceVersion = '';
   String identifier = '';
   String avatar = './assets/img/avatar_1.png';
-  DateTime now = DateTime.now();
+  static const double _shadowHeight = 4;
+  double _position = 6;
   Future<void> _deviceDetails() async {
     final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
     try {
@@ -81,7 +82,7 @@ class _premier_pas_2State extends State<premier_pas_2> {
     getData();
     _deviceDetails();
     final ref = referenceDatabase.reference();
-
+    const double _height = 64 - _shadowHeight;
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -156,65 +157,114 @@ class _premier_pas_2State extends State<premier_pas_2> {
                     SizedBox(
                       height: height / 100,
                     ),
-                    SizedBox(
-                      width: width / 1.5,
-                      height: width / 6,
-                      child: TextField(
-                        controller: myController,
-                        style: const TextStyle(fontSize: 30),
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                    ),
+                    Padding(
+                        padding: const EdgeInsets.only(left: 50, right: 50),
+                        child: TextField(
+                            controller: myController,
+                            keyboardType: TextInputType.text,
+                            textInputAction: TextInputAction.done,
+                            showCursor: true,
+                            style: const TextStyle(fontSize: 30),
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 14, horizontal: 14),
+                            ))),
                     SizedBox(
                       height: height / 40,
                     ),
-                    SizedBox(
-                        width: width / 3,
-                        height: width / 7,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            if (remove.removemoji(myController.text
-                                    .replaceAll(RegExp('[^A-Za-z]'), '')) !=
-                                myController.text) {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(
-                                content: AppText(
-                                  text:
-                                      'Le nom ne peut pas contenir des symboles, des espaces, des chiffres ou des emojis',
-                                  size: 15,
-                                  color: Colors.white,
+                    GestureDetector(
+                      onTapUp: (_) {
+                        setState(() {
+                          _position = 6;
+                        });
+                        if (remove.removemoji(myController.text
+                                .replaceAll(RegExp('[^A-Za-z]'), '')) !=
+                            myController.text) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: AppText(
+                              text:
+                                  'Le nom ne peut pas contenir des symboles, des espaces, des chiffres ou des emojis',
+                              size: 15,
+                              color: Colors.white,
+                            ),
+                          ));
+                        } else if (myController.text.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: AppText(
+                              text: 'Veillez saisir un nom',
+                              size: 15,
+                              color: Colors.white,
+                            ),
+                          ));
+                        } else {
+                          ref.update({
+                            "$identifier/Enfant/Nom": remove.removemoji(
+                                myController.text
+                                    .replaceAll(RegExp('[^A-Za-z-_]'), '')),
+                            "$identifier/Enfant/Score": '0',
+                            "$identifier/Enfant/TempsJeu": '25',
+                            "$identifier/Enfant/TempsPause": '5',
+                          });
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const acceil()));
+                        }
+                      },
+                      onTapDown: (_) {
+                        setState(() {
+                          _position = 0;
+                        });
+                      },
+                      onTapCancel: () {
+                        setState(() {
+                          _position = 6;
+                        });
+                      },
+                      child: SizedBox(
+                        height: _height + _shadowHeight + 10,
+                        width: 200,
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              bottom: 0,
+                              child: Container(
+                                height: _height,
+                                width: 200,
+                                decoration: const BoxDecoration(
+                                  color: Color.fromARGB(255, 21, 97, 158),
+                                  // ignore: unnecessary_const
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(50),
+                                  ),
                                 ),
-                              ));
-                            } else if (myController.text.isEmpty) {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(
-                                content: AppText(
-                                  text: 'Veillez saisir un nom',
-                                  size: 15,
-                                  color: Colors.white,
+                              ),
+                            ),
+                            AnimatedPositioned(
+                              curve: Curves.easeIn,
+                              bottom: _position,
+                              duration: const Duration(milliseconds: 70),
+                              child: Container(
+                                height: _height,
+                                width: 200,
+                                decoration: const BoxDecoration(
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(50),
+                                  ),
                                 ),
-                              ));
-                            } else {
-                              ref.update({
-                                "$identifier/Enfant/Nom": remove.removemoji(
-                                    myController.text
-                                        .replaceAll(RegExp('[^A-Za-z-_]'), '')),
-                                "$identifier/Enfant/Score": '0',
-                                "$identifier/Enfant/TempsJeu": '25',
-                                "$identifier/Enfant/TempsPause": '5',
-                              });
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => const acceil()));
-                            }
-                          },
-                          child: AppText(
-                            text: "Suivant",
-                            size: 40,
-                            color: Colors.white,
-                          ),
-                        )),
+                                child: Center(
+                                  child: AppText(
+                                    text: "Suivant",
+                                    size: 30,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
                   ],
                 )),
           )),
