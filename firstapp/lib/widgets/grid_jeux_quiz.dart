@@ -79,29 +79,6 @@ class _gridquizState extends State<gridquiz> {
             ],
           ),
         ),
-        GestureDetector(
-          onTap: () {
-            player.play('sfx/poop.mp3');
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const Quiz_Maths()));
-          },
-          // Image tapped
-          child: Column(
-            children: [
-              Image.asset(
-                'assets/img/fruits_.png',
-                height: 100,
-                width: 100,
-              ),
-              Center(
-                child: AppText(
-                  text: 'Fruits',
-                  color: Colors.black,
-                ),
-              ),
-            ],
-          ),
-        ),
       ],
     );
   }

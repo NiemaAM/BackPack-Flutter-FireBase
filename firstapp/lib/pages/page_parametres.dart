@@ -120,7 +120,7 @@ class _parametresState extends State<parametres> {
                               const modifier_profile_enfant()));
                     },
                     child: AppText(
-                      text: "Modifier le profile",
+                      text: "Modifier le profil",
                       size: 30,
                       color: Colors.black87,
                     ),

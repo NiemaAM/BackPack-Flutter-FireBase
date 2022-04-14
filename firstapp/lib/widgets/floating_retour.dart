@@ -6,15 +6,15 @@ import 'package:audioplayers/audioplayers.dart';
 // ignore: camel_case_types
 class retour extends StatelessWidget {
   final Color color;
-  const retour({Key key, this.color = Colors.white}) : super(key: key);
+  const retour({Key key, this.color = Colors.black}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var player = AudioCache();
     return IconButton(
-      icon: const Icon(
+      icon: Icon(
         Icons.arrow_back,
-        color: Colors.black,
+        color: color,
         size: 50,
       ),
       onPressed: () {

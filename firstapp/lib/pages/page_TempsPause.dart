@@ -83,7 +83,6 @@ class _TempsPauseState extends State<TempsPause> {
     checkValeur();
     const double _height = 64 - _shadowHeight;
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -187,6 +186,7 @@ class _TempsPauseState extends State<TempsPause> {
                   setState(() {
                     _position = 6;
                   });
+                  player.play('sfx/poop.mp3');
                   ref.update({
                     "$identifier/Enfant/TempsPause": "$valeur",
                   });

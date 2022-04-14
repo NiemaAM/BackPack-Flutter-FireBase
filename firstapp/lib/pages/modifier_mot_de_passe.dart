@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:device_info/device_info.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -23,6 +24,7 @@ class modifier_mot_de_passe extends StatefulWidget {
 
 // ignore: camel_case_types
 class _modifier_mot_de_passeState extends State<modifier_mot_de_passe> {
+  var player = AudioCache();
   String deviceName = '';
   String deviceVersion = '';
   String identifier = '';
@@ -67,7 +69,6 @@ class _modifier_mot_de_passeState extends State<modifier_mot_de_passe> {
     final ref = referenceDatabase.reference();
     _deviceDetails();
     const double _height = 64 - _shadowHeight;
-    double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -129,6 +130,7 @@ class _modifier_mot_de_passeState extends State<modifier_mot_de_passe> {
                     setState(() {
                       _position = 6;
                     });
+                    player.play('sfx/poop.mp3');
                     if (remove.removemoji(myController.text) !=
                         myController.text) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(

@@ -85,7 +85,7 @@ class _acceilState extends State<acceil> {
         TempsJeu = snapshot6.value;
         TempsPause = snapshot7.value;
       });
-    } else {}
+    }
   }
 
   getsons() async {
@@ -99,7 +99,8 @@ class _acceilState extends State<acceil> {
 
   bool arret = false;
   setTempsJeu() async {
-    await Future.delayed(const Duration(minutes: 1), () {
+    getData();
+    await Future.delayed(const Duration(seconds: 10), () {
       if (arret == false) {
         final timer = Timer(
           Duration(minutes: int.parse(TempsJeu)),
@@ -108,6 +109,8 @@ class _acceilState extends State<acceil> {
           },
         );
       }
+    });
+    await Future.delayed(const Duration(seconds: 10), () {
       if (arret == true) {
         final timer = Timer(
           Duration(minutes: int.parse(TempsPause)),
@@ -248,7 +251,7 @@ class _acceilState extends State<acceil> {
                     child: Center(
                       child: AppMsg(
                           text: (arret)
-                              ? "Le temps de jeu est epuisé !\n Reviens plus tard."
+                              ? "Le temps de jeu est épuisé !\n Reviens plus tard."
                               : "Bonjour $nom, à quoi veux tu jouer aujourd'hui ?",
                           size: 35,
                           color: Colors.white),

@@ -1,10 +1,10 @@
-import 'package:firstapp/jeux/Draw.dart';
 import 'package:firstapp/pages/page_choix_jeux_puzzles.dart';
 import 'package:firstapp/pages/page_choix_jeux_quiz.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../jeux/audio/cantines.dart';
 import '../jeux/audio/livres.dart';
+import '../jeux/Dessin.dart';
 import '../pages/page_Langues.dart';
 import 'package:audioplayers/audioplayers.dart';
 
@@ -35,7 +35,7 @@ class _slideJeuxState extends State<slideJeux> {
     const pagePuzzleChoix(),
     const langues(),
     const Maths(),
-    const Draw(),
+    Dessin(),
     const livres(),
     const cantines()
   ];

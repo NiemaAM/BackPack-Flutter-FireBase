@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:device_info/device_info.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -23,6 +24,7 @@ class verifier_mot_de_passe extends StatefulWidget {
 
 // ignore: camel_case_types
 class _verifier_mot_de_passeState extends State<verifier_mot_de_passe> {
+  var player = AudioCache();
   String deviceName = '';
   String deviceVersion = '';
   String identifier = '';
@@ -79,7 +81,6 @@ class _verifier_mot_de_passeState extends State<verifier_mot_de_passe> {
     _deviceDetails();
     getData();
     const double _height = 64 - _shadowHeight;
-    double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -103,7 +104,7 @@ class _verifier_mot_de_passeState extends State<verifier_mot_de_passe> {
                     height: height / 30,
                   ),
                   AppText(
-                    text: "Entrer le mot de passe parental",
+                    text: "Mot de passe parental",
                     size: 30,
                   ),
                   SizedBox(
@@ -140,6 +141,7 @@ class _verifier_mot_de_passeState extends State<verifier_mot_de_passe> {
                   ),
                   GestureDetector(
                     onTapUp: (_) {
+                      player.play('sfx/poop.mp3');
                       setState(() {
                         _position = 6;
                       });

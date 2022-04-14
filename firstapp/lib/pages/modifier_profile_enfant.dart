@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:device_info/device_info.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -25,6 +26,7 @@ class modifier_profile_enfant extends StatefulWidget {
 
 // ignore: camel_case_types
 class _modifier_profile_enfantState extends State<modifier_profile_enfant> {
+  var player = AudioCache();
   String deviceName = '';
   String deviceVersion = '';
   String identifier = '';
@@ -173,6 +175,7 @@ class _modifier_profile_enfantState extends State<modifier_profile_enfant> {
                         setState(() {
                           _position = 6;
                         });
+                        player.play('sfx/poop.mp3');
                         if (remove.removemoji(myController.text
                                 .replaceAll(RegExp('[^A-Za-z]'), '')) !=
                             myController.text) {

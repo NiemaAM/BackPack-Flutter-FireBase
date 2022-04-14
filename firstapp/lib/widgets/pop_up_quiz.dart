@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:device_info/device_info.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class CustomDialogBox extends StatefulWidget {
 }
 
 class _CustomDialogBoxState extends State<CustomDialogBox> {
+  var player = AudioCache();
   String avatar = './assets/img/blank.png';
   String score = ' ';
 
@@ -138,6 +140,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                   alignment: Alignment.bottomRight,
                   child: FlatButton(
                       onPressed: () {
+                        player.play('sfx/pop.mp3');
                         Navigator.of(context).pop();
                         Navigator.of(context).pop();
                       },

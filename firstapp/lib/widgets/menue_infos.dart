@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../pages/page_choix_jeux_langues.dart';
+import '../pages/page_infos.dart';
 
 // ignore: camel_case_types
 class menueInfos extends StatelessWidget {
@@ -16,8 +16,8 @@ class menueInfos extends StatelessWidget {
         color: Colors.white,
       ),
       onPressed: () {
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const pageLanguesChoix()));
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => const PageInfos()));
       },
     );
   }
