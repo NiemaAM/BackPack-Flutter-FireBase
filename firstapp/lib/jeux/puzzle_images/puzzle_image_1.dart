@@ -167,7 +167,7 @@ class _SlidePuzzle_1WidgetState extends State<SlidePuzzle_1Widget> {
   Widget build(BuildContext context) {
     size = Size(widget.size.width - widget.innerPadding * 2,
         widget.size.width - widget.innerPadding);
-
+    double width = MediaQuery.of(context).size.width;
     return Column(
       mainAxisSize: MainAxisSize.min,
       // let make ui
@@ -277,7 +277,7 @@ class _SlidePuzzle_1WidgetState extends State<SlidePuzzle_1Widget> {
                 onPressed: () => generatePuzzle(),
                 child: AppText(
                   text: "Diviser",
-                  size: 25,
+                  size: width / 14,
                   color: Colors.white,
                 ),
               ),
@@ -287,14 +287,16 @@ class _SlidePuzzle_1WidgetState extends State<SlidePuzzle_1Widget> {
               child: ElevatedButton(
                 // for checking purpose
                 onPressed: startSlide ? null : () => reversePuzzle(),
-                child: AppText(text: "Resoudre", size: 25, color: Colors.white),
+                child: AppText(
+                    text: "Resoudre", size: width / 14, color: Colors.white),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
                 onPressed: () => clearPuzzle(),
-                child: AppText(text: "Image", size: 25, color: Colors.white),
+                child: AppText(
+                    text: "Image", size: width / 14, color: Colors.white),
               ),
             )
           ],

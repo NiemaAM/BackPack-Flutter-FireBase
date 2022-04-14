@@ -65,8 +65,12 @@ class _gridAvatarState extends State<gridAvatar> {
           height: 150,
           width: width,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   GestureDetector(
                       onTap: () {
@@ -75,8 +79,7 @@ class _gridAvatarState extends State<gridAvatar> {
                         });
                         Navigator.of(context).pop();
                       },
-                      child: Image.asset(imgs[0], height: 75)),
-                  Expanded(child: Container()),
+                      child: Image.asset(imgs[0], height: width / 5)),
                   GestureDetector(
                       onTap: () {
                         ref.update({
@@ -84,8 +87,7 @@ class _gridAvatarState extends State<gridAvatar> {
                         });
                         Navigator.of(context).pop();
                       },
-                      child: Image.asset(imgs[1], height: 75)),
-                  Expanded(child: Container()),
+                      child: Image.asset(imgs[1], height: width / 5)),
                   GestureDetector(
                       onTap: () {
                         ref.update({
@@ -93,10 +95,12 @@ class _gridAvatarState extends State<gridAvatar> {
                         });
                         Navigator.of(context).pop();
                       },
-                      child: Image.asset(imgs[2], height: 75)),
+                      child: Image.asset(imgs[2], height: width / 5)),
                 ],
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   GestureDetector(
                       onTap: () {
@@ -105,8 +109,7 @@ class _gridAvatarState extends State<gridAvatar> {
                         });
                         Navigator.of(context).pop();
                       },
-                      child: Image.asset(imgs[3], height: 75)),
-                  Expanded(child: Container()),
+                      child: Image.asset(imgs[3], height: width / 5)),
                   GestureDetector(
                       onTap: () {
                         ref.update({
@@ -114,8 +117,7 @@ class _gridAvatarState extends State<gridAvatar> {
                         });
                         Navigator.of(context).pop();
                       },
-                      child: Image.asset(imgs[4], height: 75)),
-                  Expanded(child: Container()),
+                      child: Image.asset(imgs[4], height: width / 5)),
                   GestureDetector(
                       onTap: () {
                         ref.update({
@@ -123,7 +125,7 @@ class _gridAvatarState extends State<gridAvatar> {
                         });
                         Navigator.of(context).pop();
                       },
-                      child: Image.asset(imgs[5], height: 75)),
+                      child: Image.asset(imgs[5], height: width / 5)),
                 ],
               ),
             ],

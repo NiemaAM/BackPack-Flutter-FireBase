@@ -50,6 +50,7 @@ class _gridquizState extends State<gridquiz> {
               Center(
                 child: AppText(
                   text: 'Animaux',
+                  size: width / 10,
                   color: Colors.black,
                 ),
               ),
@@ -73,6 +74,7 @@ class _gridquizState extends State<gridquiz> {
               Center(
                 child: AppText(
                   text: 'Maths',
+                  size: width / 10,
                   color: Colors.black,
                 ),
               ),

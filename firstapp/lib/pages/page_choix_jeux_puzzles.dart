@@ -48,6 +48,7 @@ class _pagePuzzleChoixState extends State<pagePuzzleChoix> {
             ),
             AppText(
               text: "Choisi le puzzle que tu veux !",
+              size: width / 10,
               color: Colors.blue,
             ),
             SizedBox(

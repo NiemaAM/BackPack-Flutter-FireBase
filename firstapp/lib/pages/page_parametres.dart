@@ -108,6 +108,7 @@ class _parametresState extends State<parametres> {
               ),
               AppText(
                 text: "Paramètres du profil de l'enfant",
+                size: width / 10,
                 color: const Color.fromARGB(255, 20, 111, 186),
               ),
               SizedBox(
@@ -121,7 +122,7 @@ class _parametresState extends State<parametres> {
                     },
                     child: AppText(
                       text: "Modifier le profil",
-                      size: 30,
+                      size: width / 12,
                       color: Colors.black87,
                     ),
                     color: Colors.transparent,
@@ -145,6 +146,7 @@ class _parametresState extends State<parametres> {
                 child: AppText(
                   // ignore: unnecessary_string_interpolations
                   text: "$nom",
+                  size: width / 9,
                   color: Colors.blue,
                 ),
               ),
@@ -154,6 +156,7 @@ class _parametresState extends State<parametres> {
               ),
               AppText(
                 text: 'Paramètres de contrôle parental',
+                size: width / 10,
                 color: const Color.fromARGB(255, 20, 111, 186),
               ),
               SizedBox(
@@ -170,7 +173,7 @@ class _parametresState extends State<parametres> {
                   },
                   child: AppText(
                     text: "Temps de pause",
-                    size: 30,
+                    size: width / 12,
                     color: Colors.black87,
                   ),
                   color: Colors.transparent,
@@ -195,7 +198,7 @@ class _parametresState extends State<parametres> {
                   },
                   child: AppText(
                     text: "Temps de jeu",
-                    size: 30,
+                    size: width / 12,
                     color: Colors.black87,
                   ),
                   color: Colors.transparent,
@@ -224,7 +227,7 @@ class _parametresState extends State<parametres> {
                     },
                     child: AppText(
                       text: "Changer le mot de passe",
-                      size: 30,
+                      size: width / 12,
                       color: Colors.redAccent,
                     ),
                     color: Colors.transparent,

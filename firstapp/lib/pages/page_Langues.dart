@@ -63,7 +63,7 @@ class _languesState extends State<langues> {
                       child: Center(
                         child: AppText(
                           text: "Français",
-                          size: 130,
+                          size: width / 3,
                           color: Colors.white,
                         ),
                       ),
@@ -87,7 +87,7 @@ class _languesState extends State<langues> {
                       child: Center(
                         child: AppText(
                           text: "Anglais",
-                          size: 130,
+                          size: width / 3,
                           color: Colors.white,
                         ),
                       ),

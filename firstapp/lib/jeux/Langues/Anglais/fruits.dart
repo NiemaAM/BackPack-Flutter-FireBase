@@ -120,6 +120,7 @@ class _Fruits_AnglaisState extends State<Fruits_Anglais> {
   @override
   Widget build(BuildContext context) {
     if (items.isEmpty) gameOver = true;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
       // ignore: missing_required_param
@@ -172,15 +173,15 @@ class _Fruits_AnglaisState extends State<Fruits_Anglais> {
                           data: item,
                           childWhenDragging: Image(
                             image: AssetImage(item.img),
-                            height: 80,
+                            height: width / 5,
                           ),
                           feedback: Image(
                             image: AssetImage(item.img),
-                            height: 90,
+                            height: width / 4,
                           ),
                           child: Image(
                             image: AssetImage(item.img),
-                            height: 60,
+                            height: width / 6,
                           ),
                         ),
                       );
@@ -228,12 +229,12 @@ class _Fruits_AnglaisState extends State<Fruits_Anglais> {
                                       : Colors.grey[200],
                                 ),
                                 alignment: Alignment.center,
-                                height: MediaQuery.of(context).size.width / 6.5,
-                                width: MediaQuery.of(context).size.width / 3,
+                                height: width / 6.5,
+                                width: width / 3,
                                 margin: const EdgeInsets.all(8),
                                 child: AppText(
                                   text: item.name,
-                                  size: 30,
+                                  size: width / 13,
                                   color: item.accepting
                                       ? Colors.white
                                       : Colors.black,

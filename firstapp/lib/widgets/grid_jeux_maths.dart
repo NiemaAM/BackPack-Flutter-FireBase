@@ -40,7 +40,7 @@ class _gridMathsState extends State<gridMaths> {
               Center(
                 child: AppText(
                   text: 'Comparaison',
-                  size: 35,
+                  size: width / 10,
                   color: Colors.black,
                 ),
               ),
@@ -64,7 +64,7 @@ class _gridMathsState extends State<gridMaths> {
               Center(
                 child: AppText(
                   text: 'Addition',
-                  size: 35,
+                  size: width / 10,
                   color: Colors.black,
                 ),
               ),
@@ -88,7 +88,7 @@ class _gridMathsState extends State<gridMaths> {
               Center(
                 child: AppText(
                   text: 'Soustration',
-                  size: 35,
+                  size: width / 10,
                   color: Colors.black,
                 ),
               ),
@@ -112,7 +112,7 @@ class _gridMathsState extends State<gridMaths> {
               Center(
                 child: AppText(
                   text: 'Multiplication',
-                  size: 35,
+                  size: width / 10,
                   color: Colors.black,
                 ),
               ),

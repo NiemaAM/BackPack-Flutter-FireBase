@@ -111,7 +111,10 @@ class _premier_pas_2State extends State<premier_pas_2> {
                     SizedBox(
                       height: height / 15,
                     ),
-                    AppText(text: "Espace du profil de l'enfant"),
+                    AppText(
+                      text: "Espace du profil de l'enfant",
+                      size: width / 10,
+                    ),
                     SizedBox(
                       height: height / 40,
                     ),
@@ -120,7 +123,10 @@ class _premier_pas_2State extends State<premier_pas_2> {
                         showDialog(
                           context: context,
                           builder: (ctx) => AlertDialog(
-                            title: AppText(text: "Choisir un avatar"),
+                            title: AppText(
+                              text: "Choisir un avatar",
+                              size: width / 10,
+                            ),
                             content: const gridAvatar(),
                             actions: <Widget>[
                               FlatButton(
@@ -129,7 +135,7 @@ class _premier_pas_2State extends State<premier_pas_2> {
                                 },
                                 child: AppText(
                                   text: "Annuler",
-                                  size: 30,
+                                  size: width / 12,
                                   color: Colors.red,
                                 ),
                               ),
@@ -154,7 +160,7 @@ class _premier_pas_2State extends State<premier_pas_2> {
                     ),
                     AppText(
                       text: "Ton nom",
-                      size: 30,
+                      size: width / 12,
                     ),
                     SizedBox(
                       height: height / 100,
@@ -166,7 +172,7 @@ class _premier_pas_2State extends State<premier_pas_2> {
                             keyboardType: TextInputType.text,
                             textInputAction: TextInputAction.done,
                             showCursor: true,
-                            style: const TextStyle(fontSize: 30),
+                            style: TextStyle(fontSize: width / 12),
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               contentPadding: EdgeInsets.symmetric(
@@ -188,7 +194,7 @@ class _premier_pas_2State extends State<premier_pas_2> {
                             content: AppText(
                               text:
                                   'Le nom ne peut pas contenir des symboles, des espaces, des chiffres ou des emojis',
-                              size: 15,
+                              size: width / 22,
                               color: Colors.white,
                             ),
                           ));
@@ -196,7 +202,7 @@ class _premier_pas_2State extends State<premier_pas_2> {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: AppText(
                               text: 'Veillez saisir un nom',
-                              size: 15,
+                              size: width / 22,
                               color: Colors.white,
                             ),
                           ));
@@ -258,7 +264,7 @@ class _premier_pas_2State extends State<premier_pas_2> {
                                 child: Center(
                                   child: AppText(
                                     text: "Suivant",
-                                    size: 30,
+                                    size: width / 10,
                                     color: Colors.white,
                                   ),
                                 ),

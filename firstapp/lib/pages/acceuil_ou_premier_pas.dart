@@ -94,6 +94,7 @@ class oppenedState extends State<oppened> {
   // ignore: missing_return
   Widget build(BuildContext context) {
     // ignore: unrelated_type_equality_checks
+    double width = MediaQuery.of(context).size.width;
     _deviceDetails();
     getData();
     if (isoppend == 3) {
@@ -109,8 +110,8 @@ class oppenedState extends State<oppened> {
               Expanded(child: Container()),
               AnimatedOpacity(
                 child: Container(
-                  width: 100,
-                  height: 100,
+                  width: width / 3.5,
+                  height: width / 3.5,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     image: const DecorationImage(

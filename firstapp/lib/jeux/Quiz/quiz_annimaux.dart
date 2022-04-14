@@ -255,14 +255,14 @@ class _Quiz_AnnimauxState extends State<Quiz_Annimaux> {
                       Center(
                         child: AppText(
                           text: "Quel est cet animal ?",
-                          size: 40,
+                          size: width / 9,
                           color: Colors.black,
                         ),
                       ),
                       Expanded(child: Container()),
                       Image.asset(
                         _questions[random]['image1'],
-                        height: 130,
+                        height: width / 3,
                       ),
                     ],
                   ),

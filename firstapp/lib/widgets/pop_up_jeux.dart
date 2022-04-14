@@ -86,6 +86,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
   }
 
   contentBox(context) {
+    double width = MediaQuery.of(context).size.width;
     return Stack(
       children: <Widget>[
         Container(
@@ -110,6 +111,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
               children: <Widget>[
                 AppText(
                   text: widget.title,
+                  size: width / 10,
                   color: Colors.green,
                 ),
                 Align(
@@ -122,7 +124,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                       },
                       child: AppText(
                         text: widget.text,
-                        size: 30,
+                        size: width / 11,
                         color: Colors.red,
                       )),
                 ),

@@ -47,7 +47,7 @@ class _AnglaisState extends State<Anglais> {
               ),
               AppText(
                 text: "Choisi ce que tu veux apprendre !",
-                size: 35,
+                size: width / 10,
                 color: Colors.blue,
               ),
               SizedBox(

@@ -85,6 +85,7 @@ class _cantinesState extends State<cantines> {
                     child: AppText(
                       // ignore: unnecessary_string_interpolations
                       text: "$text",
+                      size: width / 10,
                       color: Colors.blue,
                     ),
                   ),
@@ -94,96 +95,93 @@ class _cantinesState extends State<cantines> {
                     onChanged: (double value) {},
                     value: 1,
                   ), */
-                  Row(children: [
-                    SizedBox(
-                      width: width / 5.5,
-                    ),
-                    IconButton(
-                      icon: (avant)
-                          ? const Icon(
-                              Icons.arrow_back,
-                              color: Colors.black,
-                              size: 50,
-                            )
-                          : const Icon(
-                              Icons.arrow_back,
-                              color: Colors.grey,
-                              size: 50,
-                            ),
-                      onPressed: () {
-                        setState(() {
-                          apres = true;
-                          if (num == 0) {
-                          } else if ((num - 1) == 0) {
-                            avant = false;
-                            num = 0;
-                            music = cantines[0];
-                            text = titre[0];
-                          } else {
-                            num = num - 1;
-                            music = cantines[num];
-                            text = titre[num];
-                          }
-                        });
-                      },
-                    ),
-                    SizedBox(
-                      width: width / 10,
-                    ),
-                    IconButton(
-                      icon: (isplaying)
-                          ? const Icon(
-                              Icons.pause,
-                              color: Colors.black,
-                              size: 50,
-                            )
-                          : const Icon(
-                              Icons.play_arrow,
-                              color: Colors.black,
-                              size: 50,
-                            ),
-                      onPressed: () {
-                        setState(() {
-                          isplaying = !isplaying;
-                        });
-                      },
-                    ),
-                    SizedBox(
-                      width: width / 10,
-                    ),
-                    IconButton(
-                      icon: (apres)
-                          ? const Icon(
-                              Icons.arrow_forward,
-                              color: Colors.black,
-                              size: 50,
-                            )
-                          : const Icon(
-                              Icons.arrow_forward,
-                              color: Colors.grey,
-                              size: 50,
-                            ),
-                      onPressed: () {
-                        setState(() {
-                          avant = true;
-                          if (num == (cantines.length - 1)) {
-                          } else if ((num + 2) == cantines.length) {
-                            apres = false;
-                            num = cantines.length - 1;
-                            music = cantines[num];
-                            text = titre[num];
-                          } else {
-                            num = num + 1;
-                            music = cantines[num];
-                            text = titre[num];
-                          }
-                        });
-                      },
-                    ),
-                  ]),
-                  SizedBox(
-                    height: height / 5,
-                  ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          icon: (avant)
+                              ? Icon(
+                                  Icons.arrow_back,
+                                  color: Colors.black,
+                                  size: width / 10,
+                                )
+                              : Icon(
+                                  Icons.arrow_back,
+                                  color: Colors.grey,
+                                  size: width / 10,
+                                ),
+                          onPressed: () {
+                            setState(() {
+                              apres = true;
+                              if (num == 0) {
+                              } else if ((num - 1) == 0) {
+                                avant = false;
+                                num = 0;
+                                music = cantines[0];
+                                text = titre[0];
+                              } else {
+                                num = num - 1;
+                                music = cantines[num];
+                                text = titre[num];
+                              }
+                            });
+                          },
+                        ),
+                        SizedBox(
+                          width: width / 10,
+                        ),
+                        IconButton(
+                          icon: (isplaying)
+                              ? Icon(
+                                  Icons.pause,
+                                  color: Colors.black,
+                                  size: width / 10,
+                                )
+                              : Icon(
+                                  Icons.play_arrow,
+                                  color: Colors.black,
+                                  size: width / 10,
+                                ),
+                          onPressed: () {
+                            setState(() {
+                              isplaying = !isplaying;
+                            });
+                          },
+                        ),
+                        SizedBox(
+                          width: width / 10,
+                        ),
+                        IconButton(
+                          icon: (apres)
+                              ? Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.black,
+                                  size: width / 10,
+                                )
+                              : Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.grey,
+                                  size: width / 10,
+                                ),
+                          onPressed: () {
+                            setState(() {
+                              avant = true;
+                              if (num == (cantines.length - 1)) {
+                              } else if ((num + 2) == cantines.length) {
+                                apres = false;
+                                num = cantines.length - 1;
+                                music = cantines[num];
+                                text = titre[num];
+                              } else {
+                                num = num + 1;
+                                music = cantines[num];
+                                text = titre[num];
+                              }
+                            });
+                          },
+                        ),
+                      ]),
                 ],
               ),
             ),

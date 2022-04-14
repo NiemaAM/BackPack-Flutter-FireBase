@@ -82,6 +82,7 @@ class _TempsJeuState extends State<TempsJeu> {
     _deviceDetails();
     checkValeur();
     const double _height = 64 - _shadowHeight;
+    double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -101,7 +102,7 @@ class _TempsJeuState extends State<TempsJeu> {
               ),
               AppText(
                 text: "Temps de jeu",
-                size: 40,
+                size: width / 10,
                 color: Colors.black87,
               ),
               const SizedBox(
@@ -111,18 +112,17 @@ class _TempsJeuState extends State<TempsJeu> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    width: 100,
-                    height: 90,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      color: const Color.fromARGB(255, 230, 230, 230),
-                    ),
-                    child: Center(
-                        child: AppText(
-                      text: "$valeur",
-                      size: 70,
-                    )),
-                  ),
+                      width: 100,
+                      height: 90,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                        color: const Color.fromARGB(255, 230, 230, 230),
+                      ),
+                      child: AppText(
+                        text: "$valeur",
+                        size: width / 5,
+                      )),
                   const SizedBox(
                     width: 10,
                   ),
@@ -237,7 +237,7 @@ class _TempsJeuState extends State<TempsJeu> {
                           child: Center(
                             child: AppText(
                               text: "Valider",
-                              size: 30,
+                              size: width / 10,
                               color: Colors.white,
                             ),
                           ),

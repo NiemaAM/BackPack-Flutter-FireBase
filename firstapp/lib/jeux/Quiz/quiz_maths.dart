@@ -255,7 +255,7 @@ class _Quiz_MathsState extends State<Quiz_Maths> {
                       Center(
                         child: AppText(
                           text: _questions[random]['question'],
-                          size: 40,
+                          size: width / 9,
                           color: Colors.black,
                         ),
                       ),
@@ -264,18 +264,18 @@ class _Quiz_MathsState extends State<Quiz_Maths> {
                         children: [
                           Image.asset(
                             _questions[random]['image1'],
-                            height: 120,
+                            height: width / 3,
                           ),
                           Expanded(child: Container()),
                           AppText(
                             text: _questions[random]['signe'],
-                            size: 100,
+                            size: width / 5,
                             color: Colors.blue,
                           ),
                           Expanded(child: Container()),
                           Image.asset(
                             _questions[random]['image2'],
-                            height: 120,
+                            height: width / 3,
                           ),
                         ],
                       ),

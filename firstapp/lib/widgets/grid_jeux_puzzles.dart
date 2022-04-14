@@ -146,14 +146,14 @@ class _gridpuzzleState extends State<gridpuzzle> {
                   children: [
                     Image.asset(
                       "assets/img/star.png",
-                      height: 25,
+                      height: width / 13,
                     ),
                     const SizedBox(
                       width: 5,
                     ),
                     AppText(
                       text: '50',
-                      size: 35,
+                      size: width / 10,
                       color: Colors.green,
                     ),
                   ],
@@ -185,14 +185,14 @@ class _gridpuzzleState extends State<gridpuzzle> {
                   children: [
                     Image.asset(
                       "assets/img/star.png",
-                      height: 25,
+                      height: width / 13,
                     ),
                     const SizedBox(
                       width: 5,
                     ),
                     AppText(
                       text: '100',
-                      size: 35,
+                      size: width / 10,
                       color: Colors.green,
                     ),
                   ],
@@ -223,14 +223,14 @@ class _gridpuzzleState extends State<gridpuzzle> {
                   children: [
                     Image.asset(
                       "assets/img/star.png",
-                      height: 25,
+                      height: width / 13,
                     ),
                     const SizedBox(
                       width: 5,
                     ),
                     AppText(
                       text: '20',
-                      size: 35,
+                      size: width / 10,
                       color: Colors.green,
                     ),
                   ],

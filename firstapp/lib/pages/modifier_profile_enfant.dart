@@ -106,7 +106,10 @@ class _modifier_profile_enfantState extends State<modifier_profile_enfant> {
                     SizedBox(
                       height: height / 15,
                     ),
-                    AppText(text: "Espace du profil de l'enfant"),
+                    AppText(
+                      text: "Espace du profil de l'enfant",
+                      size: width / 10,
+                    ),
                     SizedBox(
                       height: height / 40,
                     ),
@@ -115,7 +118,10 @@ class _modifier_profile_enfantState extends State<modifier_profile_enfant> {
                         showDialog(
                           context: context,
                           builder: (ctx) => AlertDialog(
-                            title: AppText(text: "Choisir un avatar"),
+                            title: AppText(
+                              text: "Choisir un avatar",
+                              size: width / 10,
+                            ),
                             content: const gridAvatar(),
                             actions: <Widget>[
                               FlatButton(
@@ -124,7 +130,7 @@ class _modifier_profile_enfantState extends State<modifier_profile_enfant> {
                                 },
                                 child: AppText(
                                   text: "Annuler",
-                                  size: 30,
+                                  size: width / 12,
                                   color: Colors.red,
                                 ),
                               ),
@@ -149,7 +155,7 @@ class _modifier_profile_enfantState extends State<modifier_profile_enfant> {
                     ),
                     AppText(
                       text: "Modifier le nom",
-                      size: 30,
+                      size: width / 12,
                     ),
                     SizedBox(
                       height: height / 100,
@@ -183,7 +189,7 @@ class _modifier_profile_enfantState extends State<modifier_profile_enfant> {
                             content: AppText(
                               text:
                                   'Le nom ne peut pas contenir des symboles, des espaces, des chiffres ou des emojis',
-                              size: 15,
+                              size: width / 22,
                               color: Colors.white,
                             ),
                           ));
@@ -191,7 +197,7 @@ class _modifier_profile_enfantState extends State<modifier_profile_enfant> {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: AppText(
                               text: 'Veillez saisir un nom',
-                              size: 15,
+                              size: width / 22,
                               color: Colors.white,
                             ),
                           ));
@@ -249,7 +255,7 @@ class _modifier_profile_enfantState extends State<modifier_profile_enfant> {
                                 child: Center(
                                   child: AppText(
                                     text: "Valider",
-                                    size: 30,
+                                    size: width / 10,
                                     color: Colors.white,
                                   ),
                                 ),

@@ -163,6 +163,8 @@ class _acceilState extends State<acceil> {
                     height: height / 60,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
                         margin: const EdgeInsets.only(left: 10),
@@ -222,6 +224,7 @@ class _acceilState extends State<acceil> {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Expanded(child: Container()),
                       Expanded(child: Container()),
@@ -233,11 +236,11 @@ class _acceilState extends State<acceil> {
                       Expanded(child: Container()),
                       Image.asset(
                         "assets/img/star.png",
-                        height: 20,
+                        height: width / 18,
                       ),
                       AppText(
                         text: " $score",
-                        size: 35,
+                        size: width / 10,
                         color: Colors.white,
                       ),
                       Expanded(child: Container()),
@@ -253,7 +256,7 @@ class _acceilState extends State<acceil> {
                           text: (arret)
                               ? "Le temps de jeu est épuisé !\n Reviens plus tard."
                               : "Bonjour $nom, à quoi veux tu jouer aujourd'hui ?",
-                          size: 35,
+                          size: width / 10,
                           color: Colors.white),
                     ),
                   ),

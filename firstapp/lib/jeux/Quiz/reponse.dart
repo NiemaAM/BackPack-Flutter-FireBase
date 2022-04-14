@@ -12,6 +12,7 @@ class Answer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: answerTap,
       child: Container(
@@ -33,7 +34,7 @@ class Answer extends StatelessWidget {
         ),
         child: AppText(
           text: answerText,
-          size: 30,
+          size: width / 11,
           color: Colors.white,
         ),
       ),

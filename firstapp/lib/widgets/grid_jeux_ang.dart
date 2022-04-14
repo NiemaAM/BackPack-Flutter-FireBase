@@ -43,7 +43,7 @@ class _gridangState extends State<gridang> {
               Center(
                 child: AppText(
                   text: 'Fruits',
-                  size: 35,
+                  size: width / 10,
                   color: Colors.black,
                 ),
               ),
@@ -67,7 +67,7 @@ class _gridangState extends State<gridang> {
               Center(
                 child: AppText(
                   text: 'Vegetables',
-                  size: 35,
+                  size: width / 10,
                   color: Colors.black,
                 ),
               ),
@@ -91,7 +91,7 @@ class _gridangState extends State<gridang> {
               Center(
                 child: AppText(
                   text: 'Animals',
-                  size: 35,
+                  size: width / 10,
                   color: Colors.black,
                 ),
               ),
@@ -115,7 +115,7 @@ class _gridangState extends State<gridang> {
               Center(
                 child: AppText(
                   text: 'Numbers',
-                  size: 35,
+                  size: width / 10,
                   color: Colors.black,
                 ),
               ),

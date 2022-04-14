@@ -68,6 +68,7 @@ class _premier_pas_1State extends State<premier_pas_1> {
     final ref = referenceDatabase.reference();
     _deviceDetails();
     const double _height = 64 - _shadowHeight;
+    double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -87,7 +88,10 @@ class _premier_pas_1State extends State<premier_pas_1> {
                     SizedBox(
                       height: height / 15,
                     ),
-                    AppText(text: "Espace de contrôle parental"),
+                    AppText(
+                      text: "Espace de contrôle parental",
+                      size: width / 10,
+                    ),
                     Image.asset(
                       "assets/img/img_parents.png",
                     ),
@@ -96,7 +100,7 @@ class _premier_pas_1State extends State<premier_pas_1> {
                     ),
                     AppText(
                       text: "Creér un mot de passe",
-                      size: 30,
+                      size: width / 12,
                     ),
                     SizedBox(
                       height: height / 100,
@@ -109,7 +113,7 @@ class _premier_pas_1State extends State<premier_pas_1> {
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.done,
                           showCursor: true,
-                          style: const TextStyle(fontSize: 30),
+                          style: TextStyle(fontSize: width / 12),
                           decoration: InputDecoration(
                               border: const OutlineInputBorder(),
                               contentPadding: const EdgeInsets.symmetric(
@@ -142,7 +146,7 @@ class _premier_pas_1State extends State<premier_pas_1> {
                             content: AppText(
                               text:
                                   'Le mot de passe ne peut pas contenir des emojis',
-                              size: 15,
+                              size: width / 22,
                               color: Colors.white,
                             ),
                           ));
@@ -150,7 +154,7 @@ class _premier_pas_1State extends State<premier_pas_1> {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: AppText(
                               text: 'Veillez saisir un mot de passe parentale',
-                              size: 15,
+                              size: width / 22,
                               color: Colors.white,
                             ),
                           ));
@@ -160,7 +164,7 @@ class _premier_pas_1State extends State<premier_pas_1> {
                             content: AppText(
                               text:
                                   'Le mot de passe doit contenir minimum 5 caractéres',
-                              size: 15,
+                              size: width / 22,
                               color: Colors.white,
                             ),
                           ));
@@ -226,7 +230,7 @@ class _premier_pas_1State extends State<premier_pas_1> {
                                 child: Center(
                                   child: AppText(
                                     text: "Suivant",
-                                    size: 30,
+                                    size: width / 10,
                                     color: Colors.white,
                                   ),
                                 ),

@@ -81,6 +81,7 @@ class _verifier_mot_de_passeState extends State<verifier_mot_de_passe> {
     _deviceDetails();
     getData();
     const double _height = 64 - _shadowHeight;
+    double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -98,14 +99,17 @@ class _verifier_mot_de_passeState extends State<verifier_mot_de_passe> {
                   SizedBox(
                     height: height / 15,
                   ),
-                  AppText(text: "Espace de contrôle parental"),
+                  AppText(
+                    text: "Espace de contrôle parental",
+                    size: width / 10,
+                  ),
                   Image.asset("assets/img/img_parents.png"),
                   SizedBox(
                     height: height / 30,
                   ),
                   AppText(
                     text: "Mot de passe parental",
-                    size: 30,
+                    size: width / 12,
                   ),
                   SizedBox(
                     height: height / 100,
@@ -118,7 +122,7 @@ class _verifier_mot_de_passeState extends State<verifier_mot_de_passe> {
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.done,
                         showCursor: true,
-                        style: const TextStyle(fontSize: 30),
+                        style: TextStyle(fontSize: width / 12),
                         decoration: InputDecoration(
                             border: const OutlineInputBorder(),
                             contentPadding: const EdgeInsets.symmetric(
@@ -150,7 +154,7 @@ class _verifier_mot_de_passeState extends State<verifier_mot_de_passe> {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: AppText(
                             text: 'Mot de passe incorrecte',
-                            size: 15,
+                            size: width / 22,
                             color: Colors.white,
                           ),
                         ));
@@ -204,7 +208,7 @@ class _verifier_mot_de_passeState extends State<verifier_mot_de_passe> {
                               child: Center(
                                 child: AppText(
                                   text: "Valider",
-                                  size: 30,
+                                  size: width / 10,
                                   color: Colors.white,
                                 ),
                               ),

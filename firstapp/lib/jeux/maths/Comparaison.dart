@@ -108,13 +108,14 @@ class _ComparaisonState extends State<Comparaison> {
                 Container(
                   height: width / 4.5,
                   width: width / 4.5,
+                  alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: Colors.green,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: AppText(
                     text: "$num1",
-                    size: width / 5.5,
+                    size: width / 6,
                     color: Colors.white,
                   ),
                 ),
@@ -145,13 +146,14 @@ class _ComparaisonState extends State<Comparaison> {
                 Container(
                   height: width / 4.5,
                   width: width / 4.5,
+                  alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: AppText(
                     text: "$num2",
-                    size: width / 5.5,
+                    size: width / 6,
                     color: Colors.white,
                   ),
                 ),

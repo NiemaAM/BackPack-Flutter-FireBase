@@ -76,6 +76,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
   @override
   Widget build(BuildContext context) {
     getData();
+
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(Constants.padding),
@@ -87,6 +88,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
   }
 
   contentBox(context) {
+    double width = MediaQuery.of(context).size.width;
     return Stack(
       children: <Widget>[
         Container(
@@ -111,6 +113,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
               children: <Widget>[
                 AppMsg(
                   text: widget.title,
+                  size: width / 10,
                   color: Colors.green,
                 ),
                 Row(
@@ -124,7 +127,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                           },
                           child: AppText(
                             text: widget.text2,
-                            size: 30,
+                            size: width / 11,
                             color: Colors.blue,
                           )),
                     ),
@@ -139,7 +142,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                           },
                           child: AppText(
                             text: widget.text,
-                            size: 30,
+                            size: width / 11,
                             color: Colors.red,
                           )),
                     ),

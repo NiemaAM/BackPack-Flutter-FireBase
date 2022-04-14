@@ -43,7 +43,7 @@ class _gridfrState extends State<gridfr> {
               Center(
                 child: AppText(
                   text: 'Fruits',
-                  size: 35,
+                  size: width / 10,
                   color: Colors.black,
                 ),
               ),
@@ -67,7 +67,7 @@ class _gridfrState extends State<gridfr> {
               Center(
                 child: AppText(
                   text: 'Legumes',
-                  size: 35,
+                  size: width / 10,
                   color: Colors.black,
                 ),
               ),
@@ -91,7 +91,7 @@ class _gridfrState extends State<gridfr> {
               Center(
                 child: AppText(
                   text: 'Animaux',
-                  size: 35,
+                  size: width / 10,
                   color: Colors.black,
                 ),
               ),
@@ -115,7 +115,7 @@ class _gridfrState extends State<gridfr> {
               Center(
                 child: AppText(
                   text: 'Chiffres',
-                  size: 35,
+                  size: width / 10,
                   color: Colors.black,
                 ),
               ),

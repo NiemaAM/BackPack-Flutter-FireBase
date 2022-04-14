@@ -90,6 +90,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
   }
 
   contentBox(context) {
+    double width = MediaQuery.of(context).size.width;
     return Stack(
       children: <Widget>[
         Container(
@@ -114,6 +115,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
               children: <Widget>[
                 AppMsg(
                   text: widget.title,
+                  size: width / 10,
                   color: Colors.green,
                 ),
                 AppText(
@@ -125,14 +127,14 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                   children: [
                     Image.asset(
                       "assets/img/star.png",
-                      height: 30,
+                      height: width / 12,
                     ),
                     const SizedBox(
                       width: 5,
                     ),
                     AppText(
                       text: " $score",
-                      size: 40,
+                      size: width / 10,
                       color: Colors.blue,
                     ),
                   ],
@@ -146,7 +148,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                       },
                       child: AppText(
                         text: widget.text,
-                        size: 30,
+                        size: width / 11,
                         color: Colors.red,
                       )),
                 ),
