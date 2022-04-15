@@ -81,7 +81,6 @@ class _TempsJeuState extends State<TempsJeu> {
     final ref = referenceDatabase.reference();
     _deviceDetails();
     checkValeur();
-    const double _height = 64 - _shadowHeight;
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -94,8 +93,11 @@ class _TempsJeuState extends State<TempsJeu> {
           child: SingleChildScrollView(
               child: Column(
             children: [
-              const retour(
-                color: Colors.black,
+              Container(
+                margin: const EdgeInsets.only(top: 10),
+                child: const retour(
+                  color: Colors.black,
+                ),
               ),
               SizedBox(
                 height: height / 4,
@@ -121,7 +123,7 @@ class _TempsJeuState extends State<TempsJeu> {
                       ),
                       child: AppText(
                         text: "$valeur",
-                        size: width / 5,
+                        size: width / 6,
                       )),
                   const SizedBox(
                     width: 10,
@@ -203,14 +205,14 @@ class _TempsJeuState extends State<TempsJeu> {
                   });
                 },
                 child: SizedBox(
-                  height: _height + _shadowHeight + 10,
+                  height: 60 + _shadowHeight + 10,
                   width: 200,
                   child: Stack(
                     children: [
                       Positioned(
                         bottom: 0,
                         child: Container(
-                          height: _height,
+                          height: 60,
                           width: 200,
                           decoration: const BoxDecoration(
                             color: Color.fromARGB(255, 21, 97, 158),
@@ -226,7 +228,7 @@ class _TempsJeuState extends State<TempsJeu> {
                         bottom: _position,
                         duration: const Duration(milliseconds: 70),
                         child: Container(
-                          height: _height,
+                          height: 60,
                           width: 200,
                           decoration: const BoxDecoration(
                             color: Colors.blue,

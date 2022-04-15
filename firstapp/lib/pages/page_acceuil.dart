@@ -155,116 +155,115 @@ class _acceilState extends State<acceil> {
               height: double.maxFinite,
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage("assets/img/Main_fond.png"),
+                      image: AssetImage("assets/img/acceuil_fond.png"),
                       fit: BoxFit.cover)),
               child: SingleChildScrollView(
-                child: Column(children: [
-                  SizedBox(
-                    height: height / 60,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(left: 10),
-                        child: RaisedButton(
-                          onPressed: () {
-                            player.play('sfx/poop.mp3');
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    const verifier_mot_de_passe()));
-                          },
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                          child: Icon(Icons.menu,
-                              size: width / 8, color: Colors.white),
-                          color: Colors.transparent,
-                          splashColor: Colors.transparent,
-                          elevation: 0,
-                          hoverElevation: 0,
-                          focusElevation: 0,
-                          highlightElevation: 0,
-                        ),
+                child: Stack(
+                  children: [
+                    Image.asset("assets/img/acceuil_haut.png"),
+                    Image.asset("assets/img/acceuil_bas.png"),
+                    Column(children: [
+                      SizedBox(
+                        height: height / 60,
                       ),
-                      Expanded(child: Container()),
-                      IconButton(
-                        icon: (icon_valume)
-                            ? const Icon(
-                                Icons.volume_off,
-                                color: Colors.white,
-                              )
-                            : const Icon(
-                                Icons.volume_up,
-                                color: Colors.white,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(left: 10),
+                            child: RaisedButton(
+                              onPressed: () {
+                                player.play('sfx/poop.mp3');
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        const verifier_mot_de_passe()));
+                              },
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100),
                               ),
-                        onPressed: () {
-                          setState(() {
-                            icon_valume = !icon_valume;
-                          });
-                        },
+                              child: Icon(Icons.menu,
+                                  size: width / 8, color: Colors.white),
+                              color: Colors.transparent,
+                              splashColor: Colors.transparent,
+                              elevation: 0,
+                              hoverElevation: 0,
+                              focusElevation: 0,
+                              highlightElevation: 0,
+                            ),
+                          ),
+                          Expanded(child: Container()),
+                          IconButton(
+                            icon: (icon_valume)
+                                ? const Icon(
+                                    Icons.volume_off,
+                                    color: Colors.white,
+                                  )
+                                : const Icon(
+                                    Icons.volume_up,
+                                    color: Colors.white,
+                                  ),
+                            onPressed: () {
+                              setState(() {
+                                icon_valume = !icon_valume;
+                              });
+                            },
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 20),
+                            child: CircleAvatar(
+                              backgroundImage: AssetImage(Avatar),
+                              minRadius: 35,
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(
-                        width: 10,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(child: Container()),
+                          Expanded(child: Container()),
+                          Expanded(child: Container()),
+                          Expanded(child: Container()),
+                          Expanded(child: Container()),
+                          Expanded(child: Container()),
+                          Expanded(child: Container()),
+                          Expanded(child: Container()),
+                          Image.asset(
+                            "assets/img/star.png",
+                            height: width / 18,
+                          ),
+                          AppText(
+                            text: " $score",
+                            size: width / 10,
+                            color: Colors.white,
+                          ),
+                          Expanded(child: Container()),
+                        ],
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(right: 20),
-                        width: width / 5,
-                        height: width / 5,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          image: DecorationImage(
-                              // ignore: unnecessary_string_interpolations
-                              image: AssetImage("$Avatar"),
-                              fit: BoxFit.cover),
-                        ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(child: Container()),
-                      Expanded(child: Container()),
-                      Expanded(child: Container()),
-                      Expanded(child: Container()),
-                      Expanded(child: Container()),
-                      Expanded(child: Container()),
-                      Expanded(child: Container()),
-                      Expanded(child: Container()),
-                      Image.asset(
-                        "assets/img/star.png",
-                        height: width / 18,
+                      SizedBox(
+                        height: height / 28,
                       ),
-                      AppText(
-                        text: " $score",
-                        size: width / 10,
-                        color: Colors.white,
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: AppMsg(
+                            text: (arret)
+                                ? "Le temps de jeu est épuisé !\n Reviens plus tard."
+                                : "Bonjour $nom, à quoi veux tu jouer aujourd'hui ?",
+                            size: width / 10,
+                            color: Colors.white),
                       ),
-                      Expanded(child: Container()),
-                    ],
-                  ),
-                  SizedBox(
-                    height: height / 28,
-                  ),
-                  SizedBox(
-                    height: 80,
-                    child: Center(
-                      child: AppMsg(
-                          text: (arret)
-                              ? "Le temps de jeu est épuisé !\n Reviens plus tard."
-                              : "Bonjour $nom, à quoi veux tu jouer aujourd'hui ?",
-                          size: width / 10,
-                          color: Colors.white),
-                    ),
-                  ),
-                  SizedBox(
-                    height: height / 20,
-                  ),
-                  (arret) ? const SizedBox() : const slideJeux(),
-                ]),
+                      SizedBox(
+                        height: height / 20,
+                      ),
+                      (arret) ? const SizedBox() : const slideJeux(),
+                    ]),
+                  ],
+                ),
               ),
             );
           },

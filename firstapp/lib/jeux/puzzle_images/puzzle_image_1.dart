@@ -31,77 +31,75 @@ class _SlidePuzzle_1State extends State<SlidePuzzle_1> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-        extendBodyBehindAppBar: true,
-        body: Container(
-            width: double.maxFinite,
-            height: double.maxFinite,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/img/page_parametres.png"),
-                    fit: BoxFit.cover)),
-            child: Column(
+        body: SafeArea(
+      child: SingleChildScrollView(
+        child: Stack(
+          children: [
+            Image.asset("assets/img/haut.png"),
+            Column(
               children: <Widget>[
-                const retour(),
-                SizedBox(
-                  height: height / 10,
-                ),
                 Container(
-                  height: height / 1.5,
-                  width: double.maxFinite,
-                  color: Colors.transparent,
-                  child: SafeArea(
-                    child: Column(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.all(width / 80),
-                          decoration: const BoxDecoration(
-                            color: Colors.transparent,
-                          ),
-                          child: LayoutBuilder(
-                            builder: (context, constraints) {
-                              return SizedBox(
-                                width: constraints.biggest.width,
-                                // comment of this so our box can extends height
-                                // height: constraints.biggest.width,
-
-                                // if setup decoration,color must put inside
-                                // make puzzle widget
-                                child: SlidePuzzle_1Widget(
-                                  key: globalKey,
-                                  size: constraints.biggest,
-                                  // set size puzzle
-                                  imageBckGround: const Image(
-                                    // u can use your own image
-                                    image:
-                                        AssetImage("./assets/img/avatar_1.png"),
-                                  ),
-                                  sizePuzzle: valueSlider,
-                                ),
-                              );
-                            },
-                          ),
-                          // child: ,
-                        ),
-                        Slider(
-                          min: 3,
-                          max: 8,
-                          divisions: 3,
-                          label: valueSlider.toString(),
-                          value: valueSlider.toDouble(),
-                          onChanged: (value) {
-                            setState(
-                              () {
-                                valueSlider = value.toInt();
-                              },
-                            );
-                          },
-                        ),
-                      ],
-                    ),
+                  margin: const EdgeInsets.only(top: 10),
+                  child: const retour(
+                    color: Colors.white,
                   ),
-                )
+                ),
+                SizedBox(
+                  height: height / 6,
+                ),
+                Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.all(width / 80),
+                      decoration: const BoxDecoration(
+                        color: Colors.transparent,
+                      ),
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          return SizedBox(
+                            width: constraints.biggest.width,
+                            // comment of this so our box can extends height
+                            // height: constraints.biggest.width,
+
+                            // if setup decoration,color must put inside
+                            // make puzzle widget
+                            child: SlidePuzzle_1Widget(
+                              key: globalKey,
+                              size: constraints.biggest,
+                              // set size puzzle
+                              imageBckGround: const Image(
+                                // u can use your own image
+                                image: AssetImage("./assets/img/avatar_1.png"),
+                              ),
+                              sizePuzzle: valueSlider,
+                            ),
+                          );
+                        },
+                      ),
+                      // child: ,
+                    ),
+                    Slider(
+                      min: 3,
+                      max: 8,
+                      divisions: 3,
+                      label: valueSlider.toString(),
+                      value: valueSlider.toDouble(),
+                      onChanged: (value) {
+                        setState(
+                          () {
+                            valueSlider = value.toInt();
+                          },
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ],
-            )));
+            ),
+          ],
+        ),
+      ),
+    ));
   }
 }
 

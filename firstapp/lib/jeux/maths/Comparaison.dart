@@ -76,162 +76,155 @@ class _ComparaisonState extends State<Comparaison> {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
         body: SafeArea(
-            child: Container(
-      width: double.maxFinite,
-      height: double.maxFinite,
-      decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/img/page_parametres.png"),
-              fit: BoxFit.cover)),
-      child: SingleChildScrollView(
-        child: Center(
-            child: Column(
-          children: [
-            // ignore: sdk_version_ui_as_code
-            if (height < 700)
-              const retour(
-                color: Colors.black,
-              ),
-            // ignore: sdk_version_ui_as_code
-            if (height > 700)
-              const retour(
-                color: Colors.white,
-              ),
-            SizedBox(
-              height: height / 4,
-            ),
-            Row(
-              children: [
-                SizedBox(
-                  width: width / 10,
+            child: SingleChildScrollView(
+      child: Stack(
+        children: [
+          Image.asset("assets/img/haut.png"),
+          Center(
+              child: Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.only(top: 10),
+                child: const retour(
+                  color: Colors.white,
                 ),
-                Container(
-                  height: width / 4.5,
-                  width: width / 4.5,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(20),
+              ),
+              SizedBox(
+                height: height / 4,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: width / 10,
                   ),
-                  child: AppText(
-                    text: "$num1",
-                    size: width / 6,
-                    color: Colors.white,
-                  ),
-                ),
-                Expanded(child: Container()),
-                DragTarget<String>(
-                  onAccept: (data) {
-                    if (data == trueimg) {
-                      setState(() {
-                        image = trueimg;
-                        player.play('sfx/ding.mp3');
-                        wait();
-                      });
-                    } else {
-                      player.play('sfx/didum.mp3');
-                    }
-                  },
-                  builder: (context, _, __) => Container(
+                  Container(
                     height: width / 4.5,
                     width: width / 4.5,
+                    alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: Colors.grey,
+                      color: Colors.green,
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: Image.asset(image),
-                  ),
-                ),
-                Expanded(child: Container()),
-                Container(
-                  height: width / 4.5,
-                  width: width / 4.5,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: AppText(
-                    text: "$num2",
-                    size: width / 6,
-                    color: Colors.white,
-                  ),
-                ),
-                SizedBox(
-                  width: width / 10,
-                ),
-              ],
-            ),
-            SizedBox(
-              height: width / 7,
-            ),
-            Row(
-              children: [
-                Expanded(child: Container()),
-                Container(
-                  margin: const EdgeInsets.all(8),
-                  child: Draggable<String>(
-                    data: img1,
-                    childWhenDragging: Image(
-                      image: AssetImage(img1),
-                      height: width / 5,
+                    child: AppText(
+                      text: "$num1",
+                      size: width / 6,
+                      color: Colors.white,
                     ),
-                    feedback: Image(
-                      image: AssetImage(img1),
+                  ),
+                  Expanded(child: Container()),
+                  DragTarget<String>(
+                    onAccept: (data) {
+                      if (data == trueimg) {
+                        setState(() {
+                          image = trueimg;
+                          player.play('sfx/ding.mp3');
+                          wait();
+                        });
+                      } else {
+                        player.play('sfx/didum.mp3');
+                      }
+                    },
+                    builder: (context, _, __) => Container(
                       height: width / 4.5,
-                    ),
-                    child: Image(
-                      image: AssetImage(img1),
-                      height: width / 5,
-                    ),
-                  ),
-                ),
-                Expanded(child: Container()),
-                Container(
-                  margin: const EdgeInsets.all(8),
-                  child: Draggable<String>(
-                    data: img2,
-                    childWhenDragging: Image(
-                      image: AssetImage(img2),
-                      height: width / 5,
-                    ),
-                    feedback: Image(
-                      image: AssetImage(img2),
-                      height: width / 4.5,
-                    ),
-                    child: Image(
-                      image: AssetImage(img2),
-                      height: width / 5,
+                      width: width / 4.5,
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Image.asset(image),
                     ),
                   ),
-                ),
-                Expanded(child: Container()),
-                Container(
-                  margin: const EdgeInsets.all(8),
-                  child: Draggable<String>(
-                    data: img3,
-                    childWhenDragging: Image(
-                      image: AssetImage(img3),
-                      height: width / 5,
+                  Expanded(child: Container()),
+                  Container(
+                    height: width / 4.5,
+                    width: width / 4.5,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                    feedback: Image(
-                      image: AssetImage(img3),
-                      height: width / 4.5,
-                    ),
-                    child: Image(
-                      image: AssetImage(img3),
-                      height: width / 5,
+                    child: AppText(
+                      text: "$num2",
+                      size: width / 6,
+                      color: Colors.white,
                     ),
                   ),
-                ),
-                Expanded(child: Container()),
-              ],
-            ),
-            SizedBox(
-              height: height / 4,
-            ),
-          ],
-        )),
+                  SizedBox(
+                    width: width / 10,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: width / 7,
+              ),
+              Row(
+                children: [
+                  Expanded(child: Container()),
+                  Container(
+                    margin: const EdgeInsets.all(8),
+                    child: Draggable<String>(
+                      data: img1,
+                      childWhenDragging: Image(
+                        image: AssetImage(img1),
+                        height: width / 5,
+                      ),
+                      feedback: Image(
+                        image: AssetImage(img1),
+                        height: width / 4.5,
+                      ),
+                      child: Image(
+                        image: AssetImage(img1),
+                        height: width / 5,
+                      ),
+                    ),
+                  ),
+                  Expanded(child: Container()),
+                  Container(
+                    margin: const EdgeInsets.all(8),
+                    child: Draggable<String>(
+                      data: img2,
+                      childWhenDragging: Image(
+                        image: AssetImage(img2),
+                        height: width / 5,
+                      ),
+                      feedback: Image(
+                        image: AssetImage(img2),
+                        height: width / 4.5,
+                      ),
+                      child: Image(
+                        image: AssetImage(img2),
+                        height: width / 5,
+                      ),
+                    ),
+                  ),
+                  Expanded(child: Container()),
+                  Container(
+                    margin: const EdgeInsets.all(8),
+                    child: Draggable<String>(
+                      data: img3,
+                      childWhenDragging: Image(
+                        image: AssetImage(img3),
+                        height: width / 5,
+                      ),
+                      feedback: Image(
+                        image: AssetImage(img3),
+                        height: width / 4.5,
+                      ),
+                      child: Image(
+                        image: AssetImage(img3),
+                        height: width / 5,
+                      ),
+                    ),
+                  ),
+                  Expanded(child: Container()),
+                ],
+              ),
+              SizedBox(
+                height: height / 4,
+              ),
+            ],
+          )),
+        ],
       ),
     )));
   }

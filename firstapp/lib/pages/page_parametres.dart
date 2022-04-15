@@ -83,91 +83,66 @@ class _parametresState extends State<parametres> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: Container(
-          width: double.maxFinite,
-          height: double.maxFinite,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/img/page_parametres.png"),
-                  fit: BoxFit.cover)),
-          child: SingleChildScrollView(
-            child: Column(children: [
-              // ignore: sdk_version_ui_as_code
-              if (height < 700)
-                const retour(
-                  color: Colors.black,
+        child: SingleChildScrollView(
+          child: Stack(
+            children: [
+              Image.asset("assets/img/haut.png"),
+              Column(children: [
+                Container(
+                  margin: const EdgeInsets.only(top: 10),
+                  child: const retour(
+                    color: Colors.white,
+                  ),
                 ),
-              // ignore: sdk_version_ui_as_code
-              if (height > 700)
-                const retour(
-                  color: Colors.white,
-                ),
-              SizedBox(
-                height: height / 14,
-                width: width,
-              ),
-              AppText(
-                text: "Paramètres du profil de l'enfant",
-                size: width / 10,
-                color: const Color.fromARGB(255, 20, 111, 186),
-              ),
-              SizedBox(
+                SizedBox(
+                  height: height / 10,
                   width: width,
-                  height: 40,
-                  child: RaisedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>
-                              const modifier_profile_enfant()));
-                    },
-                    child: AppText(
-                      text: "Modifier le profil",
-                      size: width / 12,
-                      color: Colors.black87,
-                    ),
-                    color: Colors.transparent,
-                    splashColor: Colors.transparent,
-                    elevation: 0,
-                    hoverElevation: 0,
-                    focusElevation: 0,
-                    highlightElevation: 0,
-                  )),
-              Container(
-                  margin: const EdgeInsets.all(10),
-                  width: width / 2,
-                  height: width / 2,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      image: DecorationImage(
-                          image: AssetImage(avatar), fit: BoxFit.cover))),
-              SizedBox(
-                height: 40,
-                width: width,
-                child: AppText(
+                ),
+                AppText(
+                  text: "Paramètres du profil de l'enfant",
+                  size: width / 10,
+                  color: const Color.fromARGB(255, 20, 111, 186),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const modifier_profile_enfant()));
+                  },
+                  child: AppText(
+                    text: "Modifier le profil",
+                    size: width / 12,
+                    color: Colors.black87,
+                  ),
+                ),
+                Container(
+                    margin: const EdgeInsets.all(10),
+                    width: width / 2,
+                    height: width / 2,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        image: DecorationImage(
+                            image: AssetImage(avatar), fit: BoxFit.cover))),
+                AppText(
                   // ignore: unnecessary_string_interpolations
                   text: "$nom",
                   size: width / 9,
                   color: Colors.blue,
                 ),
-              ),
-              SizedBox(
-                height: height / 50,
-                width: width,
-              ),
-              AppText(
-                text: 'Paramètres de contrôle parental',
-                size: width / 10,
-                color: const Color.fromARGB(255, 20, 111, 186),
-              ),
-              SizedBox(
-                height: height / 250,
-                width: width,
-              ),
-              SizedBox(
-                width: width,
-                height: 40,
-                child: RaisedButton(
-                  onPressed: () {
+                SizedBox(
+                  height: height / 50,
+                  width: width,
+                ),
+                AppText(
+                  text: 'Paramètres de contrôle parental',
+                  size: width / 10,
+                  color: const Color.fromARGB(255, 20, 111, 186),
+                ),
+                SizedBox(
+                  height: height / 250,
+                  width: width,
+                ),
+                GestureDetector(
+                  onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const TempsPause()));
                   },
@@ -176,23 +151,13 @@ class _parametresState extends State<parametres> {
                     size: width / 12,
                     color: Colors.black87,
                   ),
-                  color: Colors.transparent,
-                  splashColor: Colors.transparent,
-                  elevation: 0,
-                  hoverElevation: 0,
-                  focusElevation: 0,
-                  highlightElevation: 0,
                 ),
-              ),
-              SizedBox(
-                height: height / 100,
-                width: width,
-              ),
-              SizedBox(
-                width: width,
-                height: 40,
-                child: RaisedButton(
-                  onPressed: () {
+                SizedBox(
+                  height: height / 100,
+                  width: width,
+                ),
+                GestureDetector(
+                  onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const TempsJeu()));
                   },
@@ -201,43 +166,24 @@ class _parametresState extends State<parametres> {
                     size: width / 12,
                     color: Colors.black87,
                   ),
-                  color: Colors.transparent,
-                  splashColor: Colors.transparent,
-                  elevation: 0,
-                  hoverElevation: 0,
-                  focusElevation: 0,
-                  highlightElevation: 0,
                 ),
-              ),
-              SizedBox(
-                height: height / 100,
-                width: width,
-              ),
-              SizedBox(
-                height: height / 30,
-                width: width,
-              ),
-              SizedBox(
+                SizedBox(
+                  height: height / 100,
                   width: width,
-                  height: 40,
-                  child: RaisedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const modifier_mot_de_passe()));
-                    },
-                    child: AppText(
-                      text: "Changer le mot de passe",
-                      size: width / 12,
-                      color: Colors.redAccent,
-                    ),
-                    color: Colors.transparent,
-                    splashColor: Colors.transparent,
-                    elevation: 0,
-                    hoverElevation: 0,
-                    focusElevation: 0,
-                    highlightElevation: 0,
-                  )),
-            ]),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const modifier_mot_de_passe()));
+                  },
+                  child: AppText(
+                    text: "Changer le mot de passe",
+                    size: width / 12,
+                    color: Colors.redAccent,
+                  ),
+                ),
+              ]),
+            ],
           ),
         ),
       ),

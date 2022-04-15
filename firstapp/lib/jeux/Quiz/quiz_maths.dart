@@ -200,113 +200,109 @@ class _Quiz_MathsState extends State<Quiz_Maths> {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
         body: SafeArea(
-      child: Container(
-        width: double.maxFinite,
-        height: double.maxFinite,
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/img/page_parametres.png"),
-                fit: BoxFit.cover)),
-        child: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: [
-                // ignore: sdk_version_ui_as_code
-                if (height < 700)
-                  const retour(
-                    color: Colors.black,
+      child: SingleChildScrollView(
+        child: Stack(
+          children: [
+            Image.asset("assets/img/haut.png"),
+            Center(
+              child: Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(top: 10),
+                    child: const retour(
+                      color: Colors.white,
+                    ),
                   ),
-                // ignore: sdk_version_ui_as_code
-                if (height > 700)
-                  const retour(
-                    color: Colors.white,
+                  SizedBox(
+                    height: height / 40,
                   ),
-                SizedBox(
-                  height: height / 40,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
-                  child: Text.rich(
-                    TextSpan(
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 15, right: 15, top: 15),
+                    child: Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            // ignore: unnecessary_string_interpolations
+                            text: '${_totalScore.toString()}',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline2
+                                .copyWith(color: Colors.blue),
+                          ),
+                          TextSpan(
+                            text: '/10',
+                            style: Theme.of(context).textTheme.headline3,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: width - 10,
+                    height: 250,
+                    padding: const EdgeInsets.all(20),
+                    margin:
+                        const EdgeInsets.only(left: 10, right: 10, bottom: 5),
+                    child: Column(
                       children: [
-                        TextSpan(
-                          // ignore: unnecessary_string_interpolations
-                          text: '${_totalScore.toString()}',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline2
-                              .copyWith(color: Colors.blue),
+                        Center(
+                          child: AppText(
+                            text: _questions[random]['question'],
+                            size: width / 9,
+                            color: Colors.black,
+                          ),
                         ),
-                        TextSpan(
-                          text: '/10',
-                          style: Theme.of(context).textTheme.headline3,
+                        Expanded(child: Container()),
+                        Row(
+                          children: [
+                            Image.asset(
+                              _questions[random]['image1'],
+                              height: width / 3,
+                            ),
+                            Expanded(child: Container()),
+                            AppText(
+                              text: _questions[random]['signe'],
+                              size: width / 5,
+                              color: Colors.blue,
+                            ),
+                            Expanded(child: Container()),
+                            Image.asset(
+                              _questions[random]['image2'],
+                              height: width / 3,
+                            ),
+                          ],
                         ),
                       ],
                     ),
                   ),
-                ),
-                Container(
-                  width: width - 10,
-                  height: 250,
-                  padding: const EdgeInsets.all(20),
-                  margin: const EdgeInsets.only(left: 10, right: 10, bottom: 5),
-                  child: Column(
-                    children: [
-                      Center(
-                        child: AppText(
-                          text: _questions[random]['question'],
-                          size: width / 9,
-                          color: Colors.black,
-                        ),
-                      ),
-                      Expanded(child: Container()),
-                      Row(
-                        children: [
-                          Image.asset(
-                            _questions[random]['image1'],
-                            height: width / 3,
-                          ),
-                          Expanded(child: Container()),
-                          AppText(
-                            text: _questions[random]['signe'],
-                            size: width / 5,
-                            color: Colors.blue,
-                          ),
-                          Expanded(child: Container()),
-                          Image.asset(
-                            _questions[random]['image2'],
-                            height: width / 3,
-                          ),
-                        ],
-                      ),
-                    ],
+                  // ignore: sdk_version_ui_as_code
+                  ...(_questions[random]['answers']
+                          as List<Map<String, Object>>)
+                      .map(
+                    (answer) => Answer(
+                      answerText: answer['answerText'],
+                      answerColor: answerWasSelected
+                          ? answer['score']
+                              ? const Color.fromARGB(255, 103, 204, 106)
+                              : const Color.fromARGB(255, 241, 91, 80)
+                          : null,
+                      answerTap: () {
+                        // if answer was already selected then nothing happens onTap
+                        if (answerWasSelected) {
+                          return;
+                        }
+                        //answer is being selected
+                        _questionAnswered(answer['score']);
+                        checkScore();
+                        wait();
+                      },
+                    ),
                   ),
-                ),
-                // ignore: sdk_version_ui_as_code
-                ...(_questions[random]['answers'] as List<Map<String, Object>>)
-                    .map(
-                  (answer) => Answer(
-                    answerText: answer['answerText'],
-                    answerColor: answerWasSelected
-                        ? answer['score']
-                            ? const Color.fromARGB(255, 103, 204, 106)
-                            : const Color.fromARGB(255, 241, 91, 80)
-                        : null,
-                    answerTap: () {
-                      // if answer was already selected then nothing happens onTap
-                      if (answerWasSelected) {
-                        return;
-                      }
-                      //answer is being selected
-                      _questionAnswered(answer['score']);
-                      checkScore();
-                      wait();
-                    },
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     ));

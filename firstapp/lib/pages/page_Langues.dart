@@ -24,78 +24,71 @@ class _languesState extends State<langues> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: Container(
-          width: width,
-          height: height,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/img/page_parametres.png"),
-                  fit: BoxFit.cover)),
-          child: SingleChildScrollView(
-            child: Column(children: [
-              // ignore: sdk_version_ui_as_code
-              if (height < 700)
-                const retour(
-                  color: Colors.black,
-                ),
-              // ignore: sdk_version_ui_as_code
-              if (height > 700)
-                const retour(
-                  color: Colors.white,
-                ),
-              Column(
-                children: [
-                  SizedBox(
-                    height: height / 10,
+        child: SingleChildScrollView(
+          child: Stack(
+            children: [
+              Image.asset("assets/img/haut.png"),
+              Column(children: [
+                Container(
+                  margin: const EdgeInsets.only(top: 10),
+                  child: const retour(
+                    color: Colors.white,
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      player.play('sfx/poop.mp3');
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const Francais()));
-                    },
-                    child: Container(
-                      width: width - 50,
-                      height: 250,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: Colors.blue),
-                      child: Center(
-                        child: AppText(
-                          text: "Français",
-                          size: width / 3,
-                          color: Colors.white,
+                ),
+                Column(
+                  children: [
+                    SizedBox(
+                      height: height / 9,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        player.play('sfx/poop.mp3');
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const Francais()));
+                      },
+                      child: Container(
+                        width: width - 50,
+                        height: 250,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: Colors.blue),
+                        child: Center(
+                          child: AppText(
+                            text: "Français",
+                            size: width / 3,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: height / 20,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      player.play('sfx/poop.mp3');
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const Anglais()));
-                    },
-                    child: Container(
-                      width: width - 50,
-                      height: 250,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: const Color.fromARGB(255, 244, 54, 124)),
-                      child: Center(
-                        child: AppText(
-                          text: "Anglais",
-                          size: width / 3,
-                          color: Colors.white,
+                    SizedBox(
+                      height: height / 20,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        player.play('sfx/poop.mp3');
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const Anglais()));
+                      },
+                      child: Container(
+                        width: width - 50,
+                        height: 250,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: const Color.fromARGB(255, 244, 54, 124)),
+                        child: Center(
+                          child: AppText(
+                            text: "Anglais",
+                            size: width / 3,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              )
-            ]),
+                  ],
+                )
+              ]),
+            ],
           ),
         ),
       ),

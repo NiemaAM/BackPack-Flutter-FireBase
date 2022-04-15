@@ -23,39 +23,32 @@ class _MathsState extends State<Maths> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: Container(
-          width: double.maxFinite,
-          height: double.maxFinite,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/img/page_parametres.png"),
-                  fit: BoxFit.cover)),
-          child: SingleChildScrollView(
-            child: Column(children: [
-              // ignore: sdk_version_ui_as_code
-              if (height < 700)
-                const retour(
-                  color: Colors.black,
+        child: SingleChildScrollView(
+          child: Stack(
+            children: [
+              Image.asset("assets/img/haut.png"),
+              Column(children: [
+                Container(
+                  margin: const EdgeInsets.only(top: 10),
+                  child: const retour(
+                    color: Colors.white,
+                  ),
                 ),
-              // ignore: sdk_version_ui_as_code
-              if (height > 700)
-                const retour(
-                  color: Colors.white,
+                SizedBox(
+                  height: height / 10,
                 ),
-              SizedBox(
-                height: height / 10,
-              ),
-              AppText(
-                text: "Choisi ce que tu veux apprendre !",
-                size: width / 10,
-                color: Colors.blue,
-              ),
-              SizedBox(
-                width: width,
-                height: height / 1.3,
-                child: const gridMaths(),
-              )
-            ]),
+                AppText(
+                  text: "Choisi ce que tu veux apprendre !",
+                  size: width / 10,
+                  color: Colors.blue,
+                ),
+                SizedBox(
+                  width: width,
+                  height: height / 1.3,
+                  child: const gridMaths(),
+                )
+              ]),
+            ],
           ),
         ),
       ),

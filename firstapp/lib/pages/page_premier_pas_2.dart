@@ -84,7 +84,6 @@ class _premier_pas_2State extends State<premier_pas_2> {
     getData();
     _deviceDetails();
     final ref = referenceDatabase.reference();
-    const double _height = 64 - _shadowHeight;
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -230,14 +229,14 @@ class _premier_pas_2State extends State<premier_pas_2> {
                         });
                       },
                       child: SizedBox(
-                        height: _height + _shadowHeight + 10,
+                        height: 60 + _shadowHeight + 10,
                         width: 200,
                         child: Stack(
                           children: [
                             Positioned(
                               bottom: 0,
                               child: Container(
-                                height: _height,
+                                height: 60,
                                 width: 200,
                                 decoration: const BoxDecoration(
                                   color: Color.fromARGB(255, 21, 97, 158),
@@ -253,7 +252,7 @@ class _premier_pas_2State extends State<premier_pas_2> {
                               bottom: _position,
                               duration: const Duration(milliseconds: 70),
                               child: Container(
-                                height: _height,
+                                height: 60,
                                 width: 200,
                                 decoration: const BoxDecoration(
                                   color: Colors.blue,
