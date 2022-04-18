@@ -7,6 +7,7 @@ import 'package:firstapp/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/menue_retour.dart';
+import '../../widgets/pop_up_jeux.dart';
 
 // ignore: camel_case_types
 class Comparaison extends StatefulWidget {
@@ -20,6 +21,7 @@ class Comparaison extends StatefulWidget {
 class _ComparaisonState extends State<Comparaison> {
   var player = AudioCache();
   Color color = Colors.grey;
+  int score = 0;
   String trueimg = "assets/img/vide.png";
   int num1 = 0;
   int num2 = 0;
@@ -69,6 +71,23 @@ class _ComparaisonState extends State<Comparaison> {
     });
   }
 
+  checkScore() {
+    if (score == 10) {
+      setState(() {
+        score = 0;
+      });
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return const CustomDialogBox(
+              text: "Retour",
+              descriptions: "Ton score est maintenant :",
+              title: "Bien jouer !",
+            );
+          });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     checkFirst();
@@ -89,8 +108,29 @@ class _ComparaisonState extends State<Comparaison> {
                   color: Colors.white,
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
+                child: Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        // ignore: unnecessary_string_interpolations
+                        text: '$score',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline2
+                            .copyWith(color: Colors.blue),
+                      ),
+                      TextSpan(
+                        text: '/10',
+                        style: Theme.of(context).textTheme.headline3,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               SizedBox(
-                height: height / 4,
+                height: height / 5,
               ),
               Row(
                 children: [
@@ -118,6 +158,8 @@ class _ComparaisonState extends State<Comparaison> {
                         setState(() {
                           image = trueimg;
                           player.play('sfx/ding.mp3');
+                          score = score + 1;
+                          checkScore();
                           wait();
                         });
                       } else {

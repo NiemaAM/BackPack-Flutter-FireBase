@@ -140,15 +140,15 @@ class _modifier_mot_de_passeState extends State<modifier_mot_de_passe> {
                         content: AppText(
                           text:
                               'Le mot de passe ne peut pas contenir des emojis',
-                          size: width / 13,
+                          size: width / 22,
                           color: Colors.white,
                         ),
                       ));
                     } else if (myController.text.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: AppText(
-                          text: 'Veillez saisir un mot de passe parentale',
-                          size: width / 13,
+                          text: 'Veuillez saisir un mot de passe parentale',
+                          size: width / 22,
                           color: Colors.white,
                         ),
                       ));
@@ -157,8 +157,8 @@ class _modifier_mot_de_passeState extends State<modifier_mot_de_passe> {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: AppText(
                           text:
-                              'Le mot de passe doit contenir minimum 5 caractéres',
-                          size: width / 13,
+                              'Le mot de passe doit contenir minimums 5 caractères',
+                          size: width / 22,
                           color: Colors.white,
                         ),
                       ));

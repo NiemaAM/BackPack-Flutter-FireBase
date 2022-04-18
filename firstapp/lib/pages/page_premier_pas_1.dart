@@ -152,7 +152,7 @@ class _premier_pas_1State extends State<premier_pas_1> {
                         } else if (myController.text.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: AppText(
-                              text: 'Veillez saisir un mot de passe parentale',
+                              text: 'Veuillez saisir un mot de passe parentale',
                               size: width / 22,
                               color: Colors.white,
                             ),
@@ -162,7 +162,7 @@ class _premier_pas_1State extends State<premier_pas_1> {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: AppText(
                               text:
-                                  'Le mot de passe doit contenir minimum 5 caractéres',
+                                  'Le mot de passe doit contenir minimums 5 caractères',
                               size: width / 22,
                               color: Colors.white,
                             ),
