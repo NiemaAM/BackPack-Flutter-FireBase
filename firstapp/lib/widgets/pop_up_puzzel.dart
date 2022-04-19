@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:confetti/confetti.dart';
 import 'package:device_info/device_info.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firstapp/widgets/app_msg.dart';
@@ -71,9 +72,12 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
     }
   }
 
+  final controller = ConfettiController();
   @override
   void initState() {
     super.initState();
+    controller.play();
+    player.play('sfx/success.wav');
   }
 
   @override
@@ -167,6 +171,11 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                     Radius.circular(Constants.avatarRadius)),
                 child: Image.asset(avatar)),
           ),
+        ),
+        ConfettiWidget(
+          confettiController: controller,
+          shouldLoop: true,
+          blastDirectionality: BlastDirectionality.explosive,
         ),
       ],
     );

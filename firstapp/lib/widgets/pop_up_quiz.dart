@@ -7,7 +7,7 @@ import 'package:device_info/device_info.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:confetti/confetti.dart';
 import 'app_text.dart';
 import 'constant.dart';
 
@@ -24,6 +24,7 @@ class CustomDialogBox extends StatefulWidget {
 }
 
 class _CustomDialogBoxState extends State<CustomDialogBox> {
+  final controller = ConfettiController();
   var player = AudioCache();
   String avatar = './assets/img/blank.png';
   String score = ' ';
@@ -73,6 +74,8 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
   @override
   void initState() {
     super.initState();
+    controller.play();
+    player.play('sfx/success.wav');
   }
 
   @override
@@ -167,6 +170,11 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                     Radius.circular(Constants.avatarRadius)),
                 child: Image.asset(avatar)),
           ),
+        ),
+        ConfettiWidget(
+          confettiController: controller,
+          shouldLoop: true,
+          blastDirectionality: BlastDirectionality.explosive,
         ),
       ],
     );
