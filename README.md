@@ -6,6 +6,12 @@ BACK PACK is an educational mobile application for children that includes a coll
 BACK PACK aims at children under the age of 12 to provide them with a dynamic and fun learning environment. In addition to the games and lessons offered by the application, it also contains audio books, canteens, quizzes, and a drawing space to enhance the child's creative side. 
 <br>
 All of the child's activities in the application are supervised and managed by the parent using a parental password to control playtime and breaks during the application use.
+<br>
+<br>
+<p align="center"
+<picture>
+  <img alt="page" src="https://github.com/NiemaAM/PFE/raw/main/firstapp/assets/img/logo_app.png" height="100px">
+</picture>
 
 <h2>OverView</h2>
 
