@@ -1,5 +1,4 @@
-# PFE
-<h1>BackPack</h1>
+# BackPack
 <h2>Educational Mobile Application for Children with Flutter and Firebase</h2>
 BACK PACK is an educational mobile application for children that includes a collection of games and lessons to learn mathematics, French, and English safely.
 <br>
