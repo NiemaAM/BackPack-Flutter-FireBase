@@ -75,7 +75,7 @@ All of the child's activities in the application are supervised and managed by t
   <img alt="page" src="https://drive.google.com/uc?id=1Jez2S0SeheEObhB3P3GHXyfKxopC-ohj" height="500px">
 </picture>
 
-<br> <h3>Quizs</h3> <br>
+<br> <h3>Quizzes</h3> <br>
 <picture>
   <img alt="page" src="https://drive.google.com/uc?id=1KrMx2l65gQ_jijbIZfgFo1SUxXghbWrE" height="500px">
 </picture>
